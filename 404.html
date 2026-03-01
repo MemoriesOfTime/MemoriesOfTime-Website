@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found | MemoriesOfTime</title>
+  <meta name="description" content="Page not found - MemoriesOfTime">
+  <meta property="og:title" content="404 - MemoriesOfTime">
+  <meta property="og:description" content="Page not found">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/62042238?v=4">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <style>
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 404 page blob positions & colors */
+    .blob-1 {
+      top: 20%; left: 20%;
+      width: 40vw; height: 40vw;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      animation-delay: 0s;
+    }
+
+    .blob-2 {
+      bottom: 20%; right: 20%;
+      width: 50vw; height: 50vw;
+      background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+      animation-delay: -5s;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(30px, 50px) scale(1.1); }
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+      z-index: 1;
+    }
+
+    .error-code {
+      font-size: 10rem;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--foreground) 0%, var(--muted-foreground) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @media (max-width: 768px) {
+      .error-code { font-size: 6rem; }
+    }
+
+    .error-card {
+      display: inline-block;
+      padding: 2rem 3rem;
+      border-radius: 24px;
+      opacity: 0;
+      animation: fadeInUp 0.8s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .error-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .error-desc {
+      color: var(--muted-foreground);
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      border: none;
+      background: var(--primary);
+      color: var(--primary-foreground);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .btn svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.2s;
+    }
+
+    .btn:hover svg {
+      transform: translateX(-4px);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-decoration">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+
+  <div class="container">
+    <div class="error-code">404</div>
+
+    <div class="error-card glass-panel">
+      <h1 class="error-title" id="errorTitle">页面未找到</h1>
+      <p class="error-desc" id="errorDesc">您访问的页面可能已被移除、更名或暂时不可用。</p>
+
+      <a href="/" class="btn" id="errorBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m12 19-7-7 7-7"/>
+          <path d="M19 12H5"/>
+        </svg>
+        <span id="errorBtnText">返回首页</span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const isZh = navigator.language.startsWith('zh');
+    if (!isZh) {
+      document.documentElement.lang = 'en';
+      document.title = '404 - Page Not Found | MemoriesOfTime';
+      document.getElementById('errorTitle').textContent = 'Page Not Found';
+      document.getElementById('errorDesc').textContent = 'The page you are looking for might have been removed, renamed, or is temporarily unavailable.';
+      document.getElementById('errorBtnText').textContent = 'Back to Home';
+    }
+  </script>
+</body>
+</html>
