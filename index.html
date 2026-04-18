@@ -16,19 +16,33 @@
   <meta name="twitter:title" content="MemoriesOfTime">
   <meta name="twitter:description" content="专注 Minecraft 基岩版生态的开源组织">
   <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/62042238?v=4">
+  <link rel="preconnect" href="https://api.github.com">
+  <link rel="preconnect" href="https://avatars.githubusercontent.com">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <div class="bg-decoration">
+  <div class="bg-decoration" aria-hidden="true">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
   </div>
 
   <div id="nav-container"></div>
-  <main id="app"></main>
+  <main id="app">
+    <section class="hero" style="min-height: 100vh;">
+      <div class="container">
+        <div class="hero-content" style="justify-content: center;">
+          <div class="skeleton skeleton-avatar"></div>
+          <div style="flex:1;">
+            <div class="skeleton skeleton-text" style="width:150px; height:30px;"></div>
+            <div class="skeleton skeleton-text" style="width:100px; height:20px; margin-top:12px;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  <script src="assets/js/app.js"></script>
+  <script src="assets/js/app.js" defer></script>
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
