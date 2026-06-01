@@ -592,6 +592,8 @@ section[id] { scroll-margin-top: 70px; }
 
 .friend-link-icon svg { width: 18px; height: 18px; }
 
+.friend-link-logo { width: 38px; height: 38px; border-radius: 8px; object-fit: cover; }
+
 .friend-link-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 
 .friend-link-name { font-size: 0.95rem; font-weight: 600; }

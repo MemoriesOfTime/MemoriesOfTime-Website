@@ -13,9 +13,10 @@ const CONFIG = {
   repoUrl: 'https://repo.lanink.cn',
   jsonuiUrl: 'https://jsonui.mot.dev/',
   friendLinks: [
-    { name: 'github', url: 'https://github.com/MemoriesOfTime', desc: 'github repository' },
+    { name: 'Nukkit-MOT', url: 'https://www.nukkit-mot.com/', desc: '', logo: 'https://www.nukkit-mot.com/zh/images/logo.png' },
+    { name: '速德优', url: 'https://www.sodayo.net', desc: '', logo: 'https://www.fapixel.com/wp-content/uploads/2026/05/sodayo-logo2.png' },
   ],
-  showFriendLinks: false,
+  showFriendLinks: true,
 };
 
 /* --- i18n --- */
@@ -516,10 +517,10 @@ function renderFriendLinks() {
         <div class="friend-links-grid">
           ${CONFIG.friendLinks.map((link, i) => `
             <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="friend-link-card glass-panel scroll-anim" data-delay="${i * 100}">
-              <div class="friend-link-icon">${icons.externalLink}</div>
+              <div class="friend-link-icon">${link.logo ? `<img src="${link.logo}" alt="${link.name}" class="friend-link-logo">` : icons.externalLink}</div>
               <div class="friend-link-info">
                 <span class="friend-link-name">${link.name}</span>
-                <span class="friend-link-desc">${link.desc}</span>
+                ${link.desc ? `<span class="friend-link-desc">${link.desc}</span>` : ''}
               </div>
             </a>
           `).join('')}
