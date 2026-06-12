@@ -164,6 +164,7 @@ function toggleLang() {
     document.getElementById('app').innerHTML = renderFallback();
   }
   initScrollAnimations();
+  updateScrollState();
 }
 
 function updateSEOMeta() {
@@ -584,22 +585,22 @@ function renderContent(data) {
         <div class="stats-grid">
           <div class="stat-card glass-panel scroll-anim" data-delay="0">
             <div class="stat-content"><div class="stat-icon">${icons.star}</div><div>
-              <div class="stat-value">${totalStars.toLocaleString()}</div><div class="stat-label">${t('totalStars')}</div>
+              <div class="stat-value" data-count="${totalStars}">${totalStars.toLocaleString()}</div><div class="stat-label">${t('totalStars')}</div>
             </div></div>
           </div>
           <div class="stat-card glass-panel scroll-anim" data-delay="100">
             <div class="stat-content"><div class="stat-icon">${icons.fork}</div><div>
-              <div class="stat-value">${totalForks.toLocaleString()}</div><div class="stat-label">${t('totalForks')}</div>
+              <div class="stat-value" data-count="${totalForks}">${totalForks.toLocaleString()}</div><div class="stat-label">${t('totalForks')}</div>
             </div></div>
           </div>
           <div class="stat-card glass-panel scroll-anim" data-delay="200">
             <div class="stat-content"><div class="stat-icon">${icons.github}</div><div>
-              <div class="stat-value">${user.public_repos}</div><div class="stat-label">${t('publicRepos')}</div>
+              <div class="stat-value" data-count="${user.public_repos}">${user.public_repos}</div><div class="stat-label">${t('publicRepos')}</div>
             </div></div>
           </div>
           <div class="stat-card glass-panel scroll-anim" data-delay="300">
             <div class="stat-content"><div class="stat-icon">${icons.users}</div><div>
-              <div class="stat-value">${user.followers || '-'}</div><div class="stat-label">${t('followers')}</div>
+              <div class="stat-value" ${user.followers ? `data-count="${user.followers}"` : ''}>${user.followers || '-'}</div><div class="stat-label">${t('followers')}</div>
             </div></div>
           </div>
         </div>
@@ -653,6 +654,7 @@ async function refreshData() {
     renderNavbar(cachedData.user);
     document.getElementById('app').innerHTML = renderContent(cachedData);
     initScrollAnimations();
+    updateScrollState();
   } catch (e) {
     console.error(e);
   } finally {
@@ -664,6 +666,26 @@ async function refreshData() {
 }
 
 /* --- Scroll Animations --- */
+/* 统计数字滚动动画：从 0 缓动计数到目标值 */
+function animateCount(el) {
+  const target = parseInt(el.dataset.count, 10);
+  if (isNaN(target)) return;
+  delete el.dataset.count; // 防止重复触发
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    el.textContent = target.toLocaleString();
+    return;
+  }
+  const duration = 1200;
+  const start = performance.now();
+  function tick(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(target * eased).toLocaleString();
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
 function initScrollAnimations() {
   const elements = document.querySelectorAll('.scroll-anim:not(.visible)');
   if (!elements.length) return;
@@ -673,7 +695,10 @@ function initScrollAnimations() {
       if (entry.isIntersecting) {
         const el = entry.target;
         const delay = parseInt(el.dataset.delay || '0', 10);
-        setTimeout(() => el.classList.add('visible'), delay);
+        setTimeout(() => {
+          el.classList.add('visible');
+          el.querySelectorAll('.stat-value[data-count]').forEach(animateCount);
+        }, delay);
         observer.unobserve(el);
       }
     });
@@ -683,12 +708,30 @@ function initScrollAnimations() {
 }
 
 function initScrollListener() {
-  window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('navbar');
-    if (navbar) {
-      navbar.classList.toggle('scrolled', window.scrollY > 50);
-    }
-  }, { passive: true });
+  window.addEventListener('scroll', updateScrollState, { passive: true });
+}
+
+function updateScrollState() {
+  const navbar = document.getElementById('navbar');
+  if (navbar) {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  }
+
+  // 滚动后隐藏「向下滚动」提示
+  const indicator = document.querySelector('.scroll-indicator');
+  if (indicator) {
+    indicator.classList.toggle('hidden', window.scrollY > 80);
+  }
+
+  // Scroll spy：高亮当前区块对应的导航链接
+  let current = 'hero';
+  ['hero', 'features', 'projects', 'resources', 'community'].forEach(id => {
+    const section = document.getElementById(id);
+    if (section && section.offsetTop <= window.scrollY + 120) current = id;
+  });
+  document.querySelectorAll('.navbar-links a[href^="#"]').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
 }
 
 /* --- Init --- */
@@ -702,12 +745,12 @@ async function init() {
     cachedData = await fetchGitHubData();
     renderNavbar(cachedData.user);
     app.innerHTML = renderContent(cachedData);
-    initScrollAnimations();
   } catch (e) {
     console.error('GitHub API unavailable:', e.message);
     app.innerHTML = renderFallback();
-    initScrollAnimations();
   }
+  initScrollAnimations();
+  updateScrollState();
 }
 
 init();

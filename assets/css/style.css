@@ -21,6 +21,19 @@ section[id] { scroll-margin-top: 70px; }
   animation-delay: -5s;
 }
 
+.blob-3 {
+  top: 45%; left: 55%;
+  width: 35vw; height: 35vw;
+  background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+  opacity: 0.25;
+  animation-delay: -12s;
+  animation-duration: 26s;
+}
+
+@media (prefers-color-scheme: dark) {
+  .blob-3 { opacity: 0.1; }
+}
+
 /* --- Navbar --- */
 .navbar {
   position: fixed;
@@ -77,11 +90,33 @@ section[id] { scroll-margin-top: 70px; }
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
+  position: relative;
   transition: color 0.2s;
+}
+
+.navbar-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 100%; height: 2px;
+  border-radius: 1px;
+  background: var(--foreground);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .navbar-links a:hover {
   color: var(--foreground);
+}
+
+.navbar-links a.active {
+  color: var(--foreground);
+}
+
+.navbar-links a:hover::after,
+.navbar-links a.active::after {
+  transform: scaleX(1);
 }
 
 .lang-toggle {
@@ -157,9 +192,21 @@ section[id] { scroll-margin-top: 70px; }
   font-weight: 800;
   letter-spacing: -0.03em;
   margin-bottom: 4px;
-  background: linear-gradient(135deg, var(--foreground), var(--muted-foreground));
+  background: linear-gradient(120deg, var(--foreground) 0%, var(--muted-foreground) 50%, var(--foreground) 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* 与 .anim-item 的 fadeInUp 合并声明，避免 animation 属性互相覆盖 */
+.hero-name.anim-item {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+             gradientFlow 8s ease-in-out 1s infinite;
+}
+
+@keyframes gradientFlow {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
 }
 
 .hero-username {
@@ -278,6 +325,13 @@ section[id] { scroll-margin-top: 70px; }
   font-size: 0.8rem;
   opacity: 0;
   animation: fadeInUp 0.8s 1s forwards;
+  transition: opacity 0.4s;
+}
+
+/* 滚动后隐藏提示；!important 用于覆盖 fadeInUp forwards 保留的 opacity */
+.scroll-indicator.hidden {
+  opacity: 0 !important;
+  pointer-events: none;
 }
 
 .scroll-content {
@@ -334,7 +388,9 @@ section[id] { scroll-margin-top: 70px; }
   margin-bottom: 12px;
 }
 
-.feature-icon svg { width: 24px; height: 24px; }
+.feature-icon svg { width: 24px; height: 24px; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+.feature-card:hover .feature-icon svg { transform: scale(1.15) rotate(-8deg); }
 
 .feature-title {
   font-size: 1rem;
@@ -370,7 +426,8 @@ section[id] { scroll-margin-top: 70px; }
   border-radius: 8px;
   background: rgba(255,255,255,0.4);
 }
-.stat-icon svg { width: 18px; height: 18px; }
+.stat-icon svg { width: 18px; height: 18px; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.stat-card:hover .stat-icon svg { transform: scale(1.2); }
 
 .stat-value { font-size: 1.5rem; font-weight: 700; }
 .stat-label { font-size: 0.75rem; color: var(--muted-foreground); }
@@ -478,8 +535,9 @@ section[id] { scroll-margin-top: 70px; }
 .repo-icon svg { width: 14px; height: 14px; }
 
 .repo-name { font-weight: 600; font-size: 0.95rem; color: var(--foreground); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; word-break: break-all; }
-.repo-name svg { width: 12px; height: 12px; opacity: 0.6; flex-shrink: 0; transition: opacity 0.2s; }
+.repo-name svg { width: 12px; height: 12px; opacity: 0.6; flex-shrink: 0; transition: opacity 0.2s, transform 0.2s; }
 .repo-name:hover svg { opacity: 1; }
+.repo-card:hover .repo-name svg { opacity: 1; transform: translate(2px, -2px); }
 
 .repo-desc { font-size: 0.85rem; color: var(--muted-foreground); flex: 1; margin-bottom: 12px; line-height: 1.5; }
 .repo-topics { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
@@ -533,7 +591,8 @@ section[id] { scroll-margin-top: 70px; }
 }
 
 .community-icon { margin-bottom: 12px; }
-.community-icon svg { width: 40px; height: 40px; }
+.community-icon svg { width: 40px; height: 40px; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.community-card:hover .community-icon svg { transform: scale(1.1) translateY(-3px); }
 
 .community-card-title {
   font-size: 1.1rem;
@@ -590,9 +649,12 @@ section[id] { scroll-margin-top: 70px; }
   justify-content: center;
 }
 
-.friend-link-icon svg { width: 18px; height: 18px; }
+.friend-link-icon svg { width: 18px; height: 18px; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
 
-.friend-link-logo { width: 38px; height: 38px; border-radius: 8px; object-fit: cover; }
+.friend-link-logo { width: 38px; height: 38px; border-radius: 8px; object-fit: cover; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+.friend-link-card:hover .friend-link-icon svg,
+.friend-link-card:hover .friend-link-logo { transform: scale(1.1); }
 
 .friend-link-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 
@@ -661,6 +723,11 @@ section[id] { scroll-margin-top: 70px; }
 /* ===========================
    Mobile Navbar (<= 767px)
    =========================== */
+@keyframes navDrop {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @media (max-width: 767px) {
   .navbar-links {
     display: none;
@@ -678,7 +745,10 @@ section[id] { scroll-margin-top: 70px; }
 
   .navbar-links.open {
     display: flex;
+    animation: navDrop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
+
+  .navbar-links a::after { display: none; }
 
   .menu-toggle {
     display: block;
