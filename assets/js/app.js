@@ -301,6 +301,7 @@ function renderNavbar(user) {
         </div>
         <button class="menu-toggle" onclick="toggleMenu()">${icons.menu}</button>
       </div>
+      <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
     </nav>
   `;
 }
@@ -387,12 +388,12 @@ function renderFeatures() {
   return `
     <section class="features" id="features">
       <div class="container">
-        <div class="features-header scroll-anim">
+        <div class="features-header scroll-anim blur">
           <h2 class="features-title">${t('featuresTitle')}</h2>
         </div>
         <div class="features-grid">
           ${features.map((f, i) => `
-            <div class="feature-card glass-panel scroll-anim" data-delay="${i * 100}">
+            <div class="feature-card glass-panel scroll-anim scale" data-delay="${i * 100}">
               <div class="feature-icon">${f.icon}</div>
               <h3 class="feature-title">${t(f.titleKey)}</h3>
               <p class="feature-desc">${t(f.descKey)}</p>
@@ -448,6 +449,11 @@ function renderReposInner(repos) {
 
 /* --- Render: Resources --- */
 function renderResources() {
+  const items = [
+    { icon: icons.build, titleKey: 'ciTitle', descKey: 'ciDesc', btnKey: 'ciBtn', url: CONFIG.ciUrl },
+    { icon: icons.package, titleKey: 'repoTitle', descKey: 'repoDesc', btnKey: 'repoBtn', url: CONFIG.repoUrl },
+    { icon: icons.code, titleKey: 'jsonuiTitle', descKey: 'jsonuiDesc', btnKey: 'jsonuiBtn', url: CONFIG.jsonuiUrl },
+  ];
   return `
     <section class="community" id="resources">
       <div class="container">
@@ -456,24 +462,14 @@ function renderResources() {
           <p class="community-desc">${t('resourcesDesc')}</p>
         </div>
         <div class="community-grid">
-          <div class="community-card glass-panel scroll-anim" data-delay="0">
-            <div class="community-icon">${icons.build}</div>
-            <h3 class="community-card-title">${t('ciTitle')}</h3>
-            <p class="community-card-desc">${t('ciDesc')}</p>
-            <a href="${CONFIG.ciUrl}" target="_blank" class="btn-secondary-outline">${t('ciBtn')}</a>
-          </div>
-          <div class="community-card glass-panel scroll-anim" data-delay="100">
-            <div class="community-icon">${icons.package}</div>
-            <h3 class="community-card-title">${t('repoTitle')}</h3>
-            <p class="community-card-desc">${t('repoDesc')}</p>
-            <a href="${CONFIG.repoUrl}" target="_blank" class="btn-secondary-outline">${t('repoBtn')}</a>
-          </div>
-          <div class="community-card glass-panel scroll-anim" data-delay="200">
-            <div class="community-icon">${icons.code}</div>
-            <h3 class="community-card-title">${t('jsonuiTitle')}</h3>
-            <p class="community-card-desc">${t('jsonuiDesc')}</p>
-            <a href="${CONFIG.jsonuiUrl}" target="_blank" class="btn-secondary-outline">${t('jsonuiBtn')}</a>
-          </div>
+          ${items.map((it, i) => `
+            <div class="community-card glass-panel scroll-anim ${i % 2 === 0 ? 'left' : 'right'}" data-delay="${i * 100}">
+              <div class="community-icon">${it.icon}</div>
+              <h3 class="community-card-title">${t(it.titleKey)}</h3>
+              <p class="community-card-desc">${t(it.descKey)}</p>
+              <a href="${it.url}" target="_blank" class="btn-secondary-outline">${t(it.btnKey)}</a>
+            </div>
+          `).join('')}
         </div>
       </div>
     </section>`;
@@ -481,6 +477,10 @@ function renderResources() {
 
 /* --- Render: Community --- */
 function renderCommunity() {
+  const items = [
+    { icon: icons.discord, titleKey: 'discordTitle', descKey: 'discordDesc', btnKey: 'discordBtn', url: CONFIG.discordUrl },
+    { icon: icons.qq, titleKey: 'qqTitle', descKey: 'qqDesc', btnKey: 'qqBtn', url: CONFIG.qqGroupUrl },
+  ];
   return `
     <section class="community" id="community">
       <div class="container">
@@ -489,25 +489,34 @@ function renderCommunity() {
           <p class="community-desc">${t('communityDesc')}</p>
         </div>
         <div class="community-grid">
-          <div class="community-card glass-panel scroll-anim" data-delay="0">
-            <div class="community-icon">${icons.discord}</div>
-            <h3 class="community-card-title">${t('discordTitle')}</h3>
-            <p class="community-card-desc">${t('discordDesc')}</p>
-            <a href="${CONFIG.discordUrl}" target="_blank" class="btn-secondary-outline">${t('discordBtn')}</a>
-          </div>
-          <div class="community-card glass-panel scroll-anim" data-delay="100">
-            <div class="community-icon">${icons.qq}</div>
-            <h3 class="community-card-title">${t('qqTitle')}</h3>
-            <p class="community-card-desc">${t('qqDesc')}</p>
-            <a href="${CONFIG.qqGroupUrl}" target="_blank" class="btn-secondary-outline">${t('qqBtn')}</a>
-          </div>
+          ${items.map((it, i) => `
+            <div class="community-card glass-panel scroll-anim ${i % 2 === 0 ? 'left' : 'right'}" data-delay="${i * 100}">
+              <div class="community-icon">${it.icon}</div>
+              <h3 class="community-card-title">${t(it.titleKey)}</h3>
+              <p class="community-card-desc">${t(it.descKey)}</p>
+              <a href="${it.url}" target="_blank" class="btn-secondary-outline">${t(it.btnKey)}</a>
+            </div>
+          `).join('')}
         </div>
       </div>
     </section>`;
 }
 
 /* --- Render: Friend Links --- */
+function renderFriendLinkCard(link, i, animate) {
+  return `
+    <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="friend-link-card glass-panel${animate ? ' scroll-anim' : ''}"${animate ? ` data-delay="${i * 100}"` : ''}>
+      <div class="friend-link-icon">${link.logo ? `<img src="${link.logo}" alt="${link.name}" class="friend-link-logo">` : icons.externalLink}</div>
+      <div class="friend-link-info">
+        <span class="friend-link-name">${link.name}</span>
+        ${link.desc ? `<span class="friend-link-desc">${link.desc}</span>` : ''}
+      </div>
+    </a>`;
+}
+
 function renderFriendLinks() {
+  const cards = CONFIG.friendLinks.map((link, i) => renderFriendLinkCard(link, i, true)).join('');
+  const cardsClone = CONFIG.friendLinks.map((link, i) => renderFriendLinkCard(link, i, false)).join('');
   return `
     <section class="friend-links" id="friend-links">
       <div class="container">
@@ -515,19 +524,22 @@ function renderFriendLinks() {
           <h2 class="friend-links-title">${icons.link} ${t('friendLinksTitle')}</h2>
           <p class="friend-links-desc">${t('friendLinksDesc')}</p>
         </div>
-        <div class="friend-links-grid">
-          ${CONFIG.friendLinks.map((link, i) => `
-            <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="friend-link-card glass-panel scroll-anim" data-delay="${i * 100}">
-              <div class="friend-link-icon">${link.logo ? `<img src="${link.logo}" alt="${link.name}" class="friend-link-logo">` : icons.externalLink}</div>
-              <div class="friend-link-info">
-                <span class="friend-link-name">${link.name}</span>
-                ${link.desc ? `<span class="friend-link-desc">${link.desc}</span>` : ''}
-              </div>
-            </a>
-          `).join('')}
+        <div class="friend-links-track" id="friendLinksTrack">
+          <div class="friend-links-grid">${cards}</div>
+          <div class="friend-links-grid friend-links-grid--clone" aria-hidden="true">${cardsClone}</div>
         </div>
       </div>
     </section>`;
+}
+
+/* 链接数量超出容器时启用横向滚动，否则保持居中静态展示 */
+function checkFriendLinksScroll() {
+  const track = document.getElementById('friendLinksTrack');
+  if (!track) return;
+  const firstGrid = track.querySelector('.friend-links-grid');
+  if (!firstGrid) return;
+  const overflow = firstGrid.scrollWidth - track.offsetWidth;
+  track.classList.toggle('is-scroll', overflow > 1);
 }
 
 /* --- Render: Main Content --- */
@@ -707,11 +719,24 @@ function initScrollAnimations() {
   elements.forEach(el => observer.observe(el));
 }
 
+let scrollTicking = false;
 function initScrollListener() {
-  window.addEventListener('scroll', updateScrollState, { passive: true });
+  // rAF 合并：一帧内多次 scroll 只计算一次，避免布局抖动
+  window.addEventListener('scroll', () => {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    requestAnimationFrame(() => { updateScrollState(); scrollTicking = false; });
+  }, { passive: true });
 }
 
 function updateScrollState() {
+  // 顶部滚动进度条
+  const progress = document.getElementById('scrollProgress');
+  if (progress) {
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.transform = `scaleX(${docH > 0 ? Math.min(window.scrollY / docH, 1) : 0})`;
+  }
+
   const navbar = document.getElementById('navbar');
   if (navbar) {
     navbar.classList.toggle('scrolled', window.scrollY > 50);
@@ -751,6 +776,13 @@ async function init() {
   }
   initScrollAnimations();
   updateScrollState();
+  checkFriendLinksScroll();
+  window.addEventListener('resize', () => {
+    if (resizeFLTimer) cancelAnimationFrame(resizeFLTimer);
+    resizeFLTimer = requestAnimationFrame(checkFriendLinksScroll);
+  });
 }
+
+let resizeFLTimer = null;
 
 init();
