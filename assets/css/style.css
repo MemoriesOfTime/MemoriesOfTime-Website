@@ -4,6 +4,11 @@
 
 html { scroll-behavior: smooth; }
 
+/* 减少动态偏好下禁用平滑滚动 */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
 section[id] { scroll-margin-top: 70px; }
 
 /* --- Aurora bands (main page background) --- */
@@ -13,6 +18,8 @@ section[id] { scroll-margin-top: 70px; }
   border-radius: 50%;
   filter: blur(70px);
   opacity: 0.5;
+  /* 提示合成器提升为独立图层，避免动画每帧重绘背景 */
+  will-change: transform;
 }
 
 .ab-1 {
@@ -37,6 +44,11 @@ section[id] { scroll-margin-top: 70px; }
   bottom: 5%; left: 15%;
   background: radial-gradient(circle at 50% 50%, #fa709a, transparent 60%);
   animation: drift1 30s ease-in-out infinite reverse;
+}
+
+/* 移动端 GPU 合成压力较大，仅保留两条光带 */
+@media (max-width: 767px) {
+  .ab-3, .ab-4 { display: none; }
 }
 
 @keyframes drift1 {
@@ -236,9 +248,10 @@ section[id] { scroll-margin-top: 70px; }
 }
 
 /* 与 .anim-item 的 fadeInUp 合并声明，避免 animation 属性互相覆盖 */
+/* gradientFlow 限 2 次：background-position 动画会持续触发重绘，播完即静止 */
 .hero-name.anim-item {
   animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-             gradientFlow 8s ease-in-out 1s infinite;
+             gradientFlow 8s ease-in-out 1s 2;
 }
 
 @keyframes gradientFlow {
@@ -356,6 +369,7 @@ section[id] { scroll-margin-top: 70px; }
 .language-badge:hover { transform: translateY(-2px); }
 
 /* --- Scroll Indicator --- */
+/* 滚动提示是 <button>，需重置浏览器默认按钮样式 */
 .scroll-indicator {
   position: absolute;
   bottom: 24px;
@@ -367,6 +381,12 @@ section[id] { scroll-margin-top: 70px; }
   opacity: 0;
   animation: fadeInUp 0.8s 1s forwards;
   transition: opacity 0.4s;
+  background: none;
+  border: none;
+  padding: 8px 0;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: inherit;
 }
 
 /* 滚动后隐藏提示；!important 用于覆盖 fadeInUp forwards 保留的 opacity */
@@ -514,7 +534,8 @@ section[id] { scroll-margin-top: 70px; }
   box-shadow: var(--glass-shadow), 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
-.select:focus { outline: none; border-color: var(--primary); }
+/* 不再移除 outline，键盘焦点由全局 :focus-visible 焦点环呈现 */
+.select:focus { border-color: var(--primary); }
 
 .select-arrow {
   position: absolute;
@@ -743,6 +764,23 @@ section[id] { scroll-margin-top: 70px; }
 .error-container { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 16px; }
 .error-card { background: var(--card); backdrop-filter: blur(16px); padding: 32px; border-radius: var(--radius); text-align: center; border: 1px solid var(--border); }
 
+/* --- Toast --- */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translate(-50%, 16px);
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 1100;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
 /* ===========================
    Desktop (>= 768px)
    =========================== */
@@ -820,8 +858,24 @@ section[id] { scroll-margin-top: 70px; }
 
   .navbar-links a::after { display: none; }
 
+  /* 移动端触摸目标不低于 44px */
+  .navbar-links a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 12px;
+  }
+
+  .navbar-links .lang-toggle {
+    align-self: flex-start;
+    min-height: 44px;
+    padding: 0 16px;
+  }
+
   .menu-toggle {
     display: block;
+    min-width: 44px;
+    min-height: 44px;
   }
 }
 

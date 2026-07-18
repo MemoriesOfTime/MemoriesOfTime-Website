@@ -79,6 +79,10 @@ const TRANSLATIONS = {
     friendLinksDesc: '我们推荐的开源项目与合作伙伴。',
     loadFailed: '加载失败',
     reload: '重新加载',
+    staleData: '网络异常，展示上次缓存的数据',
+    refreshLabel: '刷新数据',
+    menuToggleLabel: '切换导航菜单',
+    langToggleLabel: '切换到 English',
     timeMonths: '{n} 个月前',
     timeDays: '{n} 天前',
     timeRecent: '最近',
@@ -139,6 +143,10 @@ const TRANSLATIONS = {
     jsonuiBtn: 'Go to Editor',
     loadFailed: 'Failed to load',
     reload: 'Reload',
+    staleData: 'Network error — showing cached data',
+    refreshLabel: 'Refresh data',
+    menuToggleLabel: 'Toggle navigation menu',
+    langToggleLabel: 'Switch to 中文',
     timeMonths: '{n} months ago',
     timeDays: '{n} days ago',
     timeRecent: 'Recently',
@@ -165,6 +173,8 @@ function toggleLang() {
   }
   initScrollAnimations();
   updateScrollState();
+  // 文案长度变化后重新判断友链是否需要跑马灯
+  checkFriendLinksScroll();
 }
 
 function updateSEOMeta() {
@@ -210,9 +220,9 @@ const icons = {
   link: '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>',
   menu: '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>',
   zap: '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
-  puzzle: '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.439 7.85c-.049.322.059.648.289.878l1.568 1.568c.47.47.706 1.087.706 1.704s-.235 1.233-.706 1.704l-1.611 1.611a.98.98 0 0 1-.837.276c-.47-.07-.802-.48-.968-.925a2.501 2.501 0 1 0-3.214 3.214c.446.166.855.497.925.968a.979.979 0 0 1-.276.837l-1.61 1.61a2.404 2.404 0 0 1-1.705.707 2.402 2.402 0 0 1-1.704-.706l-1.568-1.568a1.026 1.026 0 0 0-.877-.29c-.493.074-.84.504-1.02.968a2.5 2.5 0 1 1-3.237-3.237c.464-.18.894-.527.967-1.02a1.026 1.026 0 0 0-.289-.877l-1.568-1.568A2.402 2.402 0 0 1 1.998 12c0-.617.236-1.234.706-1.704L4.315 8.685a.98.98 0 0 1 .837-.276c.47.07.802.48.968.925a2.501 2.501 0 1 0 3.214-3.214c-.446-.166-.855-.497-.925-.968a.979.979 0 0 1 .276-.837l1.61-1.61a2.404 2.404 0 0 1 1.705-.707c.618 0 1.234.236 1.704.706l1.568 1.568c.23.23.556.338.877.29.493-.074.84-.504 1.02-.968a2.5 2.5 0 1 1 3.237 3.237c-.464.18-.894.527-.967 1.02Z"/></svg>',
-  globe: '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
-  discord: '<svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.373-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>',
+  puzzle: '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.439 7.85c-.049.322.059.648.289.878l1.568 1.568c.47.47.706 1.087.706 1.704s-.235 1.233-.706 1.704l-1.611 1.611a.98.98 0 0 1-.837.276c-.47-.07-.802-.48-.968-.925a2.501 2.501 0 1 0-3.214 3.214c.446.166.855.497.925.968a.979.979 0 0 1-.276.837l-1.61 1.61a2.404 2.404 0 0 1-1.705.707 2.402 2.402 0 0 1-1.704-.706l-1.568-1.568a1.026 1.026 0 0 0-.877-.29c-.493.074-.84.504-1.02.968a2.5 2.5 0 1 1-3.237-3.237c.464-.18.894-.527.967-1.02a1.026 1.026 0 0 0-.289-.877l-1.568-1.568A2.402 2.402 0 0 1 1.998 12c0-.617.236-1.234.706-1.704L4.315 8.685a.98.98 0 0 1 .837-.276c.47.07.802.48.968.925a2.501 2.501 0 1 0 3.214 3.214c-.446.166-.855.497-.925.968a.979.979 0 0 1 .276-.837l1.61-1.61a2.404 2.404 0 0 1 1.705-.707c.618 0 1.234.236 1.704.706l1.568 1.568c.23.23.556.338.877.29.493-.074.84-.504 1.02-.968a2.5 2.5 0 1 1 3.237 3.237c-.464.18-.894.527-.967 1.02Z"/></svg>',
+  globe: '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1-4-10z"/></svg>',
+  discord: '<svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.373-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>',
   qq: '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
   package: '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m16.5 9.4-9-5.19"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
   build: '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><polyline points="6 15 10 11 6 7"/><line x1="13" y1="15" x2="18" y2="15"/></svg>',
@@ -220,6 +230,18 @@ const icons = {
 };
 
 /* --- Utilities --- */
+/* 转义 API / 配置数据后再插入 HTML，避免描述、topic 等字段注入标记 */
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, ch => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[ch]));
+}
+
+/* 头像按实际显示尺寸请求（GitHub avatar s 参数），避免下载 460px 大图 */
+function avatarSize(url, size) {
+  return `${url}${url.includes('?') ? '&' : '?'}s=${size}`;
+}
+
 function formatTime(dateString) {
   const date = new Date(dateString);
   const now = new Date();
@@ -241,6 +263,14 @@ function getCachedData() {
   } catch { return null; }
 }
 
+/* 读取缓存但不在意是否过期，用于 API 失败时兜底（stale-if-error） */
+function getStaleData() {
+  try {
+    const cached = localStorage.getItem(CONFIG.cacheKey);
+    return cached ? JSON.parse(cached) : null;
+  } catch { return null; }
+}
+
 function setCacheData(user, repos) {
   try { localStorage.setItem(CONFIG.cacheKey, JSON.stringify({ timestamp: Date.now(), user, repos })); } catch (e) { console.error(e); }
 }
@@ -252,13 +282,14 @@ async function fetchGitHubData(forceRefresh = false) {
     if (cached) return cached;
   }
 
-  const userRes = await fetch(`https://api.github.com/orgs/${CONFIG.username}`);
+  // 两个请求互不依赖，并行发起缩短首屏等待
+  const [userRes, reposRes] = await Promise.all([
+    fetch(`https://api.github.com/orgs/${CONFIG.username}`),
+    fetch(`https://api.github.com/orgs/${CONFIG.username}/repos?sort=updated&per_page=100`),
+  ]);
   if (!userRes.ok) throw new Error('Failed to fetch organization');
-  const user = await userRes.json();
-
-  const reposRes = await fetch(`https://api.github.com/orgs/${CONFIG.username}/repos?sort=updated&per_page=100`);
   if (!reposRes.ok) throw new Error('Failed to fetch repos');
-  const repos = await reposRes.json();
+  const [user, repos] = await Promise.all([userRes.json(), reposRes.json()]);
 
   setCacheData(user, repos);
   return { user, repos };
@@ -283,12 +314,13 @@ function getLanguageStats(repos) {
 
 /* --- Render: Navbar --- */
 function renderNavbar(user) {
-  const avatarUrl = user ? user.avatar_url : 'https://avatars.githubusercontent.com/u/62042238?v=4';
+  // 导航头像显示 32px，按 2x 尺寸请求兼顾高分屏
+  const avatarUrl = avatarSize(user ? user.avatar_url : 'https://avatars.githubusercontent.com/u/62042238?v=4', 64);
   document.getElementById('nav-container').innerHTML = `
     <nav class="navbar" id="navbar">
       <div class="navbar-inner">
         <a href="#hero" class="navbar-brand">
-          <img src="${avatarUrl}" alt="MOT">
+          <img src="${escapeHtml(avatarUrl)}" alt="" width="32" height="32">
           <span>MemoriesOfTime</span>
         </a>
         <div class="navbar-links" id="navLinks">
@@ -297,9 +329,9 @@ function renderNavbar(user) {
           <a href="#projects" onclick="closeMenu()">${t('navProjects')}</a>
           <a href="#resources" onclick="closeMenu()">${t('navResources')}</a>
           <a href="#community" onclick="closeMenu()">${t('navCommunity')}</a>
-          <button class="lang-toggle" onclick="toggleLang()">${currentLang === 'zh' ? 'EN' : '中文'}</button>
+          <button class="lang-toggle" onclick="toggleLang()" aria-label="${t('langToggleLabel')}">${currentLang === 'zh' ? 'EN' : '中文'}</button>
         </div>
-        <button class="menu-toggle" onclick="toggleMenu()">${icons.menu}</button>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="${t('menuToggleLabel')}" aria-expanded="false" aria-controls="navLinks">${icons.menu}</button>
       </div>
       <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
     </nav>
@@ -307,11 +339,18 @@ function renderNavbar(user) {
 }
 
 function toggleMenu() {
-  document.getElementById('navLinks').classList.toggle('open');
+  const links = document.getElementById('navLinks');
+  if (!links) return;
+  const isOpen = links.classList.toggle('open');
+  const btn = document.querySelector('.menu-toggle');
+  if (btn) btn.setAttribute('aria-expanded', String(isOpen));
 }
 
 function closeMenu() {
-  document.getElementById('navLinks').classList.remove('open');
+  const links = document.getElementById('navLinks');
+  if (links) links.classList.remove('open');
+  const btn = document.querySelector('.menu-toggle');
+  if (btn) btn.setAttribute('aria-expanded', 'false');
 }
 
 /* --- Render: Loading & Error --- */
@@ -332,7 +371,7 @@ function renderLoading() {
 
 function renderFallback() {
   const orgUrl = `https://github.com/${CONFIG.username}`;
-  const avatarUrl = 'https://avatars.githubusercontent.com/u/62042238?v=4';
+  const avatarUrl = 'https://avatars.githubusercontent.com/u/62042238?v=4&s=320';
 
   return `
     <section class="hero" id="hero">
@@ -347,18 +386,18 @@ function renderFallback() {
             <p class="hero-slogan-sub anim-item" style="animation-delay: 0.3s">${t('sloganSub')}</p>
 
             <div class="hero-cta anim-item" style="animation-delay: 0.4s">
-              <a href="${orgUrl}" target="_blank" class="btn-primary">${icons.github} ${t('ctaGithub')}</a>
+              <a href="${orgUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary">${icons.github} ${t('ctaGithub')}</a>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="scroll-indicator" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">
-        <div class="scroll-content">
+      <button class="scroll-indicator" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})" aria-label="${t('scrollHint')}">
+        <span class="scroll-content" aria-hidden="true">
           <span>${t('scrollHint')}</span>
           ${icons.chevronDown}
-        </div>
-      </div>
+        </span>
+      </button>
     </section>
 
     ${renderFeatures()}
@@ -411,12 +450,12 @@ function renderRepoGrid(repos) {
     <div class="repo-card glass-panel scroll-anim" data-delay="${Math.min(i * 80, 400)}">
       <div class="repo-header">
         <div class="repo-icon">${icons.github}</div>
-        <a href="${repo.html_url}" target="_blank" class="repo-name">${repo.name} ${icons.externalLink}</a>
+        <a href="${escapeHtml(repo.html_url)}" target="_blank" rel="noopener noreferrer" class="repo-name">${escapeHtml(repo.name)} ${icons.externalLink}</a>
       </div>
-      <p class="repo-desc">${repo.description || t('noDesc')}</p>
-      ${repo.topics.length > 0 ? `<div class="repo-topics">${repo.topics.slice(0, 3).map(tp => `<span class="topic">${tp}</span>`).join('')}</div>` : ''}
+      <p class="repo-desc">${escapeHtml(repo.description || t('noDesc'))}</p>
+      ${repo.topics.length > 0 ? `<div class="repo-topics">${repo.topics.slice(0, 3).map(tp => `<span class="topic">${escapeHtml(tp)}</span>`).join('')}</div>` : ''}
       <div class="repo-footer">
-        ${repo.language ? `<span class="repo-lang"><span class="repo-lang-dot" style="background:${LANG_COLORS[repo.language] || '#6e7681'}"></span>${repo.language}</span>` : '<span></span>'}
+        ${repo.language ? `<span class="repo-lang"><span class="repo-lang-dot" style="background:${LANG_COLORS[repo.language] || '#6e7681'}"></span>${escapeHtml(repo.language)}</span>` : '<span></span>'}
         <span class="repo-stat">${icons.star} ${repo.stargazers_count}</span>
         <span class="repo-stat">${icons.fork} ${repo.forks_count}</span>
       </div>
@@ -431,12 +470,12 @@ function renderReposInner(repos) {
       <div><h2 class="repos-title">${t('featuredProjects')}</h2></div>
       <div class="controls-wrapper">
         <div class="select-wrapper">
-          <select class="select" onchange="changeSort(this.value)">
+          <select class="select" onchange="changeSort(this.value)" aria-label="${t('featuredProjects')}">
             ${SORT_OPTIONS.map(opt => `<option value="${opt.value}" ${opt.value === currentSort ? 'selected' : ''}>${t(opt.labelKey)}</option>`).join('')}
           </select>
           <span class="select-arrow">${icons.chevronDown}</span>
         </div>
-        <button class="btn btn-icon" onclick="refreshData()" id="refreshBtn">${icons.refresh}</button>
+        <button class="btn btn-icon" onclick="refreshData()" id="refreshBtn" aria-label="${t('refreshLabel')}">${icons.refresh}</button>
       </div>
     </div>
     ${renderRepoGrid(repos)}
@@ -467,7 +506,7 @@ function renderResources() {
               <div class="community-icon">${it.icon}</div>
               <h3 class="community-card-title">${t(it.titleKey)}</h3>
               <p class="community-card-desc">${t(it.descKey)}</p>
-              <a href="${it.url}" target="_blank" class="btn-secondary-outline">${t(it.btnKey)}</a>
+              <a href="${it.url}" target="_blank" rel="noopener noreferrer" class="btn-secondary-outline">${t(it.btnKey)}</a>
             </div>
           `).join('')}
         </div>
@@ -494,7 +533,7 @@ function renderCommunity() {
               <div class="community-icon">${it.icon}</div>
               <h3 class="community-card-title">${t(it.titleKey)}</h3>
               <p class="community-card-desc">${t(it.descKey)}</p>
-              <a href="${it.url}" target="_blank" class="btn-secondary-outline">${t(it.btnKey)}</a>
+              <a href="${it.url}" target="_blank" rel="noopener noreferrer" class="btn-secondary-outline">${t(it.btnKey)}</a>
             </div>
           `).join('')}
         </div>
@@ -504,12 +543,14 @@ function renderCommunity() {
 
 /* --- Render: Friend Links --- */
 function renderFriendLinkCard(link, i, animate) {
+  // 克隆副本仅用于视觉无缝衔接：aria-hidden 容器内的链接不可被键盘聚焦
+  const extraAttrs = animate ? ` data-delay="${i * 100}"` : ' tabindex="-1"';
   return `
-    <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="friend-link-card glass-panel${animate ? ' scroll-anim' : ''}"${animate ? ` data-delay="${i * 100}"` : ''}>
-      <div class="friend-link-icon">${link.logo ? `<img src="${link.logo}" alt="${link.name}" class="friend-link-logo">` : icons.externalLink}</div>
+    <a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer" class="friend-link-card glass-panel${animate ? ' scroll-anim' : ''}"${extraAttrs}>
+      <div class="friend-link-icon">${link.logo ? `<img src="${escapeHtml(link.logo)}" alt="${escapeHtml(link.name)}" class="friend-link-logo" loading="lazy" decoding="async">` : icons.externalLink}</div>
       <div class="friend-link-info">
-        <span class="friend-link-name">${link.name}</span>
-        ${link.desc ? `<span class="friend-link-desc">${link.desc}</span>` : ''}
+        <span class="friend-link-name">${escapeHtml(link.name)}</span>
+        ${link.desc ? `<span class="friend-link-desc">${escapeHtml(link.desc)}</span>` : ''}
       </div>
     </a>`;
 }
@@ -554,40 +595,40 @@ function renderContent(data) {
       <div class="container">
         <div class="hero-content">
           <div class="avatar-wrapper anim-item">
-            <img src="${user.avatar_url}" alt="${user.name || user.login}" class="avatar" fetchpriority="high">
+            <img src="${escapeHtml(avatarSize(user.avatar_url, 320))}" alt="${escapeHtml(user.name || user.login)}" class="avatar" fetchpriority="high" decoding="async">
           </div>
           <div class="hero-info">
-            <h1 class="hero-name anim-item" style="animation-delay: 0.15s">${user.name || user.login}</h1>
-            <p class="hero-username anim-item" style="animation-delay: 0.2s">@${user.login}</p>
+            <h1 class="hero-name anim-item" style="animation-delay: 0.15s">${escapeHtml(user.name || user.login)}</h1>
+            <p class="hero-username anim-item" style="animation-delay: 0.2s">@${escapeHtml(user.login)}</p>
             <p class="hero-slogan anim-item" style="animation-delay: 0.25s">${t('slogan')}</p>
             <p class="hero-slogan-sub anim-item" style="animation-delay: 0.3s">${t('sloganSub')}</p>
 
             <div class="hero-meta anim-item" style="animation-delay: 0.35s">
-              ${user.location ? `<span>${icons.mapPin} ${user.location}</span>` : ''}
-              ${user.blog ? `<a href="${user.blog.startsWith('http') ? user.blog : 'https://' + user.blog}" target="_blank">${icons.link} ${t('website')}</a>` : ''}
-              <a href="${user.html_url}" target="_blank">${icons.github} GitHub</a>
+              ${user.location ? `<span>${icons.mapPin} ${escapeHtml(user.location)}</span>` : ''}
+              ${user.blog ? `<a href="${escapeHtml(user.blog.startsWith('http') ? user.blog : 'https://' + user.blog)}" target="_blank" rel="noopener noreferrer">${icons.link} ${t('website')}</a>` : ''}
+              <a href="${escapeHtml(user.html_url)}" target="_blank" rel="noopener noreferrer">${icons.github} GitHub</a>
             </div>
 
             <div class="hero-cta anim-item" style="animation-delay: 0.4s">
               <a href="#projects" class="btn-primary">${t('ctaStart')}</a>
-              <a href="${user.html_url}" target="_blank" class="btn-secondary-outline">${icons.github} ${t('ctaGithub')}</a>
+              <a href="${escapeHtml(user.html_url)}" target="_blank" rel="noopener noreferrer" class="btn-secondary-outline">${icons.github} ${t('ctaGithub')}</a>
             </div>
 
             <div class="languages anim-item" style="animation-delay: 0.45s">
               ${languages.map(([lang]) => `
-                <span class="language-badge glass-panel"><span class="repo-lang-dot" style="background:${LANG_COLORS[lang] || '#6e7681'}"></span>${lang}</span>
+                <span class="language-badge glass-panel"><span class="repo-lang-dot" style="background:${LANG_COLORS[lang] || '#6e7681'}"></span>${escapeHtml(lang)}</span>
               `).join('')}
             </div>
           </div>
         </div>
       </div>
 
-      <div class="scroll-indicator" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">
-        <div class="scroll-content">
+      <button class="scroll-indicator" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})" aria-label="${t('scrollHint')}">
+        <span class="scroll-content" aria-hidden="true">
           <span>${t('scrollHint')}</span>
           ${icons.chevronDown}
-        </div>
-      </div>
+        </span>
+      </button>
     </section>
 
     ${renderFeatures()}
@@ -667,14 +708,36 @@ async function refreshData() {
     document.getElementById('app').innerHTML = renderContent(cachedData);
     initScrollAnimations();
     updateScrollState();
+    // 仓库数据更新后重新判断友链是否需要跑马灯
+    checkFriendLinksScroll();
   } catch (e) {
     console.error(e);
+    showToast(t('loadFailed'));
   } finally {
-    if (btn) {
-      btn.classList.remove('loading');
-      btn.disabled = false;
+    // 重新渲染后旧按钮已脱离文档，需重新查找
+    const refreshBtn = document.getElementById('refreshBtn');
+    if (refreshBtn) {
+      refreshBtn.classList.remove('loading');
+      refreshBtn.disabled = false;
     }
   }
+}
+
+/* --- Toast --- */
+let toastTimer = null;
+function showToast(message) {
+  let toast = document.getElementById('toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'toast';
+    toast.className = 'toast glass-panel';
+    toast.setAttribute('role', 'status');
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
 /* --- Scroll Animations --- */
@@ -765,21 +828,45 @@ async function init() {
   renderNavbar(null);
   initScrollListener();
   updateSEOMeta();
-  
+
+  // 移动端菜单：ESC 或点击菜单外区域时关闭（navbar 会重渲染，统一委托到 document）
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+  document.addEventListener('click', (e) => {
+    const links = document.getElementById('navLinks');
+    if (!links || !links.classList.contains('open')) return;
+    const toggleBtn = document.querySelector('.menu-toggle');
+    if (!links.contains(e.target) && (!toggleBtn || !toggleBtn.contains(e.target))) closeMenu();
+  });
+
   try {
     cachedData = await fetchGitHubData();
     renderNavbar(cachedData.user);
     app.innerHTML = renderContent(cachedData);
   } catch (e) {
     console.error('GitHub API unavailable:', e.message);
-    app.innerHTML = renderFallback();
+    // API 失败时优先回退到过期缓存，仅在没有任何缓存时展示静态降级页
+    const stale = getStaleData();
+    if (stale && stale.user && stale.repos) {
+      cachedData = { user: stale.user, repos: stale.repos };
+      renderNavbar(cachedData.user);
+      app.innerHTML = renderContent(cachedData);
+      showToast(t('staleData'));
+    } else {
+      app.innerHTML = renderFallback();
+    }
   }
   initScrollAnimations();
   updateScrollState();
   checkFriendLinksScroll();
   window.addEventListener('resize', () => {
     if (resizeFLTimer) cancelAnimationFrame(resizeFLTimer);
-    resizeFLTimer = requestAnimationFrame(checkFriendLinksScroll);
+    resizeFLTimer = requestAnimationFrame(() => {
+      checkFriendLinksScroll();
+      // 跨断点切换时收起移动端菜单，避免状态残留
+      if (window.innerWidth >= 768) closeMenu();
+    });
   });
 }
 
