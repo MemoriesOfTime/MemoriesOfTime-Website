@@ -12,6 +12,10 @@ const CONFIG = {
   ciUrl: 'https://motci.cn',
   repoUrl: 'https://repo.lanink.cn',
   jsonuiUrl: 'https://jsonui.mot.dev/',
+  docsUrl: 'https://www.nukkit-mot.com/',
+  flagshipDownloadUrl: 'https://motci.cn/job/Nukkit-MOT/job/master/',
+  flagshipRepo: 'Nukkit-MOT',
+  flagshipLogo: 'https://www.nukkit-mot.com/zh/images/logo.png',
   friendLinks: [
     { name: 'Nukkit-MOT', url: 'https://www.nukkit-mot.com/', desc: '', logo: 'https://www.nukkit-mot.com/zh/images/logo.png' },
     { name: '速德优', url: 'https://www.sodayo.net', desc: '', logo: 'https://www.fapixel.com/wp-content/uploads/2026/05/sodayo-logo2.png' },
@@ -50,6 +54,19 @@ const TRANSLATIONS = {
     publicRepos: '公开仓库',
     followers: '关注者',
     featuredProjects: '精选项目',
+    flagshipTag: '旗舰项目',
+    flagshipDesc: '持续支持多个 Minecraft 基岩版版本的开源服务端核心，为服务器提供稳定、高性能的运行基础。',
+    docs: '项目文档',
+    download: '下载构建',
+    source: '查看源码',
+    searchProjects: '搜索项目',
+    searchPlaceholder: '搜索名称或描述…',
+    allLanguages: '全部语言',
+    sortProjects: '项目排序方式',
+    noMatchingProjects: '没有符合当前条件的项目，请尝试其他关键词或语言。',
+    themeLightLabel: '切换到浅色模式',
+    themeDarkLabel: '切换到深色模式',
+    offlineData: '网络异常，展示内置项目快照',
     sortStars: '最多 Star',
     sortUpdated: '最近更新',
     sortCreated: '最新创建',
@@ -116,6 +133,19 @@ const TRANSLATIONS = {
     publicRepos: 'Public Repos',
     followers: 'Followers',
     featuredProjects: 'Featured Projects',
+    flagshipTag: 'Flagship Project',
+    flagshipDesc: 'An open-source server core supporting multiple Minecraft Bedrock versions, built for stable, high-performance servers.',
+    docs: 'Documentation',
+    download: 'Download Builds',
+    source: 'View Source',
+    searchProjects: 'Search projects',
+    searchPlaceholder: 'Search name or description…',
+    allLanguages: 'All languages',
+    sortProjects: 'Project sort order',
+    noMatchingProjects: 'No projects match these filters. Try another keyword or language.',
+    themeLightLabel: 'Switch to light mode',
+    themeDarkLabel: 'Switch to dark mode',
+    offlineData: 'Network unavailable — showing the built-in project snapshot',
     sortStars: 'Most Stars',
     sortUpdated: 'Recently Updated',
     sortCreated: 'Newest',
@@ -155,7 +185,18 @@ const TRANSLATIONS = {
   }
 };
 
-let currentLang = navigator.language.startsWith('zh') ? 'zh' : 'en';
+function getPreference(key) {
+  try { return localStorage.getItem(key); } catch { return null; }
+}
+
+function setPreference(key, value) {
+  try { localStorage.setItem(key, value); } catch { /* 隐私模式下仍保留当次设置 */ }
+}
+
+let currentLang = (() => {
+  const saved = getPreference('mot_lang');
+  return saved === 'zh' || saved === 'en' ? saved : (navigator.language.startsWith('zh') ? 'zh' : 'en');
+})();
 
 function t(key) {
   return TRANSLATIONS[currentLang][key] || key;
@@ -163,6 +204,7 @@ function t(key) {
 
 function toggleLang() {
   currentLang = currentLang === 'zh' ? 'en' : 'zh';
+  setPreference('mot_lang', currentLang);
   document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
   updateSEOMeta();
   renderNavbar(cachedData ? cachedData.user : null);
@@ -177,7 +219,16 @@ function toggleLang() {
   checkFriendLinksScroll();
 }
 
+function toggleTheme() {
+  const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = nextTheme;
+  setPreference('mot_theme', nextTheme);
+  renderNavbar(cachedData ? cachedData.user : null);
+  updateScrollState();
+}
+
 function updateSEOMeta() {
+  document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
   document.title = t('siteTitle');
   const setMeta = (sel, attr, val) => { const el = document.querySelector(sel); if (el) el.setAttribute(attr, val); };
   setMeta('meta[name="description"]', 'content', t('siteDesc'));
@@ -203,8 +254,31 @@ const SORT_OPTIONS = [
 
 /* --- State --- */
 let currentSort = 'stars';
+let currentLanguage = 'all';
+let repoQuery = '';
 let cachedData = null;
 let showAllRepos = false;
+
+const FALLBACK_DATA = {
+  user: {
+    login: 'MemoriesOfTime',
+    name: 'Memories Of Time',
+    avatar_url: 'https://avatars.githubusercontent.com/u/62042238?v=4',
+    html_url: 'https://github.com/MemoriesOfTime',
+    blog: 'https://mot.dev',
+    location: 'China',
+    public_repos: 6,
+    followers: 0,
+  },
+  repos: [
+    { name: 'Nukkit-MOT', description: 'Support for multiple versions of Nukkit Minecraft Bedrock Edition Server Software', html_url: 'https://github.com/MemoriesOfTime/Nukkit-MOT', language: 'Java', stargazers_count: 159, forks_count: 72, topics: ['bedrock', 'bedrock-edition', 'minecraft'], pushed_at: '2026-10-01T00:00:00Z', created_at: '2020-01-01T00:00:00Z' },
+    { name: 'NukkitPetteriM1Edition', description: 'Custom version of Nukkit Minecraft Bedrock Edition server software', html_url: 'https://github.com/MemoriesOfTime/NukkitPetteriM1Edition', language: 'Java', stargazers_count: 23, forks_count: 8, topics: [], pushed_at: '2026-08-01T00:00:00Z', created_at: '2021-01-01T00:00:00Z' },
+    { name: 'Nukkit-Retro', description: 'Nukkit-Retro: Nuclear-Powered server software for legacy Minecraft: Pocket Edition (1.1 and below)', html_url: 'https://github.com/MemoriesOfTime/Nukkit-Retro', language: 'Java', stargazers_count: 14, forks_count: 8, topics: [], pushed_at: '2026-07-01T00:00:00Z', created_at: '2021-06-01T00:00:00Z' },
+    { name: 'RsNPC', description: 'NPC plugin for Nukkit-MOT', html_url: 'https://github.com/MemoriesOfTime/RsNPC', language: 'Java', stargazers_count: 14, forks_count: 18, topics: ['nukkitx-plugin'], pushed_at: '2026-06-01T00:00:00Z', created_at: '2020-06-01T00:00:00Z' },
+    { name: 'raknet-rs', description: 'Raknet protocol implementation by rust', html_url: 'https://github.com/MemoriesOfTime/raknet-rs', language: 'Rust', stargazers_count: 13, forks_count: 5, topics: [], pushed_at: '2026-05-01T00:00:00Z', created_at: '2022-01-01T00:00:00Z' },
+    { name: 'GunWar', description: 'Simple pvp game', html_url: 'https://github.com/MemoriesOfTime/GunWar', language: 'Java', stargazers_count: 10, forks_count: 15, topics: ['nukkit-plugin', 'nukkitx-plugin'], pushed_at: '2026-04-01T00:00:00Z', created_at: '2020-03-01T00:00:00Z' },
+  ],
+};
 
 /* --- Icons --- */
 const icons = {
@@ -227,6 +301,11 @@ const icons = {
   package: '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m16.5 9.4-9-5.19"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
   build: '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><polyline points="6 15 10 11 6 7"/><line x1="13" y1="15" x2="18" y2="15"/></svg>',
   code: '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+  search: '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>',
+  book: '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>',
+  download: '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
+  sun: '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>',
+  moon: '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>',
 };
 
 /* --- Utilities --- */
@@ -296,8 +375,17 @@ async function fetchGitHubData(forceRefresh = false) {
 }
 
 /* --- Data Processing --- */
+function getFilteredRepos(repos) {
+  const query = repoQuery.trim().toLocaleLowerCase();
+  return repos.filter(repo => {
+    const matchesLanguage = currentLanguage === 'all' || repo.language === currentLanguage;
+    const matchesQuery = !query || `${repo.name} ${repo.description || ''}`.toLocaleLowerCase().includes(query);
+    return matchesLanguage && matchesQuery;
+  });
+}
+
 function processRepos(repos, sortType) {
-  let sorted = [...repos];
+  const sorted = [...getFilteredRepos(repos)];
   switch (sortType) {
     case 'stars': sorted.sort((a, b) => b.stargazers_count - a.stargazers_count); break;
     case 'updated': sorted.sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at)); break;
@@ -316,6 +404,8 @@ function getLanguageStats(repos) {
 function renderNavbar(user) {
   // 导航头像显示 32px，按 2x 尺寸请求兼顾高分屏
   const avatarUrl = avatarSize(user ? user.avatar_url : 'https://avatars.githubusercontent.com/u/62042238?v=4', 64);
+  const isDark = document.documentElement.dataset.theme === 'dark';
+  const themeLabel = t(isDark ? 'themeLightLabel' : 'themeDarkLabel');
   document.getElementById('nav-container').innerHTML = `
     <nav class="navbar" id="navbar">
       <div class="navbar-inner">
@@ -329,6 +419,7 @@ function renderNavbar(user) {
           <a href="#projects" onclick="closeMenu()">${t('navProjects')}</a>
           <a href="#resources" onclick="closeMenu()">${t('navResources')}</a>
           <a href="#community" onclick="closeMenu()">${t('navCommunity')}</a>
+          <button class="theme-toggle" onclick="toggleTheme()" aria-label="${themeLabel}" title="${themeLabel}">${isDark ? icons.sun : icons.moon}</button>
           <button class="lang-toggle" onclick="toggleLang()" aria-label="${t('langToggleLabel')}">${currentLang === 'zh' ? 'EN' : '中文'}</button>
         </div>
         <button class="menu-toggle" onclick="toggleMenu()" aria-label="${t('menuToggleLabel')}" aria-expanded="false" aria-controls="navLinks">${icons.menu}</button>
@@ -443,34 +534,73 @@ function renderFeatures() {
     </section>`;
 }
 
-/* --- Render: Repo Grid --- */
+/* --- Render: Flagship & Repo Grid --- */
+function renderFlagship(repos) {
+  const repo = repos.find(item => item.name === CONFIG.flagshipRepo);
+  if (!repo) return '';
+  return `
+    <section class="flagship" aria-labelledby="flagship-title">
+      <div class="container">
+        <div class="flagship-card glass-panel scroll-anim">
+          <img class="flagship-logo" src="${CONFIG.flagshipLogo}" alt="" loading="lazy" decoding="async">
+          <div>
+            <p class="flagship-eyebrow">${t('flagshipTag')}</p>
+            <h2 class="flagship-title" id="flagship-title">${escapeHtml(repo.name)}</h2>
+            <p class="flagship-desc">${t('flagshipDesc')}</p>
+            <div class="flagship-meta">
+              <span>${icons.star} ${repo.stargazers_count.toLocaleString()} Star</span>
+              <span><span class="repo-lang-dot" style="background:${LANG_COLORS[repo.language] || '#6e7681'}"></span>${escapeHtml(repo.language)}</span>
+              <span>${icons.clock} ${formatTime(repo.pushed_at)}</span>
+            </div>
+            <div class="flagship-actions">
+              <a href="${CONFIG.docsUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary">${icons.book} ${t('docs')}</a>
+              <a href="${CONFIG.flagshipDownloadUrl}" target="_blank" rel="noopener noreferrer" class="btn-secondary-outline">${icons.download} ${t('download')}</a>
+              <a href="${escapeHtml(repo.html_url)}" target="_blank" rel="noopener noreferrer" class="btn-secondary-outline">${icons.github} GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>`;
+}
+
 function renderRepoGrid(repos) {
   const sortedRepos = processRepos(repos, currentSort);
+  if (!sortedRepos.length) return `<div class="repo-grid"><p class="empty-state" role="status">${t('noMatchingProjects')}</p></div>`;
   return `<div class="repo-grid">${sortedRepos.map((repo, i) => `
-    <div class="repo-card glass-panel scroll-anim" data-delay="${Math.min(i * 80, 400)}">
+    <article class="repo-card glass-panel scroll-anim" data-delay="${Math.min(i * 80, 400)}">
       <div class="repo-header">
         <div class="repo-icon">${icons.github}</div>
         <a href="${escapeHtml(repo.html_url)}" target="_blank" rel="noopener noreferrer" class="repo-name">${escapeHtml(repo.name)} ${icons.externalLink}</a>
       </div>
       <p class="repo-desc">${escapeHtml(repo.description || t('noDesc'))}</p>
-      ${repo.topics.length > 0 ? `<div class="repo-topics">${repo.topics.slice(0, 3).map(tp => `<span class="topic">${escapeHtml(tp)}</span>`).join('')}</div>` : ''}
+      ${(repo.topics || []).length ? `<div class="repo-topics">${repo.topics.slice(0, 3).map(tp => `<span class="topic">${escapeHtml(tp)}</span>`).join('')}</div>` : ''}
+      ${repo.name === CONFIG.flagshipRepo ? `<div class="repo-links"><a href="${CONFIG.docsUrl}" target="_blank" rel="noopener noreferrer">${t('docs')}</a><a href="${CONFIG.flagshipDownloadUrl}" target="_blank" rel="noopener noreferrer">${t('download')}</a></div>` : ''}
       <div class="repo-footer">
         ${repo.language ? `<span class="repo-lang"><span class="repo-lang-dot" style="background:${LANG_COLORS[repo.language] || '#6e7681'}"></span>${escapeHtml(repo.language)}</span>` : '<span></span>'}
         <span class="repo-stat">${icons.star} ${repo.stargazers_count}</span>
         <span class="repo-stat">${icons.fork} ${repo.forks_count}</span>
+        <span class="repo-update">${formatTime(repo.pushed_at)}</span>
       </div>
-    </div>
+    </article>
   `).join('')}</div>`;
 }
 
+function renderRepoResults(repos) {
+  const filteredCount = getFilteredRepos(repos).length;
+  return `${renderRepoGrid(repos)}${filteredCount > 6 ? `
+    <div class="view-more-wrapper scroll-anim">
+      <button class="btn" onclick="toggleViewMore()">${showAllRepos ? t('viewLess') : t('viewMore')}</button>
+    </div>` : ''}`;
+}
+
 function renderReposInner(repos) {
-  const allRepos = repos;
+  const languages = [...new Set(repos.map(repo => repo.language).filter(Boolean))].sort();
   return `
     <div class="repos-header">
       <div><h2 class="repos-title">${t('featuredProjects')}</h2></div>
       <div class="controls-wrapper">
         <div class="select-wrapper">
-          <select class="select" onchange="changeSort(this.value)" aria-label="${t('featuredProjects')}">
+          <select class="select" onchange="changeSort(this.value)" aria-label="${t('sortProjects')}">
             ${SORT_OPTIONS.map(opt => `<option value="${opt.value}" ${opt.value === currentSort ? 'selected' : ''}>${t(opt.labelKey)}</option>`).join('')}
           </select>
           <span class="select-arrow">${icons.chevronDown}</span>
@@ -478,12 +608,20 @@ function renderReposInner(repos) {
         <button class="btn btn-icon" onclick="refreshData()" id="refreshBtn" aria-label="${t('refreshLabel')}">${icons.refresh}</button>
       </div>
     </div>
-    ${renderRepoGrid(repos)}
-    ${allRepos.length > 6 ? `
-      <div class="view-more-wrapper scroll-anim">
-        <button class="btn" onclick="toggleViewMore()">${showAllRepos ? t('viewLess') : t('viewMore')}</button>
+    <div class="repo-filters">
+      <div class="search-wrapper">
+        ${icons.search}
+        <input class="search-input" type="search" value="${escapeHtml(repoQuery)}" oninput="searchRepos(this.value)" aria-label="${t('searchProjects')}" placeholder="${t('searchPlaceholder')}">
       </div>
-    ` : ''}`;
+      <div class="select-wrapper">
+        <select class="select" onchange="filterLanguage(this.value)" aria-label="${t('allLanguages')}">
+          <option value="all">${t('allLanguages')}</option>
+          ${languages.map(language => `<option value="${escapeHtml(language)}" ${language === currentLanguage ? 'selected' : ''}>${escapeHtml(language)}</option>`).join('')}
+        </select>
+        <span class="select-arrow">${icons.chevronDown}</span>
+      </div>
+    </div>
+    <div id="repoResults">${renderRepoResults(repos)}</div>`;
 }
 
 /* --- Render: Resources --- */
@@ -500,7 +638,7 @@ function renderResources() {
           <h2 class="community-title">${t('resourcesTitle')}</h2>
           <p class="community-desc">${t('resourcesDesc')}</p>
         </div>
-        <div class="community-grid">
+        <div class="community-grid resources-grid">
           ${items.map((it, i) => `
             <div class="community-card glass-panel scroll-anim ${i % 2 === 0 ? 'left' : 'right'}" data-delay="${i * 100}">
               <div class="community-icon">${it.icon}</div>
@@ -660,6 +798,8 @@ function renderContent(data) {
       </div>
     </section>
 
+    ${renderFlagship(repos)}
+
     <section class="repos" id="projects">
       <div class="container">
         ${renderReposInner(repos)}
@@ -680,20 +820,33 @@ function renderContent(data) {
 }
 
 /* --- Event Handlers --- */
+function updateRepoResults() {
+  const results = document.getElementById('repoResults');
+  if (!cachedData || !results) return;
+  results.innerHTML = renderRepoResults(cachedData.repos);
+  initScrollAnimations();
+}
+
 function changeSort(value) {
   currentSort = value;
-  if (cachedData) {
-    document.querySelector('#projects .container').innerHTML = renderReposInner(cachedData.repos);
-    initScrollAnimations();
-  }
+  updateRepoResults();
+}
+
+function searchRepos(value) {
+  repoQuery = value;
+  showAllRepos = false;
+  updateRepoResults();
+}
+
+function filterLanguage(value) {
+  currentLanguage = value;
+  showAllRepos = false;
+  updateRepoResults();
 }
 
 function toggleViewMore() {
   showAllRepos = !showAllRepos;
-  if (cachedData) {
-    document.querySelector('#projects .container').innerHTML = renderReposInner(cachedData.repos);
-    initScrollAnimations();
-  }
+  updateRepoResults();
 }
 
 async function refreshData() {
@@ -846,16 +999,14 @@ async function init() {
     app.innerHTML = renderContent(cachedData);
   } catch (e) {
     console.error('GitHub API unavailable:', e.message);
-    // API 失败时优先回退到过期缓存，仅在没有任何缓存时展示静态降级页
+    // API 失败时优先回退到过期缓存，否则展示内置项目快照
     const stale = getStaleData();
-    if (stale && stale.user && stale.repos) {
-      cachedData = { user: stale.user, repos: stale.repos };
-      renderNavbar(cachedData.user);
-      app.innerHTML = renderContent(cachedData);
-      showToast(t('staleData'));
-    } else {
-      app.innerHTML = renderFallback();
-    }
+    cachedData = stale && stale.user && stale.repos
+      ? { user: stale.user, repos: stale.repos }
+      : FALLBACK_DATA;
+    renderNavbar(cachedData.user);
+    app.innerHTML = renderContent(cachedData);
+    showToast(t(stale && stale.user && stale.repos ? 'staleData' : 'offlineData'));
   }
   initScrollAnimations();
   updateScrollState();
