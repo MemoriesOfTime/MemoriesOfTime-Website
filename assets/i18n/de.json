@@ -1,0 +1,132 @@
+{
+  "meta": {
+    "title": "MemoriesOfTime – Open-Source-Organisation für das Minecraft-Bedrock-Ökosystem",
+    "description": "MemoriesOfTime ist eine Open-Source-Organisation rund um das Ökosystem von Minecraft Bedrock Edition: Serverkerne, Entwicklerwerkzeuge und Plugins.",
+    "ogDescription": "Open-Source-Organisation für das Minecraft-Bedrock-Ökosystem"
+  },
+  "nav": {
+    "home": "Start",
+    "features": "Funktionen",
+    "projects": "Projekte",
+    "resources": "Ressourcen",
+    "community": "Community",
+    "menu": "Navigationsmenü umschalten",
+    "language": "Sprache wechseln",
+    "themeToLight": "Zum hellen Modus wechseln",
+    "themeToDark": "Zum dunklen Modus wechseln"
+  },
+  "hero": {
+    "slogan": "Open-Source-Organisation für das Minecraft-Bedrock-Ökosystem",
+    "sloganSub": "Wir entwickeln hochwertige Open-Source-Projekte für Minecraft Bedrock Edition – von Serverkernen bis zu Entwicklerwerkzeugen – und schaffen so ein vollständiges Ökosystem.",
+    "ctaStart": "Projekte entdecken",
+    "ctaGithub": "GitHub",
+    "scrollHint": "Nach unten scrollen",
+    "website": "Website"
+  },
+  "stats": {
+    "stars": "Sterne",
+    "forks": "Forks",
+    "repos": "Öffentliche Repos",
+    "followers": "Follower"
+  },
+  "features": {
+    "title": "Unsere Stärken",
+    "open": {
+      "title": "Open Source als Antrieb",
+      "desc": "Alle Projekte sind vollständig quelloffen. Wir freuen uns über Beiträge aus der Community und entwickeln das Bedrock-Ökosystem gemeinsam weiter."
+    },
+    "performance": {
+      "title": "Performanter Kern",
+      "desc": "Unser Flaggschiff Nukkit-MOT ist in Java geschrieben und liefert außergewöhnliche Leistung für Bedrock-Server."
+    },
+    "ecosystem": {
+      "title": "Reiches Ökosystem",
+      "desc": "Serverkerne, Plugin-Frameworks und Entwicklerwerkzeuge – ein vollständiger Technologie-Stack für Bedrock Edition."
+    },
+    "community": {
+      "title": "Aktive Community",
+      "desc": "Eine aktive Entwickler-Community, kontinuierliche Updates und schnelle Reaktion auf Issues."
+    }
+  },
+  "projects": {
+    "title": "Ausgewählte Projekte",
+    "flagshipTag": "Flaggschiff-Projekt",
+    "flagshipDesc": "Ein Open-Source-Serverkern mit Unterstützung für mehrere Minecraft-Bedrock-Versionen – die Grundlage für stabile, leistungsstarke Server.",
+    "docs": "Dokumentation",
+    "download": "Builds herunterladen",
+    "search": {
+      "label": "Projekte durchsuchen",
+      "placeholder": "Name oder Beschreibung suchen…"
+    },
+    "languageAll": "Alle Sprachen",
+    "sort": {
+      "label": "Sortierung",
+      "stars": "Meiste Sterne",
+      "updated": "Zuletzt aktualisiert",
+      "created": "Neueste"
+    },
+    "empty": "Keine Projekte passen zu diesen Filtern. Versuche ein anderes Stichwort oder eine andere Sprache.",
+    "viewMore": "Mehr anzeigen",
+    "viewLess": "Weniger anzeigen",
+    "noDescription": "Keine Beschreibung",
+    "refresh": "Daten aktualisieren",
+    "stars": {
+      "one": "{count} Stern",
+      "other": "{count} Sterne"
+    }
+  },
+  "resources": {
+    "title": "Entwickler-Ressourcen",
+    "desc": "Build-Artefakte und Projektabhängigkeiten für deine Entwicklung.",
+    "ci": {
+      "title": "CI-Builds",
+      "desc": "Auf MOTCI findest du die neuesten Builds unserer Projekte.",
+      "action": "Zu CI"
+    },
+    "maven": {
+      "title": "Maven-Repository",
+      "desc": "Abhängigkeiten und Entwicklungsressourcen im Maven-Repository.",
+      "action": "Zum Repository"
+    },
+    "jsonui": {
+      "title": "Json UI Editor",
+      "desc": "Online-Editor für JSON-UI zum visuellen Erstellen und Bearbeiten von Oberflächen.",
+      "action": "Zum Editor"
+    }
+  },
+  "community": {
+    "title": "Werde Teil der Community",
+    "desc": "Tausche dich mit Entwicklern und Serveradmins aus, hole dir Hilfe und teile Erfahrungen.",
+    "discord": {
+      "title": "Discord",
+      "desc": "Tritt unserem Discord-Server bei und chatte in Echtzeit mit Entwicklern weltweit.",
+      "action": "Discord beitreten"
+    },
+    "qq": {
+      "title": "QQ-Gruppe",
+      "desc": "Tritt der QQ-Gruppe bei und erhalte Support aus der chinesischen Community.",
+      "action": "Gruppe beitreten"
+    }
+  },
+  "friends": {
+    "title": "Freundeslinks",
+    "desc": "Open-Source-Projekte und Partner, die wir empfehlen."
+  },
+  "status": {
+    "offline": "Keine Verbindung – integrierte Projektdaten werden angezeigt",
+    "stale": "Netzwerkfehler – zwischengespeicherte Daten werden angezeigt",
+    "loadFailed": "Laden fehlgeschlagen"
+  },
+  "time": {
+    "recent": "Kürzlich"
+  },
+  "footer": {
+    "copyright": "© {year} MemoriesOfTime. All rights reserved."
+  },
+  "notFound": {
+    "title": "404 – Seite nicht gefunden | MemoriesOfTime",
+    "heading": "Seite nicht gefunden",
+    "description": "Die gesuchte Seite wurde möglicherweise entfernt, umbenannt oder ist vorübergehend nicht verfügbar.",
+    "backHome": "Zur Startseite"
+  }
+}

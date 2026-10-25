@@ -1,0 +1,131 @@
+{
+  "meta": {
+    "title": "MemoriesOfTime - Tổ chức mã nguồn mở cho hệ sinh thái Minecraft Bedrock",
+    "description": "MemoriesOfTime là tổ chức mã nguồn mở tập trung vào hệ sinh thái Minecraft Bedrock Edition, gồm lõi máy chủ, công cụ phát triển và plugin.",
+    "ogDescription": "Tổ chức mã nguồn mở cho hệ sinh thái Minecraft Bedrock"
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "features": "Tính năng",
+    "projects": "Dự án",
+    "resources": "Tài nguyên",
+    "community": "Cộng đồng",
+    "menu": "Mở menu điều hướng",
+    "language": "Đổi ngôn ngữ",
+    "themeToLight": "Chuyển sang giao diện sáng",
+    "themeToDark": "Chuyển sang giao diện tối"
+  },
+  "hero": {
+    "slogan": "Tổ chức mã nguồn mở cho hệ sinh thái Minecraft Bedrock",
+    "sloganSub": "Chúng tôi xây dựng các dự án mã nguồn mở chất lượng cao cho Minecraft Bedrock Edition — từ lõi máy chủ đến công cụ phát triển — tạo nên hệ sinh thái hoàn chỉnh.",
+    "ctaStart": "Khám phá dự án",
+    "ctaGithub": "GitHub",
+    "scrollHint": "Cuộn xuống để xem thêm",
+    "website": "Trang web"
+  },
+  "stats": {
+    "stars": "Sao",
+    "forks": "Fork",
+    "repos": "Kho công khai",
+    "followers": "Người theo dõi"
+  },
+  "features": {
+    "title": "Thế mạnh của chúng tôi",
+    "open": {
+      "title": "Lấy mã nguồn mở làm nền tảng",
+      "desc": "Mọi dự án đều hoàn toàn mở. Chúng tôi hoan nghênh đóng góp từ cộng đồng để cùng phát triển hệ sinh thái Bedrock."
+    },
+    "performance": {
+      "title": "Lõi hiệu năng cao",
+      "desc": "Nukkit-MOT, dự án chủ lực của chúng tôi, được xây dựng trên Java và mang lại hiệu năng vượt trội cho máy chủ Bedrock."
+    },
+    "ecosystem": {
+      "title": "Hệ sinh thái phong phú",
+      "desc": "Lõi máy chủ, khung plugin và công cụ phát triển — trọn bộ công nghệ cho Bedrock Edition."
+    },
+    "community": {
+      "title": "Cộng đồng sôi động",
+      "desc": "Cộng đồng nhà phát triển sôi động, cập nhật liên tục và phản hồi vấn đề nhanh chóng."
+    }
+  },
+  "projects": {
+    "title": "Dự án nổi bật",
+    "flagshipTag": "Dự án chủ lực",
+    "flagshipDesc": "Lõi máy chủ mã nguồn mở hỗ trợ nhiều phiên bản Minecraft Bedrock, nền tảng cho máy chủ ổn định và hiệu năng cao.",
+    "docs": "Tài liệu",
+    "download": "Tải bản dựng",
+    "search": {
+      "label": "Tìm dự án",
+      "placeholder": "Tìm theo tên hoặc mô tả…"
+    },
+    "languageAll": "Tất cả ngôn ngữ",
+    "sort": {
+      "label": "Sắp xếp dự án",
+      "stars": "Nhiều sao nhất",
+      "updated": "Cập nhật gần đây",
+      "created": "Mới nhất"
+    },
+    "empty": "Không có dự án nào khớp với bộ lọc. Hãy thử từ khóa hoặc ngôn ngữ khác.",
+    "viewMore": "Xem thêm",
+    "viewLess": "Thu gọn",
+    "noDescription": "Không có mô tả",
+    "refresh": "Làm mới dữ liệu",
+    "stars": {
+      "other": "{count} sao"
+    }
+  },
+  "resources": {
+    "title": "Tài nguyên phát triển",
+    "desc": "Tải bản dựng và phụ thuộc của dự án để đẩy nhanh quá trình phát triển.",
+    "ci": {
+      "title": "Bản dựng CI",
+      "desc": "Truy cập MOTCI để lấy bản dựng mới nhất của các dự án.",
+      "action": "Đến CI"
+    },
+    "maven": {
+      "title": "Kho Maven",
+      "desc": "Truy cập kho Maven để lấy phụ thuộc và tài nguyên phát triển.",
+      "action": "Đến kho"
+    },
+    "jsonui": {
+      "title": "Json UI Editor",
+      "desc": "Trình chỉnh sửa JSON UI trực tuyến để tạo và sửa giao diện bằng hình ảnh.",
+      "action": "Đến trình chỉnh sửa"
+    }
+  },
+  "community": {
+    "title": "Tham gia cộng đồng",
+    "desc": "Kết nối với các nhà phát triển và quản trị viên máy chủ, nhận trợ giúp và chia sẻ kinh nghiệm.",
+    "discord": {
+      "title": "Discord",
+      "desc": "Tham gia máy chủ Discord của chúng tôi để trò chuyện trực tiếp với nhà phát triển toàn cầu.",
+      "action": "Tham gia Discord"
+    },
+    "qq": {
+      "title": "Nhóm QQ",
+      "desc": "Tham gia nhóm QQ để nhận hỗ trợ từ cộng đồng Trung Quốc.",
+      "action": "Tham gia nhóm"
+    }
+  },
+  "friends": {
+    "title": "Liên kết bạn bè",
+    "desc": "Các dự án mã nguồn mở và đối tác chúng tôi giới thiệu."
+  },
+  "status": {
+    "offline": "Không có mạng — đang hiển thị dữ liệu dự án có sẵn",
+    "stale": "Lỗi mạng — đang hiển thị dữ liệu đã lưu",
+    "loadFailed": "Tải thất bại"
+  },
+  "time": {
+    "recent": "Gần đây"
+  },
+  "footer": {
+    "copyright": "© {year} MemoriesOfTime. All rights reserved."
+  },
+  "notFound": {
+    "title": "404 - Không tìm thấy trang | MemoriesOfTime",
+    "heading": "Không tìm thấy trang",
+    "description": "Trang bạn tìm có thể đã bị xóa, đổi tên hoặc tạm thời không khả dụng.",
+    "backHome": "Về trang chủ"
+  }
+}

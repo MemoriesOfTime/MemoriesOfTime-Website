@@ -1,0 +1,131 @@
+{
+  "meta": {
+    "title": "MemoriesOfTime - 專注 Minecraft 基岩版生態的開源組織",
+    "description": "MemoriesOfTime 是一個專注於 Minecraft 基岩版生態的開源組織，涵蓋伺服器核心、開發工具與外掛等多個專案。",
+    "ogDescription": "專注 Minecraft 基岩版生態的開源組織"
+  },
+  "nav": {
+    "home": "首頁",
+    "features": "特色",
+    "projects": "專案",
+    "resources": "資源",
+    "community": "社群",
+    "menu": "切換導覽選單",
+    "language": "切換語言",
+    "themeToLight": "切換為淺色模式",
+    "themeToDark": "切換為深色模式"
+  },
+  "hero": {
+    "slogan": "專注 Minecraft 基岩版生態的開源組織",
+    "sloganSub": "我們致力於打造高品質的 Minecraft 基岩版開源專案，從伺服器核心到開發工具，建立完整的技術生態",
+    "ctaStart": "探索專案",
+    "ctaGithub": "GitHub",
+    "scrollHint": "向下捲動查看更多",
+    "website": "官網"
+  },
+  "stats": {
+    "stars": "獲得的 Star",
+    "forks": "獲得的 Fork",
+    "repos": "公開儲存庫",
+    "followers": "追蹤者"
+  },
+  "features": {
+    "title": "我們的優勢",
+    "open": {
+      "title": "開源驅動",
+      "desc": "所有專案完全開源，歡迎社群貢獻，共同推動 Minecraft 基岩版生態發展。"
+    },
+    "performance": {
+      "title": "高效能核心",
+      "desc": "Nukkit-MOT 作為旗艦專案，以 Java 打造，為基岩版伺服器提供卓越效能。"
+    },
+    "ecosystem": {
+      "title": "豐富生態",
+      "desc": "涵蓋伺服器核心、外掛框架、開發工具等，提供完整的基岩版技術堆疊。"
+    },
+    "community": {
+      "title": "活躍社群",
+      "desc": "擁有活躍的開發者社群，持續更新維護，快速回應問題。"
+    }
+  },
+  "projects": {
+    "title": "精選專案",
+    "flagshipTag": "旗艦專案",
+    "flagshipDesc": "持續支援多個 Minecraft 基岩版版本的開源伺服器核心，為伺服器提供穩定、高效能的執行基礎。",
+    "docs": "專案文件",
+    "download": "下載建置",
+    "search": {
+      "label": "搜尋專案",
+      "placeholder": "搜尋名稱或描述…"
+    },
+    "languageAll": "全部語言",
+    "sort": {
+      "label": "專案排序方式",
+      "stars": "最多 Star",
+      "updated": "最近更新",
+      "created": "最新建立"
+    },
+    "empty": "沒有符合目前條件的專案，請嘗試其他關鍵字或語言。",
+    "viewMore": "查看更多",
+    "viewLess": "收起",
+    "noDescription": "尚無描述",
+    "refresh": "重新整理資料",
+    "stars": {
+      "other": "{count} 星標"
+    }
+  },
+  "resources": {
+    "title": "開發資源",
+    "desc": "取得建置產物與專案相依套件，協助你的開發工作。",
+    "ci": {
+      "title": "建置站",
+      "desc": "前往 MOTCI 建置站，取得專案的最新建置產物。",
+      "action": "前往建置站"
+    },
+    "maven": {
+      "title": "Maven 儲存庫",
+      "desc": "前往 Maven 儲存庫，取得專案相依套件與開發資源。",
+      "action": "前往儲存庫"
+    },
+    "jsonui": {
+      "title": "Json UI Editor",
+      "desc": "線上 JSON UI 編輯器，以視覺化方式建置與編輯介面。",
+      "action": "前往編輯器"
+    }
+  },
+  "community": {
+    "title": "加入社群",
+    "desc": "與其他開發者和伺服器管理員交流，取得協助並分享經驗。",
+    "discord": {
+      "title": "Discord",
+      "desc": "加入我們的 Discord 伺服器，與全球開發者即時交流。",
+      "action": "加入 Discord"
+    },
+    "qq": {
+      "title": "QQ 群",
+      "desc": "加入 QQ 交流群，取得中文社群支援與協助。",
+      "action": "加入 QQ 群"
+    }
+  },
+  "friends": {
+    "title": "友站連結",
+    "desc": "我們推薦的開源專案與合作夥伴。"
+  },
+  "status": {
+    "offline": "網路異常，顯示內建專案快照",
+    "stale": "網路異常，顯示上次快取的資料",
+    "loadFailed": "載入失敗"
+  },
+  "time": {
+    "recent": "最近"
+  },
+  "footer": {
+    "copyright": "© {year} MemoriesOfTime. All rights reserved."
+  },
+  "notFound": {
+    "title": "404 - 找不到頁面 | MemoriesOfTime",
+    "heading": "找不到頁面",
+    "description": "您存取的頁面可能已被移除、更名或暫時無法使用。",
+    "backHome": "返回首頁"
+  }
+}

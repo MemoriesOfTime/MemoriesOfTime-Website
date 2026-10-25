@@ -1,0 +1,131 @@
+{
+  "meta": {
+    "title": "MemoriesOfTime - Minecraft 統合版のエコシステムに取り組むオープンソース団体",
+    "description": "MemoriesOfTime は Minecraft 統合版（Bedrock Edition）のエコシステムに特化したオープンソース団体です。サーバーコア、開発ツール、プラグインなど多数のプロジェクトを展開しています。",
+    "ogDescription": "Minecraft 統合版のエコシステムに取り組むオープンソース団体"
+  },
+  "nav": {
+    "home": "ホーム",
+    "features": "特徴",
+    "projects": "プロジェクト",
+    "resources": "リソース",
+    "community": "コミュニティ",
+    "menu": "ナビゲーションメニューを切り替え",
+    "language": "言語を切り替え",
+    "themeToLight": "ライトモードに切り替え",
+    "themeToDark": "ダークモードに切り替え"
+  },
+  "hero": {
+    "slogan": "Minecraft 統合版のエコシステムに取り組むオープンソース団体",
+    "sloganSub": "サーバーコアから開発ツールまで、Minecraft 統合版の高品質なオープンソースプロジェクトを開発し、完全な技術エコシステムを築いています。",
+    "ctaStart": "プロジェクトを見る",
+    "ctaGithub": "GitHub",
+    "scrollHint": "スクロールして詳しく見る",
+    "website": "ウェブサイト"
+  },
+  "stats": {
+    "stars": "獲得スター",
+    "forks": "獲得フォーク",
+    "repos": "公開リポジトリ",
+    "followers": "フォロワー"
+  },
+  "features": {
+    "title": "私たちの強み",
+    "open": {
+      "title": "オープンソース主導",
+      "desc": "すべてのプロジェクトは完全にオープンソースです。コミュニティからの貢献を歓迎し、統合版エコシステムの発展を共に推進します。"
+    },
+    "performance": {
+      "title": "高性能なコア",
+      "desc": "フラッグシッププロジェクトの Nukkit-MOT は Java で構築され、統合版サーバーに卓越したパフォーマンスを提供します。"
+    },
+    "ecosystem": {
+      "title": "豊かなエコシステム",
+      "desc": "サーバーコア、プラグインフレームワーク、開発ツールを網羅し、統合版の完全な技術スタックを提供します。"
+    },
+    "community": {
+      "title": "活発なコミュニティ",
+      "desc": "活発な開発者コミュニティがあり、継続的な更新と迅速な問題対応を行っています。"
+    }
+  },
+  "projects": {
+    "title": "注目のプロジェクト",
+    "flagshipTag": "フラッグシッププロジェクト",
+    "flagshipDesc": "複数の Minecraft 統合版バージョンを継続的にサポートするオープンソースのサーバーコアで、安定した高性能なサーバー運用を支えます。",
+    "docs": "ドキュメント",
+    "download": "ビルドをダウンロード",
+    "search": {
+      "label": "プロジェクトを検索",
+      "placeholder": "名前または説明で検索…"
+    },
+    "languageAll": "すべての言語",
+    "sort": {
+      "label": "並び順",
+      "stars": "スターが多い順",
+      "updated": "更新が新しい順",
+      "created": "作成が新しい順"
+    },
+    "empty": "条件に一致するプロジェクトがありません。別のキーワードや言語をお試しください。",
+    "viewMore": "もっと見る",
+    "viewLess": "折りたたむ",
+    "noDescription": "説明なし",
+    "refresh": "データを更新",
+    "stars": {
+      "other": "{count} スター"
+    }
+  },
+  "resources": {
+    "title": "開発リソース",
+    "desc": "ビルド成果物とプロジェクトの依存関係を入手して、開発を加速しましょう。",
+    "ci": {
+      "title": "CI ビルド",
+      "desc": "MOTCI にアクセスして、プロジェクトの最新ビルドを入手できます。",
+      "action": "CI へ"
+    },
+    "maven": {
+      "title": "Maven リポジトリ",
+      "desc": "Maven リポジトリから依存関係と開発リソースを入手できます。",
+      "action": "リポジトリへ"
+    },
+    "jsonui": {
+      "title": "Json UI Editor",
+      "desc": "オンライン JSON UI エディタ。インターフェースを視覚的に構築・編集できます。",
+      "action": "エディタへ"
+    }
+  },
+  "community": {
+    "title": "コミュニティに参加",
+    "desc": "他の開発者やサーバー管理者と交流し、助けを得たり経験を共有したりできます。",
+    "discord": {
+      "title": "Discord",
+      "desc": "Discord サーバーに参加して、世界中の開発者とリアルタイムで交流しましょう。",
+      "action": "Discord に参加"
+    },
+    "qq": {
+      "title": "QQ グループ",
+      "desc": "QQ グループに参加して、中国語コミュニティのサポートを受けましょう。",
+      "action": "QQ グループに参加"
+    }
+  },
+  "friends": {
+    "title": "リンク集",
+    "desc": "私たちが推薦するオープンソースプロジェクトとパートナー。"
+  },
+  "status": {
+    "offline": "ネットワークに接続できないため、内蔵のプロジェクト情報を表示しています",
+    "stale": "ネットワークエラー。前回のキャッシュを表示しています",
+    "loadFailed": "読み込みに失敗しました"
+  },
+  "time": {
+    "recent": "最近"
+  },
+  "footer": {
+    "copyright": "© {year} MemoriesOfTime. All rights reserved."
+  },
+  "notFound": {
+    "title": "404 - ページが見つかりません | MemoriesOfTime",
+    "heading": "ページが見つかりません",
+    "description": "お探しのページは削除されたか、名前が変更されたか、一時的に利用できない可能性があります。",
+    "backHome": "ホームに戻る"
+  }
+}

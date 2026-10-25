@@ -1,0 +1,134 @@
+{
+  "meta": {
+    "title": "MemoriesOfTime — organizacja open source dla ekosystemu Minecraft Bedrock",
+    "description": "MemoriesOfTime to organizacja open source skupiona na ekosystemie Minecraft Bedrock Edition — rdzenie serwerów, narzędzia deweloperskie i pluginy.",
+    "ogDescription": "Organizacja open source dla ekosystemu Minecraft Bedrock"
+  },
+  "nav": {
+    "home": "Strona główna",
+    "features": "Funkcje",
+    "projects": "Projekty",
+    "resources": "Zasoby",
+    "community": "Społeczność",
+    "menu": "Przełącz menu nawigacji",
+    "language": "Zmień język",
+    "themeToLight": "Włącz tryb jasny",
+    "themeToDark": "Włącz tryb ciemny"
+  },
+  "hero": {
+    "slogan": "Organizacja open source dla ekosystemu Minecraft Bedrock",
+    "sloganSub": "Tworzymy wysokiej jakości otwarte projekty dla Minecraft Bedrock Edition — od rdzeni serwerów po narzędzia deweloperskie — budując kompletny ekosystem.",
+    "ctaStart": "Odkryj projekty",
+    "ctaGithub": "GitHub",
+    "scrollHint": "Przewiń, aby zobaczyć więcej",
+    "website": "Strona"
+  },
+  "stats": {
+    "stars": "Gwiazdki",
+    "forks": "Forki",
+    "repos": "Publiczne repozytoria",
+    "followers": "Obserwujący"
+  },
+  "features": {
+    "title": "Nasze atuty",
+    "open": {
+      "title": "Napędzane open source",
+      "desc": "Wszystkie projekty są w pełni otwarte. Zapraszamy do współtworzenia i wspólnego rozwoju ekosystemu Bedrock."
+    },
+    "performance": {
+      "title": "Wydajny rdzeń",
+      "desc": "Nasz flagowy projekt Nukkit-MOT powstał w Javie i zapewnia wyjątkową wydajność serwerom Bedrock."
+    },
+    "ecosystem": {
+      "title": "Bogaty ekosystem",
+      "desc": "Rdzenie serwerów, frameworki pluginów i narzędzia deweloperskie — kompletny stos technologiczny dla Bedrock Edition."
+    },
+    "community": {
+      "title": "Aktywna społeczność",
+      "desc": "Aktywna społeczność deweloperów, ciągłe aktualizacje i szybka reakcja na problemy."
+    }
+  },
+  "projects": {
+    "title": "Wyróżnione projekty",
+    "flagshipTag": "Projekt flagowy",
+    "flagshipDesc": "Otwarty rdzeń serwera obsługujący wiele wersji Minecraft Bedrock — podstawa stabilnych i wydajnych serwerów.",
+    "docs": "Dokumentacja",
+    "download": "Pobierz buildy",
+    "search": {
+      "label": "Szukaj projektów",
+      "placeholder": "Szukaj po nazwie lub opisie…"
+    },
+    "languageAll": "Wszystkie języki",
+    "sort": {
+      "label": "Sortowanie projektów",
+      "stars": "Najwięcej gwiazdek",
+      "updated": "Ostatnio aktualizowane",
+      "created": "Najnowsze"
+    },
+    "empty": "Żaden projekt nie pasuje do tych filtrów. Spróbuj innego słowa kluczowego lub języka.",
+    "viewMore": "Pokaż więcej",
+    "viewLess": "Pokaż mniej",
+    "noDescription": "Brak opisu",
+    "refresh": "Odśwież dane",
+    "stars": {
+      "one": "{count} gwiazdka",
+      "few": "{count} gwiazdki",
+      "many": "{count} gwiazdek",
+      "other": "{count} gwiazdki"
+    }
+  },
+  "resources": {
+    "title": "Zasoby dla deweloperów",
+    "desc": "Artefakty buildów i zależności projektów — wszystko, czego potrzebujesz do pracy.",
+    "ci": {
+      "title": "Buildy CI",
+      "desc": "Odwiedź MOTCI, aby pobrać najnowsze buildy naszych projektów.",
+      "action": "Przejdź do CI"
+    },
+    "maven": {
+      "title": "Repozytorium Maven",
+      "desc": "Zależności i zasoby deweloperskie w repozytorium Maven.",
+      "action": "Przejdź do repozytorium"
+    },
+    "jsonui": {
+      "title": "Json UI Editor",
+      "desc": "Edytor JSON UI online do wizualnego tworzenia i edycji interfejsów.",
+      "action": "Przejdź do edytora"
+    }
+  },
+  "community": {
+    "title": "Dołącz do społeczności",
+    "desc": "Rozmawiaj z deweloperami i administratorami serwerów, szukaj pomocy i dziel się doświadczeniem.",
+    "discord": {
+      "title": "Discord",
+      "desc": "Dołącz do naszego Discorda i rozmawiaj na żywo z deweloperami z całego świata.",
+      "action": "Dołącz do Discorda"
+    },
+    "qq": {
+      "title": "Grupa QQ",
+      "desc": "Dołącz do grupy QQ, aby otrzymać wsparcie chińskiej społeczności.",
+      "action": "Dołącz do grupy"
+    }
+  },
+  "friends": {
+    "title": "Linki",
+    "desc": "Polecane przez nas projekty open source i partnerzy."
+  },
+  "status": {
+    "offline": "Brak sieci — wyświetlane są wbudowane dane projektów",
+    "stale": "Błąd sieci — wyświetlane są dane z pamięci podręcznej",
+    "loadFailed": "Nie udało się wczytać"
+  },
+  "time": {
+    "recent": "Niedawno"
+  },
+  "footer": {
+    "copyright": "© {year} MemoriesOfTime. All rights reserved."
+  },
+  "notFound": {
+    "title": "404 — nie znaleziono strony | MemoriesOfTime",
+    "heading": "Nie znaleziono strony",
+    "description": "Strona mogła zostać usunięta, zmieniono jej nazwę lub jest tymczasowo niedostępna.",
+    "backHome": "Wróć na stronę główną"
+  }
+}

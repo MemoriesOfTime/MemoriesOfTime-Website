@@ -24,167 +24,19 @@ const CONFIG = {
 };
 
 /* --- i18n --- */
-const TRANSLATIONS = {
-  zh: {
-    siteTitle: 'MemoriesOfTime - 专注 Minecraft 基岩版生态的开源组织',
-    siteDesc: 'MemoriesOfTime 是一个专注于 Minecraft 基岩版生态的开源组织，涵盖服务端核心、开发工具与插件等多个项目。',
-    ogDesc: '专注 Minecraft 基岩版生态的开源组织',
-    navHome: '首页',
-    navFeatures: '特性',
-    navProjects: '项目',
-    navResources: '资源',
-    navCommunity: '社区',
-    slogan: '专注 Minecraft 基岩版生态的开源组织',
-    sloganSub: '我们致力于构建高质量的 Minecraft 基岩版开源项目，从服务端核心到开发工具，打造完整的技术生态',
-    ctaStart: '探索项目',
-    ctaGithub: 'GitHub',
-    scrollHint: '向下滚动查看更多',
-    website: '官网',
-    featuresTitle: '我们的优势',
-    featOpenTitle: '开源驱动',
-    featOpenDesc: '所有项目完全开源，欢迎社区贡献，共同推动 Minecraft 基岩版生态发展。',
-    featPerformTitle: '高性能核心',
-    featPerformDesc: 'Nukkit-MOT 作为旗舰项目，基于 Java 构建，为基岩版服务器提供卓越性能。',
-    featPluginTitle: '丰富生态',
-    featPluginDesc: '涵盖服务端核心、插件框架、开发工具等，提供完整的基岩版技术栈。',
-    featCommunityTitle: '活跃社区',
-    featCommunityDesc: '拥有活跃的开发者社区，持续更新维护，快速响应问题。',
-    totalStars: '获得的 Star',
-    totalForks: '获得的 Fork',
-    publicRepos: '公开仓库',
-    followers: '关注者',
-    featuredProjects: '精选项目',
-    flagshipTag: '旗舰项目',
-    flagshipDesc: '持续支持多个 Minecraft 基岩版版本的开源服务端核心，为服务器提供稳定、高性能的运行基础。',
-    docs: '项目文档',
-    download: '下载构建',
-    source: '查看源码',
-    searchProjects: '搜索项目',
-    searchPlaceholder: '搜索名称或描述…',
-    allLanguages: '全部语言',
-    sortProjects: '项目排序方式',
-    noMatchingProjects: '没有符合当前条件的项目，请尝试其他关键词或语言。',
-    themeLightLabel: '切换到浅色模式',
-    themeDarkLabel: '切换到深色模式',
-    offlineData: '网络异常，展示内置项目快照',
-    sortStars: '最多 Star',
-    sortUpdated: '最近更新',
-    sortCreated: '最新创建',
-    noDesc: '暂无描述',
-    viewMore: '查看更多',
-    viewLess: '收起',
-    resourcesTitle: '开发资源',
-    resourcesDesc: '获取构建产物和项目依赖，助力你的开发工作。',
-    communityTitle: '加入社区',
-    communityDesc: '与其他开发者和服务器管理员交流，获取帮助和分享经验。',
-    discordTitle: 'Discord',
-    discordDesc: '加入我们的 Discord 服务器，与全球开发者实时交流。',
-    discordBtn: '加入 Discord',
-    qqTitle: 'QQ 群',
-    qqDesc: '加入 QQ 交流群，获取中文社区支持和帮助。',
-    qqBtn: '加入 QQ 群',
-    ciTitle: '构建站',
-    ciDesc: '访问 MOTCI 构建站，获取项目的最新构建产物。',
-    ciBtn: '前往构建站',
-    repoTitle: 'Maven 仓库',
-    repoDesc: '访问 Maven 仓库，获取项目依赖和开发资源。',
-    repoBtn: '前往仓库',
-    jsonuiTitle: 'Json UI Editor',
-    jsonuiDesc: '在线 JSON UI 编辑器，可视化构建和编辑界面。',
-    jsonuiBtn: '前往编辑器',
-    friendLinksTitle: '友情链接',
-    friendLinksDesc: '我们推荐的开源项目与合作伙伴。',
-    loadFailed: '加载失败',
-    reload: '重新加载',
-    staleData: '网络异常，展示上次缓存的数据',
-    refreshLabel: '刷新数据',
-    menuToggleLabel: '切换导航菜单',
-    langToggleLabel: '切换到 English',
-    timeMonths: '{n} 个月前',
-    timeDays: '{n} 天前',
-    timeRecent: '最近',
-  },
-  en: {
-    siteTitle: 'MemoriesOfTime - Open-Source Organization for Minecraft Bedrock',
-    siteDesc: 'MemoriesOfTime is an open-source organization focused on the Minecraft Bedrock Edition ecosystem, covering server cores, developer tools, and plugins.',
-    ogDesc: 'Open-source organization for Minecraft Bedrock ecosystem',
-    navHome: 'Home',
-    navFeatures: 'Features',
-    navProjects: 'Projects',
-    navResources: 'Resources',
-    navCommunity: 'Community',
-    slogan: 'Open-Source Organization for Minecraft Bedrock',
-    sloganSub: 'We build high-quality open-source projects for Minecraft Bedrock Edition — from server cores to developer tools — creating a complete ecosystem',
-    ctaStart: 'Explore Projects',
-    ctaGithub: 'GitHub',
-    scrollHint: 'Scroll down to explore',
-    website: 'Website',
-    featuresTitle: 'Our Strengths',
-    featOpenTitle: 'Open Source Driven',
-    featOpenDesc: 'All projects are fully open source. We welcome community contributions to advance the Bedrock ecosystem together.',
-    featPerformTitle: 'High-Performance Core',
-    featPerformDesc: 'Nukkit-MOT, our flagship project, is built on Java to deliver exceptional performance for Bedrock servers.',
-    featPluginTitle: 'Rich Ecosystem',
-    featPluginDesc: 'Covering server cores, plugin frameworks, and dev tools — a complete tech stack for Bedrock Edition.',
-    featCommunityTitle: 'Active Community',
-    featCommunityDesc: 'Backed by an active developer community with continuous updates and quick issue response.',
-    totalStars: 'Total Stars',
-    totalForks: 'Total Forks',
-    publicRepos: 'Public Repos',
-    followers: 'Followers',
-    featuredProjects: 'Featured Projects',
-    flagshipTag: 'Flagship Project',
-    flagshipDesc: 'An open-source server core supporting multiple Minecraft Bedrock versions, built for stable, high-performance servers.',
-    docs: 'Documentation',
-    download: 'Download Builds',
-    source: 'View Source',
-    searchProjects: 'Search projects',
-    searchPlaceholder: 'Search name or description…',
-    allLanguages: 'All languages',
-    sortProjects: 'Project sort order',
-    noMatchingProjects: 'No projects match these filters. Try another keyword or language.',
-    themeLightLabel: 'Switch to light mode',
-    themeDarkLabel: 'Switch to dark mode',
-    offlineData: 'Network unavailable — showing the built-in project snapshot',
-    sortStars: 'Most Stars',
-    sortUpdated: 'Recently Updated',
-    sortCreated: 'Newest',
-    noDesc: 'No description',
-    viewMore: 'View More',
-    viewLess: 'Show Less',
-    resourcesTitle: 'Developer Resources',
-    resourcesDesc: 'Get build artifacts and project dependencies to power your development.',
-    communityTitle: 'Join the Community',
-    communityDesc: 'Connect with other developers and server admins to get help and share experiences.',
-    discordTitle: 'Discord',
-    discordDesc: 'Join our Discord server to chat with developers worldwide in real time.',
-    discordBtn: 'Join Discord',
-    qqTitle: 'QQ Group',
-    qqDesc: 'Join the QQ group for Chinese community support and help.',
-    qqBtn: 'Join QQ Group',
-    ciTitle: 'CI Builds',
-    ciDesc: 'Visit MOTCI for the latest build artifacts of our projects.',
-    ciBtn: 'Go to CI',
-    repoTitle: 'Maven Repository',
-    repoDesc: 'Access the Maven repository for project dependencies and dev resources.',
-    repoBtn: 'Go to Repository',
-    jsonuiTitle: 'Json UI Editor',
-    jsonuiDesc: 'Online JSON UI editor for visually building and editing interfaces.',
-    jsonuiBtn: 'Go to Editor',
-    loadFailed: 'Failed to load',
-    reload: 'Reload',
-    staleData: 'Network error — showing cached data',
-    refreshLabel: 'Refresh data',
-    menuToggleLabel: 'Toggle navigation menu',
-    langToggleLabel: 'Switch to 中文',
-    timeMonths: '{n} months ago',
-    timeDays: '{n} days ago',
-    timeRecent: 'Recently',
-    friendLinksTitle: 'Friends & Links',
-    friendLinksDesc: 'Open-source projects and partners we recommend.',
-  }
-};
+/* 文案统一放在 assets/i18n/<locale>.json，由 i18n.js 负责协商、加载与切换 */
+const i18n = window.i18n;
 
+function t(key, vars) {
+  return i18n.t(key, vars);
+}
+
+/* 语言选择器回调（HTML 内联 onchange 需要全局函数） */
+function changeLocale(code) {
+  i18n.setLocale(code);
+}
+
+/* --- Preferences --- */
 function getPreference(key) {
   try { return localStorage.getItem(key); } catch { return null; }
 }
@@ -193,32 +45,7 @@ function setPreference(key, value) {
   try { localStorage.setItem(key, value); } catch { /* 隐私模式下仍保留当次设置 */ }
 }
 
-let currentLang = (() => {
-  const saved = getPreference('mot_lang');
-  return saved === 'zh' || saved === 'en' ? saved : (navigator.language.startsWith('zh') ? 'zh' : 'en');
-})();
-
-function t(key) {
-  return TRANSLATIONS[currentLang][key] || key;
-}
-
-function toggleLang() {
-  currentLang = currentLang === 'zh' ? 'en' : 'zh';
-  setPreference('mot_lang', currentLang);
-  document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
-  updateSEOMeta();
-  renderNavbar(cachedData ? cachedData.user : null);
-  if (cachedData) {
-    document.getElementById('app').innerHTML = renderContent(cachedData);
-  } else {
-    document.getElementById('app').innerHTML = renderFallback();
-  }
-  initScrollAnimations();
-  updateScrollState();
-  // 文案长度变化后重新判断友链是否需要跑马灯
-  checkFriendLinksScroll();
-}
-
+/* --- Theme --- */
 function toggleTheme() {
   const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
   document.documentElement.dataset.theme = nextTheme;
@@ -227,15 +54,54 @@ function toggleTheme() {
   updateScrollState();
 }
 
-function updateSEOMeta() {
-  document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
-  document.title = t('siteTitle');
-  const setMeta = (sel, attr, val) => { const el = document.querySelector(sel); if (el) el.setAttribute(attr, val); };
-  setMeta('meta[name="description"]', 'content', t('siteDesc'));
-  setMeta('meta[property="og:title"]', 'content', t('siteTitle'));
-  setMeta('meta[property="og:description"]', 'content', t('ogDesc'));
-  setMeta('meta[name="twitter:title"]', 'content', t('siteTitle'));
-  setMeta('meta[name="twitter:description"]', 'content', t('ogDesc'));
+/* --- SEO：canonical / og:url / hreflang 跟随语言与语言注册表 --- */
+function syncDocumentMeta() {
+  const canonical = document.getElementById('canonicalLink');
+  if (!canonical || !i18n.locale) return;
+  const base = canonical.dataset.base || canonical.href;
+  const localizedUrl = code => (code === i18n.defaultLocale
+    ? base
+    : `${base}?lang=${encodeURIComponent(code)}`);
+
+  const url = localizedUrl(i18n.locale);
+  canonical.setAttribute('href', url);
+  const ogUrl = document.querySelector('meta[property="og:url"]');
+  if (ogUrl) ogUrl.setAttribute('content', url);
+
+  syncAlternateLinks(base);
+}
+
+/* hreflang 与 og:locale:alternate 由注册表生成，新增语言不用改 HTML */
+function syncAlternateLinks(base) {
+  document.querySelectorAll('link[data-i18n-alternate]').forEach(el => el.remove());
+  const links = document.createDocumentFragment();
+  i18n.locales.forEach(locale => {
+    const link = document.createElement('link');
+    link.rel = 'alternate';
+    link.hreflang = locale.htmlLang || locale.code;
+    link.href = locale.code === i18n.defaultLocale
+      ? base
+      : `${base}?lang=${encodeURIComponent(locale.code)}`;
+    link.setAttribute('data-i18n-alternate', '');
+    links.appendChild(link);
+  });
+  document.head.appendChild(links);
+
+  const ogAnchor = document.querySelector('meta[property="og:locale"]');
+  document.querySelectorAll('meta[data-i18n-og-alternate]').forEach(el => el.remove());
+  if (!ogAnchor) return;
+
+  const metas = document.createDocumentFragment();
+  i18n.locales
+    .filter(locale => locale.code !== i18n.locale)
+    .forEach(locale => {
+      const meta = document.createElement('meta');
+      meta.setAttribute('property', 'og:locale:alternate');
+      meta.setAttribute('content', locale.ogLocale || locale.code);
+      meta.setAttribute('data-i18n-og-alternate', '');
+      metas.appendChild(meta);
+    });
+  ogAnchor.after(metas);
 }
 
 /* --- Data --- */
@@ -247,9 +113,9 @@ const LANG_COLORS = {
 };
 
 const SORT_OPTIONS = [
-  { value: 'stars', labelKey: 'sortStars' },
-  { value: 'updated', labelKey: 'sortUpdated' },
-  { value: 'created', labelKey: 'sortCreated' },
+  { value: 'stars', labelKey: 'projects.sort.stars' },
+  { value: 'updated', labelKey: 'projects.sort.updated' },
+  { value: 'created', labelKey: 'projects.sort.created' },
 ];
 
 /* --- State --- */
@@ -321,13 +187,9 @@ function avatarSize(url, size) {
   return `${url}${url.includes('?') ? '&' : '?'}s=${size}`;
 }
 
+/* 相对时间交给 Intl.RelativeTimeFormat，随语言自动变化 */
 function formatTime(dateString) {
-  const date = new Date(dateString);
-  const now = new Date();
-  const diffDays = Math.floor((now - date) / (1000 * 60 * 60 * 24));
-  if (diffDays > 30) return t('timeMonths').replace('{n}', Math.floor(diffDays / 30));
-  if (diffDays > 0) return t('timeDays').replace('{n}', diffDays);
-  return t('timeRecent');
+  return i18n.formatRelativeTime(dateString);
 }
 
 /* --- Cache --- */
@@ -405,7 +267,14 @@ function renderNavbar(user) {
   // 导航头像显示 32px，按 2x 尺寸请求兼顾高分屏
   const avatarUrl = avatarSize(user ? user.avatar_url : 'https://avatars.githubusercontent.com/u/62042238?v=4', 64);
   const isDark = document.documentElement.dataset.theme === 'dark';
-  const themeLabel = t(isDark ? 'themeLightLabel' : 'themeDarkLabel');
+  const themeLabel = t(isDark ? 'nav.themeToLight' : 'nav.themeToDark');
+  const langLabel = t('nav.language');
+
+  // 语言列表来自 locales.json，新增语言无需改这里
+  const localeOptions = i18n.locales.map(locale => `
+    <option value="${escapeHtml(locale.code)}" lang="${escapeHtml(locale.htmlLang || locale.code)}"${locale.code === i18n.locale ? ' selected' : ''}>${escapeHtml(locale.label)}</option>
+  `).join('');
+
   document.getElementById('nav-container').innerHTML = `
     <nav class="navbar" id="navbar">
       <div class="navbar-inner">
@@ -414,15 +283,20 @@ function renderNavbar(user) {
           <span>MemoriesOfTime</span>
         </a>
         <div class="navbar-links" id="navLinks">
-          <a href="#hero" onclick="closeMenu()">${t('navHome')}</a>
-          <a href="#features" onclick="closeMenu()">${t('navFeatures')}</a>
-          <a href="#projects" onclick="closeMenu()">${t('navProjects')}</a>
-          <a href="#resources" onclick="closeMenu()">${t('navResources')}</a>
-          <a href="#community" onclick="closeMenu()">${t('navCommunity')}</a>
+          <a href="#hero" onclick="closeMenu()">${t('nav.home')}</a>
+          <a href="#features" onclick="closeMenu()">${t('nav.features')}</a>
+          <a href="#projects" onclick="closeMenu()">${t('nav.projects')}</a>
+          <a href="#resources" onclick="closeMenu()">${t('nav.resources')}</a>
+          <a href="#community" onclick="closeMenu()">${t('nav.community')}</a>
           <button class="theme-toggle" onclick="toggleTheme()" aria-label="${themeLabel}" title="${themeLabel}">${isDark ? icons.sun : icons.moon}</button>
-          <button class="lang-toggle" onclick="toggleLang()" aria-label="${t('langToggleLabel')}">${currentLang === 'zh' ? 'EN' : '中文'}</button>
+          <div class="lang-switch">
+            <select class="lang-select" onchange="changeLocale(this.value)" aria-label="${langLabel}" title="${langLabel}">
+              ${localeOptions}
+            </select>
+            <span class="lang-select-arrow" aria-hidden="true">${icons.chevronDown}</span>
+          </div>
         </div>
-        <button class="menu-toggle" onclick="toggleMenu()" aria-label="${t('menuToggleLabel')}" aria-expanded="false" aria-controls="navLinks">${icons.menu}</button>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="${t('nav.menu')}" aria-expanded="false" aria-controls="navLinks">${icons.menu}</button>
       </div>
       <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
     </nav>
@@ -445,21 +319,6 @@ function closeMenu() {
 }
 
 /* --- Render: Loading & Error --- */
-function renderLoading() {
-  return `
-    <section class="hero" style="min-height: 100vh;">
-      <div class="container">
-        <div class="hero-content" style="justify-content: center;">
-          <div class="skeleton skeleton-avatar"></div>
-          <div style="flex:1;">
-            <div class="skeleton skeleton-text" style="width:150px; height:30px;"></div>
-            <div class="skeleton skeleton-text" style="width:100px; height:20px; margin-top:12px;"></div>
-          </div>
-        </div>
-      </div>
-    </section>`;
-}
-
 function renderFallback() {
   const orgUrl = `https://github.com/${CONFIG.username}`;
   const avatarUrl = 'https://avatars.githubusercontent.com/u/62042238?v=4&s=320';
@@ -473,19 +332,19 @@ function renderFallback() {
           </div>
           <div class="hero-info">
             <h1 class="hero-name anim-item" style="animation-delay: 0.15s">${CONFIG.username}</h1>
-            <p class="hero-slogan anim-item" style="animation-delay: 0.25s">${t('slogan')}</p>
-            <p class="hero-slogan-sub anim-item" style="animation-delay: 0.3s">${t('sloganSub')}</p>
+            <p class="hero-slogan anim-item" style="animation-delay: 0.25s">${t('hero.slogan')}</p>
+            <p class="hero-slogan-sub anim-item" style="animation-delay: 0.3s">${t('hero.sloganSub')}</p>
 
             <div class="hero-cta anim-item" style="animation-delay: 0.4s">
-              <a href="${orgUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary">${icons.github} ${t('ctaGithub')}</a>
+              <a href="${orgUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary">${icons.github} ${t('hero.ctaGithub')}</a>
             </div>
           </div>
         </div>
       </div>
 
-      <button class="scroll-indicator" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})" aria-label="${t('scrollHint')}">
+      <button class="scroll-indicator" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})" aria-label="${t('hero.scrollHint')}">
         <span class="scroll-content" aria-hidden="true">
-          <span>${t('scrollHint')}</span>
+          <span>${t('hero.scrollHint')}</span>
           ${icons.chevronDown}
         </span>
       </button>
@@ -501,7 +360,7 @@ function renderFallback() {
 
     <footer class="footer glass-panel" style="border-radius:0;">
       <div class="container">
-        <p class="footer-text">&copy; 2026 MemoriesOfTime. All rights reserved.</p>
+        <p class="footer-text">${t('footer.copyright', { year: new Date().getFullYear() })}</p>
       </div>
     </footer>`;
 }
@@ -509,17 +368,17 @@ function renderFallback() {
 /* --- Render: Features --- */
 function renderFeatures() {
   const features = [
-    { icon: icons.github, titleKey: 'featOpenTitle', descKey: 'featOpenDesc' },
-    { icon: icons.zap, titleKey: 'featPerformTitle', descKey: 'featPerformDesc' },
-    { icon: icons.puzzle, titleKey: 'featPluginTitle', descKey: 'featPluginDesc' },
-    { icon: icons.users, titleKey: 'featCommunityTitle', descKey: 'featCommunityDesc' },
+    { icon: icons.github, titleKey: 'features.open.title', descKey: 'features.open.desc' },
+    { icon: icons.zap, titleKey: 'features.performance.title', descKey: 'features.performance.desc' },
+    { icon: icons.puzzle, titleKey: 'features.ecosystem.title', descKey: 'features.ecosystem.desc' },
+    { icon: icons.users, titleKey: 'features.community.title', descKey: 'features.community.desc' },
   ];
 
   return `
     <section class="features" id="features">
       <div class="container">
         <div class="features-header scroll-anim blur">
-          <h2 class="features-title">${t('featuresTitle')}</h2>
+          <h2 class="features-title">${t('features.title')}</h2>
         </div>
         <div class="features-grid">
           ${features.map((f, i) => `
@@ -544,17 +403,17 @@ function renderFlagship(repos) {
         <div class="flagship-card glass-panel scroll-anim">
           <img class="flagship-logo" src="${CONFIG.flagshipLogo}" alt="" loading="lazy" decoding="async">
           <div>
-            <p class="flagship-eyebrow">${t('flagshipTag')}</p>
+            <p class="flagship-eyebrow">${t('projects.flagshipTag')}</p>
             <h2 class="flagship-title" id="flagship-title">${escapeHtml(repo.name)}</h2>
-            <p class="flagship-desc">${t('flagshipDesc')}</p>
+            <p class="flagship-desc">${t('projects.flagshipDesc')}</p>
             <div class="flagship-meta">
-              <span>${icons.star} ${repo.stargazers_count.toLocaleString()} Star</span>
+              <span>${icons.star} ${t('projects.stars', { count: repo.stargazers_count })}</span>
               <span><span class="repo-lang-dot" style="background:${LANG_COLORS[repo.language] || '#6e7681'}"></span>${escapeHtml(repo.language)}</span>
               <span>${icons.clock} ${formatTime(repo.pushed_at)}</span>
             </div>
             <div class="flagship-actions">
-              <a href="${CONFIG.docsUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary">${icons.book} ${t('docs')}</a>
-              <a href="${CONFIG.flagshipDownloadUrl}" target="_blank" rel="noopener noreferrer" class="btn-secondary-outline">${icons.download} ${t('download')}</a>
+              <a href="${CONFIG.docsUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary">${icons.book} ${t('projects.docs')}</a>
+              <a href="${CONFIG.flagshipDownloadUrl}" target="_blank" rel="noopener noreferrer" class="btn-secondary-outline">${icons.download} ${t('projects.download')}</a>
               <a href="${escapeHtml(repo.html_url)}" target="_blank" rel="noopener noreferrer" class="btn-secondary-outline">${icons.github} GitHub</a>
             </div>
           </div>
@@ -565,20 +424,20 @@ function renderFlagship(repos) {
 
 function renderRepoGrid(repos) {
   const sortedRepos = processRepos(repos, currentSort);
-  if (!sortedRepos.length) return `<div class="repo-grid"><p class="empty-state" role="status">${t('noMatchingProjects')}</p></div>`;
+  if (!sortedRepos.length) return `<div class="repo-grid"><p class="empty-state" role="status">${t('projects.empty')}</p></div>`;
   return `<div class="repo-grid">${sortedRepos.map((repo, i) => `
     <article class="repo-card glass-panel scroll-anim" data-delay="${Math.min(i * 80, 400)}">
       <div class="repo-header">
         <div class="repo-icon">${icons.github}</div>
         <a href="${escapeHtml(repo.html_url)}" target="_blank" rel="noopener noreferrer" class="repo-name">${escapeHtml(repo.name)} ${icons.externalLink}</a>
       </div>
-      <p class="repo-desc">${escapeHtml(repo.description || t('noDesc'))}</p>
+      <p class="repo-desc">${escapeHtml(repo.description || t('projects.noDescription'))}</p>
       ${(repo.topics || []).length ? `<div class="repo-topics">${repo.topics.slice(0, 3).map(tp => `<span class="topic">${escapeHtml(tp)}</span>`).join('')}</div>` : ''}
-      ${repo.name === CONFIG.flagshipRepo ? `<div class="repo-links"><a href="${CONFIG.docsUrl}" target="_blank" rel="noopener noreferrer">${t('docs')}</a><a href="${CONFIG.flagshipDownloadUrl}" target="_blank" rel="noopener noreferrer">${t('download')}</a></div>` : ''}
+      ${repo.name === CONFIG.flagshipRepo ? `<div class="repo-links"><a href="${CONFIG.docsUrl}" target="_blank" rel="noopener noreferrer">${t('projects.docs')}</a><a href="${CONFIG.flagshipDownloadUrl}" target="_blank" rel="noopener noreferrer">${t('projects.download')}</a></div>` : ''}
       <div class="repo-footer">
         ${repo.language ? `<span class="repo-lang"><span class="repo-lang-dot" style="background:${LANG_COLORS[repo.language] || '#6e7681'}"></span>${escapeHtml(repo.language)}</span>` : '<span></span>'}
-        <span class="repo-stat">${icons.star} ${repo.stargazers_count}</span>
-        <span class="repo-stat">${icons.fork} ${repo.forks_count}</span>
+        <span class="repo-stat">${icons.star} ${i18n.formatNumber(repo.stargazers_count)}</span>
+        <span class="repo-stat">${icons.fork} ${i18n.formatNumber(repo.forks_count)}</span>
         <span class="repo-update">${formatTime(repo.pushed_at)}</span>
       </div>
     </article>
@@ -589,7 +448,7 @@ function renderRepoResults(repos) {
   const filteredCount = getFilteredRepos(repos).length;
   return `${renderRepoGrid(repos)}${filteredCount > 6 ? `
     <div class="view-more-wrapper scroll-anim">
-      <button class="btn" onclick="toggleViewMore()">${showAllRepos ? t('viewLess') : t('viewMore')}</button>
+      <button class="btn" onclick="toggleViewMore()">${showAllRepos ? t('projects.viewLess') : t('projects.viewMore')}</button>
     </div>` : ''}`;
 }
 
@@ -597,25 +456,25 @@ function renderReposInner(repos) {
   const languages = [...new Set(repos.map(repo => repo.language).filter(Boolean))].sort();
   return `
     <div class="repos-header">
-      <div><h2 class="repos-title">${t('featuredProjects')}</h2></div>
+      <div><h2 class="repos-title">${t('projects.title')}</h2></div>
       <div class="controls-wrapper">
         <div class="select-wrapper">
-          <select class="select" onchange="changeSort(this.value)" aria-label="${t('sortProjects')}">
+          <select class="select" onchange="changeSort(this.value)" aria-label="${t('projects.sort.label')}">
             ${SORT_OPTIONS.map(opt => `<option value="${opt.value}" ${opt.value === currentSort ? 'selected' : ''}>${t(opt.labelKey)}</option>`).join('')}
           </select>
           <span class="select-arrow">${icons.chevronDown}</span>
         </div>
-        <button class="btn btn-icon" onclick="refreshData()" id="refreshBtn" aria-label="${t('refreshLabel')}">${icons.refresh}</button>
+        <button class="btn btn-icon" onclick="refreshData()" id="refreshBtn" aria-label="${t('projects.refresh')}">${icons.refresh}</button>
       </div>
     </div>
     <div class="repo-filters">
       <div class="search-wrapper">
         ${icons.search}
-        <input class="search-input" type="search" value="${escapeHtml(repoQuery)}" oninput="searchRepos(this.value)" aria-label="${t('searchProjects')}" placeholder="${t('searchPlaceholder')}">
+        <input class="search-input" type="search" value="${escapeHtml(repoQuery)}" oninput="searchRepos(this.value)" aria-label="${t('projects.search.label')}" placeholder="${t('projects.search.placeholder')}">
       </div>
       <div class="select-wrapper">
-        <select class="select" onchange="filterLanguage(this.value)" aria-label="${t('allLanguages')}">
-          <option value="all">${t('allLanguages')}</option>
+        <select class="select" onchange="filterLanguage(this.value)" aria-label="${t('projects.languageAll')}">
+          <option value="all">${t('projects.languageAll')}</option>
           ${languages.map(language => `<option value="${escapeHtml(language)}" ${language === currentLanguage ? 'selected' : ''}>${escapeHtml(language)}</option>`).join('')}
         </select>
         <span class="select-arrow">${icons.chevronDown}</span>
@@ -627,16 +486,16 @@ function renderReposInner(repos) {
 /* --- Render: Resources --- */
 function renderResources() {
   const items = [
-    { icon: icons.build, titleKey: 'ciTitle', descKey: 'ciDesc', btnKey: 'ciBtn', url: CONFIG.ciUrl },
-    { icon: icons.package, titleKey: 'repoTitle', descKey: 'repoDesc', btnKey: 'repoBtn', url: CONFIG.repoUrl },
-    { icon: icons.code, titleKey: 'jsonuiTitle', descKey: 'jsonuiDesc', btnKey: 'jsonuiBtn', url: CONFIG.jsonuiUrl },
+    { icon: icons.build, titleKey: 'resources.ci.title', descKey: 'resources.ci.desc', btnKey: 'resources.ci.action', url: CONFIG.ciUrl },
+    { icon: icons.package, titleKey: 'resources.maven.title', descKey: 'resources.maven.desc', btnKey: 'resources.maven.action', url: CONFIG.repoUrl },
+    { icon: icons.code, titleKey: 'resources.jsonui.title', descKey: 'resources.jsonui.desc', btnKey: 'resources.jsonui.action', url: CONFIG.jsonuiUrl },
   ];
   return `
     <section class="community" id="resources">
       <div class="container">
         <div class="community-header scroll-anim">
-          <h2 class="community-title">${t('resourcesTitle')}</h2>
-          <p class="community-desc">${t('resourcesDesc')}</p>
+          <h2 class="community-title">${t('resources.title')}</h2>
+          <p class="community-desc">${t('resources.desc')}</p>
         </div>
         <div class="community-grid resources-grid">
           ${items.map((it, i) => `
@@ -655,15 +514,15 @@ function renderResources() {
 /* --- Render: Community --- */
 function renderCommunity() {
   const items = [
-    { icon: icons.discord, titleKey: 'discordTitle', descKey: 'discordDesc', btnKey: 'discordBtn', url: CONFIG.discordUrl },
-    { icon: icons.qq, titleKey: 'qqTitle', descKey: 'qqDesc', btnKey: 'qqBtn', url: CONFIG.qqGroupUrl },
+    { icon: icons.discord, titleKey: 'community.discord.title', descKey: 'community.discord.desc', btnKey: 'community.discord.action', url: CONFIG.discordUrl },
+    { icon: icons.qq, titleKey: 'community.qq.title', descKey: 'community.qq.desc', btnKey: 'community.qq.action', url: CONFIG.qqGroupUrl },
   ];
   return `
     <section class="community" id="community">
       <div class="container">
         <div class="community-header scroll-anim">
-          <h2 class="community-title">${t('communityTitle')}</h2>
-          <p class="community-desc">${t('communityDesc')}</p>
+          <h2 class="community-title">${t('community.title')}</h2>
+          <p class="community-desc">${t('community.desc')}</p>
         </div>
         <div class="community-grid">
           ${items.map((it, i) => `
@@ -700,8 +559,8 @@ function renderFriendLinks() {
     <section class="friend-links" id="friend-links">
       <div class="container">
         <div class="friend-links-header scroll-anim">
-          <h2 class="friend-links-title">${icons.link} ${t('friendLinksTitle')}</h2>
-          <p class="friend-links-desc">${t('friendLinksDesc')}</p>
+          <h2 class="friend-links-title">${icons.link} ${t('friends.title')}</h2>
+          <p class="friend-links-desc">${t('friends.desc')}</p>
         </div>
         <div class="friend-links-track" id="friendLinksTrack">
           <div class="friend-links-grid">${cards}</div>
@@ -737,19 +596,19 @@ function renderContent(data) {
           </div>
           <div class="hero-info">
             <h1 class="hero-name anim-item" style="animation-delay: 0.15s">${escapeHtml(user.name || user.login)}</h1>
-            <p class="hero-username anim-item" style="animation-delay: 0.2s">@${escapeHtml(user.login)}</p>
-            <p class="hero-slogan anim-item" style="animation-delay: 0.25s">${t('slogan')}</p>
-            <p class="hero-slogan-sub anim-item" style="animation-delay: 0.3s">${t('sloganSub')}</p>
+            <p class="hero-username anim-item" style="animation-delay: 0.2s"><bdi>@${escapeHtml(user.login)}</bdi></p>
+            <p class="hero-slogan anim-item" style="animation-delay: 0.25s">${t('hero.slogan')}</p>
+            <p class="hero-slogan-sub anim-item" style="animation-delay: 0.3s">${t('hero.sloganSub')}</p>
 
             <div class="hero-meta anim-item" style="animation-delay: 0.35s">
               ${user.location ? `<span>${icons.mapPin} ${escapeHtml(user.location)}</span>` : ''}
-              ${user.blog ? `<a href="${escapeHtml(user.blog.startsWith('http') ? user.blog : 'https://' + user.blog)}" target="_blank" rel="noopener noreferrer">${icons.link} ${t('website')}</a>` : ''}
+              ${user.blog ? `<a href="${escapeHtml(user.blog.startsWith('http') ? user.blog : 'https://' + user.blog)}" target="_blank" rel="noopener noreferrer">${icons.link} ${t('hero.website')}</a>` : ''}
               <a href="${escapeHtml(user.html_url)}" target="_blank" rel="noopener noreferrer">${icons.github} GitHub</a>
             </div>
 
             <div class="hero-cta anim-item" style="animation-delay: 0.4s">
-              <a href="#projects" class="btn-primary">${t('ctaStart')}</a>
-              <a href="${escapeHtml(user.html_url)}" target="_blank" rel="noopener noreferrer" class="btn-secondary-outline">${icons.github} ${t('ctaGithub')}</a>
+              <a href="#projects" class="btn-primary">${t('hero.ctaStart')}</a>
+              <a href="${escapeHtml(user.html_url)}" target="_blank" rel="noopener noreferrer" class="btn-secondary-outline">${icons.github} ${t('hero.ctaGithub')}</a>
             </div>
 
             <div class="languages anim-item" style="animation-delay: 0.45s">
@@ -761,9 +620,9 @@ function renderContent(data) {
         </div>
       </div>
 
-      <button class="scroll-indicator" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})" aria-label="${t('scrollHint')}">
+      <button class="scroll-indicator" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})" aria-label="${t('hero.scrollHint')}">
         <span class="scroll-content" aria-hidden="true">
-          <span>${t('scrollHint')}</span>
+          <span>${t('hero.scrollHint')}</span>
           ${icons.chevronDown}
         </span>
       </button>
@@ -776,22 +635,22 @@ function renderContent(data) {
         <div class="stats-grid">
           <div class="stat-card glass-panel scroll-anim" data-delay="0">
             <div class="stat-content"><div class="stat-icon">${icons.star}</div><div>
-              <div class="stat-value" data-count="${totalStars}">${totalStars.toLocaleString()}</div><div class="stat-label">${t('totalStars')}</div>
+              <div class="stat-value" data-count="${totalStars}">${i18n.formatNumber(totalStars)}</div><div class="stat-label">${t('stats.stars')}</div>
             </div></div>
           </div>
           <div class="stat-card glass-panel scroll-anim" data-delay="100">
             <div class="stat-content"><div class="stat-icon">${icons.fork}</div><div>
-              <div class="stat-value" data-count="${totalForks}">${totalForks.toLocaleString()}</div><div class="stat-label">${t('totalForks')}</div>
+              <div class="stat-value" data-count="${totalForks}">${i18n.formatNumber(totalForks)}</div><div class="stat-label">${t('stats.forks')}</div>
             </div></div>
           </div>
           <div class="stat-card glass-panel scroll-anim" data-delay="200">
             <div class="stat-content"><div class="stat-icon">${icons.github}</div><div>
-              <div class="stat-value" data-count="${user.public_repos}">${user.public_repos}</div><div class="stat-label">${t('publicRepos')}</div>
+              <div class="stat-value" data-count="${user.public_repos}">${i18n.formatNumber(user.public_repos)}</div><div class="stat-label">${t('stats.repos')}</div>
             </div></div>
           </div>
           <div class="stat-card glass-panel scroll-anim" data-delay="300">
             <div class="stat-content"><div class="stat-icon">${icons.users}</div><div>
-              <div class="stat-value" ${user.followers ? `data-count="${user.followers}"` : ''}>${user.followers || '-'}</div><div class="stat-label">${t('followers')}</div>
+              <div class="stat-value" ${user.followers ? `data-count="${user.followers}"` : ''}>${user.followers ? i18n.formatNumber(user.followers) : '-'}</div><div class="stat-label">${t('stats.followers')}</div>
             </div></div>
           </div>
         </div>
@@ -814,7 +673,7 @@ function renderContent(data) {
 
     <footer class="footer glass-panel" style="border-radius:0;">
       <div class="container">
-        <p class="footer-text">&copy; 2026 MemoriesOfTime. All rights reserved.</p>
+        <p class="footer-text">${t('footer.copyright', { year: new Date().getFullYear() })}</p>
       </div>
     </footer>`;
 }
@@ -865,7 +724,7 @@ async function refreshData() {
     checkFriendLinksScroll();
   } catch (e) {
     console.error(e);
-    showToast(t('loadFailed'));
+    showToast(t('status.loadFailed'));
   } finally {
     // 重新渲染后旧按钮已脱离文档，需重新查找
     const refreshBtn = document.getElementById('refreshBtn');
@@ -900,7 +759,7 @@ function animateCount(el) {
   if (isNaN(target)) return;
   delete el.dataset.count; // 防止重复触发
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    el.textContent = target.toLocaleString();
+    el.textContent = i18n.formatNumber(target);
     return;
   }
   const duration = 1200;
@@ -908,7 +767,7 @@ function animateCount(el) {
   function tick(now) {
     const progress = Math.min((now - start) / duration, 1);
     const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.round(target * eased).toLocaleString();
+    el.textContent = i18n.formatNumber(Math.round(target * eased));
     if (progress < 1) requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
@@ -932,7 +791,14 @@ function initScrollAnimations() {
     });
   }, { threshold: 0, rootMargin: '0px 0px 200px 0px' });
 
-  elements.forEach(el => observer.observe(el));
+  elements.forEach(el => {
+    // 切换语言会重建 DOM：已经滚过的区块不会再进入观察区，直接置为可见
+    if (el.getBoundingClientRect().bottom < 0) {
+      el.classList.add('visible');
+      return;
+    }
+    observer.observe(el);
+  });
 }
 
 let scrollTicking = false;
@@ -978,9 +844,30 @@ function updateScrollState() {
 /* --- Init --- */
 async function init() {
   const app = document.getElementById('app');
+
+  // 语言包就绪后再渲染，避免首屏闪现文案 key
+  await i18n.ready;
   renderNavbar(null);
   initScrollListener();
-  updateSEOMeta();
+  syncDocumentMeta();
+
+  // 切换语言、或回退语言包迟到时重渲染：文案、相对时间、数字格式一起更新
+  const rerenderForLocale = () => {
+    const restoreLangFocus = document.activeElement && document.activeElement.classList.contains('lang-select');
+    renderNavbar(cachedData ? cachedData.user : null);
+    app.innerHTML = cachedData ? renderContent(cachedData) : renderFallback();
+    if (restoreLangFocus) {
+      const select = document.querySelector('.lang-select');
+      if (select) select.focus();
+    }
+    initScrollAnimations();
+    updateScrollState();
+    checkFriendLinksScroll();
+    syncDocumentMeta();
+  };
+
+  document.addEventListener('mot:localechange', rerenderForLocale);
+  document.addEventListener('mot:messagesloaded', rerenderForLocale);
 
   // 移动端菜单：ESC 或点击菜单外区域时关闭（navbar 会重渲染，统一委托到 document）
   document.addEventListener('keydown', (e) => {
@@ -1006,7 +893,7 @@ async function init() {
       : FALLBACK_DATA;
     renderNavbar(cachedData.user);
     app.innerHTML = renderContent(cachedData);
-    showToast(t(stale && stale.user && stale.repos ? 'staleData' : 'offlineData'));
+    showToast(t(stale && stale.user && stale.repos ? 'status.stale' : 'status.offline'));
   }
   initScrollAnimations();
   updateScrollState();

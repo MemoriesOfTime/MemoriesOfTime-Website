@@ -1,0 +1,132 @@
+{
+  "meta": {
+    "title": "MemoriesOfTime - Open-Source Organization for Minecraft Bedrock",
+    "description": "MemoriesOfTime is an open-source organization focused on the Minecraft Bedrock Edition ecosystem, covering server cores, developer tools, and plugins.",
+    "ogDescription": "Open-source organization for Minecraft Bedrock ecosystem"
+  },
+  "nav": {
+    "home": "Home",
+    "features": "Features",
+    "projects": "Projects",
+    "resources": "Resources",
+    "community": "Community",
+    "menu": "Toggle navigation menu",
+    "language": "Change language",
+    "themeToLight": "Switch to light mode",
+    "themeToDark": "Switch to dark mode"
+  },
+  "hero": {
+    "slogan": "Open-Source Organization for Minecraft Bedrock",
+    "sloganSub": "We build high-quality open-source projects for Minecraft Bedrock Edition — from server cores to developer tools — creating a complete ecosystem",
+    "ctaStart": "Explore Projects",
+    "ctaGithub": "GitHub",
+    "scrollHint": "Scroll down to explore",
+    "website": "Website"
+  },
+  "stats": {
+    "stars": "Total Stars",
+    "forks": "Total Forks",
+    "repos": "Public Repos",
+    "followers": "Followers"
+  },
+  "features": {
+    "title": "Our Strengths",
+    "open": {
+      "title": "Open Source Driven",
+      "desc": "All projects are fully open source. We welcome community contributions to advance the Bedrock ecosystem together."
+    },
+    "performance": {
+      "title": "High-Performance Core",
+      "desc": "Nukkit-MOT, our flagship project, is built on Java to deliver exceptional performance for Bedrock servers."
+    },
+    "ecosystem": {
+      "title": "Rich Ecosystem",
+      "desc": "Covering server cores, plugin frameworks, and dev tools — a complete tech stack for Bedrock Edition."
+    },
+    "community": {
+      "title": "Active Community",
+      "desc": "Backed by an active developer community with continuous updates and quick issue response."
+    }
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "flagshipTag": "Flagship Project",
+    "flagshipDesc": "An open-source server core supporting multiple Minecraft Bedrock versions, built for stable, high-performance servers.",
+    "docs": "Documentation",
+    "download": "Download Builds",
+    "search": {
+      "label": "Search projects",
+      "placeholder": "Search name or description…"
+    },
+    "languageAll": "All languages",
+    "sort": {
+      "label": "Project sort order",
+      "stars": "Most Stars",
+      "updated": "Recently Updated",
+      "created": "Newest"
+    },
+    "empty": "No projects match these filters. Try another keyword or language.",
+    "viewMore": "View More",
+    "viewLess": "Show Less",
+    "noDescription": "No description",
+    "refresh": "Refresh data",
+    "stars": {
+      "one": "{count} star",
+      "other": "{count} stars"
+    }
+  },
+  "resources": {
+    "title": "Developer Resources",
+    "desc": "Get build artifacts and project dependencies to power your development.",
+    "ci": {
+      "title": "CI Builds",
+      "desc": "Visit MOTCI for the latest build artifacts of our projects.",
+      "action": "Go to CI"
+    },
+    "maven": {
+      "title": "Maven Repository",
+      "desc": "Access the Maven repository for project dependencies and dev resources.",
+      "action": "Go to Repository"
+    },
+    "jsonui": {
+      "title": "Json UI Editor",
+      "desc": "Online JSON UI editor for visually building and editing interfaces.",
+      "action": "Go to Editor"
+    }
+  },
+  "community": {
+    "title": "Join the Community",
+    "desc": "Connect with other developers and server admins to get help and share experiences.",
+    "discord": {
+      "title": "Discord",
+      "desc": "Join our Discord server to chat with developers worldwide in real time.",
+      "action": "Join Discord"
+    },
+    "qq": {
+      "title": "QQ Group",
+      "desc": "Join the QQ group for Chinese community support and help.",
+      "action": "Join QQ Group"
+    }
+  },
+  "friends": {
+    "title": "Friends & Links",
+    "desc": "Open-source projects and partners we recommend."
+  },
+  "status": {
+    "offline": "Network unavailable — showing the built-in project snapshot",
+    "stale": "Network error — showing cached data",
+    "loadFailed": "Failed to load"
+  },
+  "time": {
+    "recent": "Recently"
+  },
+  "footer": {
+    "copyright": "© {year} MemoriesOfTime. All rights reserved."
+  },
+  "notFound": {
+    "title": "404 - Page Not Found | MemoriesOfTime",
+    "heading": "Page Not Found",
+    "description": "The page you are looking for might have been removed, renamed, or is temporarily unavailable.",
+    "backHome": "Back to Home"
+  }
+}

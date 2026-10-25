@@ -142,7 +142,7 @@ section[id] { scroll-margin-top: 70px; }
   border-radius: 1px;
   background: var(--foreground);
   transform: scaleX(0);
-  transform-origin: left;
+  transform-origin: left; /* RTL 覆盖见文末 */
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -159,10 +159,15 @@ section[id] { scroll-margin-top: 70px; }
   transform: scaleX(1);
 }
 
-.lang-toggle,
+.lang-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.lang-select,
 .theme-toggle {
   min-height: 34px;
-  padding: 4px 12px;
   border-radius: 8px;
   border: 1px solid var(--border);
   background: transparent;
@@ -174,6 +179,28 @@ section[id] { scroll-margin-top: 70px; }
   transition: background 0.2s, border-color 0.2s;
 }
 
+/* 原生 select 承担可访问性，箭头由相邻 span 绘制 */
+.lang-select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 4px 26px 4px 10px;
+  line-height: 1.4;
+}
+
+.lang-select-arrow {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  width: 12px;
+  height: 12px;
+  color: var(--muted-foreground);
+  pointer-events: none;
+}
+
+.lang-select-arrow svg { width: 12px; height: 12px; display: block; }
+
 .theme-toggle {
   width: 36px;
   padding: 4px;
@@ -184,7 +211,7 @@ section[id] { scroll-margin-top: 70px; }
 
 .theme-toggle svg { width: 17px; height: 17px; }
 
-.lang-toggle:hover,
+.lang-select:hover,
 .theme-toggle:hover {
   background: var(--glass-bg);
   border-color: var(--muted-foreground);
@@ -212,7 +239,7 @@ section[id] { scroll-margin-top: 70px; }
   height: 2px;
   width: 100%;
   transform: scaleX(0);
-  transform-origin: left;
+  transform-origin: left; /* RTL 覆盖见文末 */
   background: linear-gradient(90deg, #4facfe, #a18cd1, #fa709a);
   z-index: 1001;
   pointer-events: none;
@@ -707,7 +734,7 @@ section[id] { scroll-margin-top: 70px; }
 .repo-lang-dot { width: 8px; height: 8px; border-radius: 50%; }
 .repo-stat { display: flex; align-items: center; gap: 4px; }
 .repo-stat svg { width: 12px; height: 12px; }
-.repo-update { margin-left: auto; }
+.repo-update { margin-inline-start: auto; }
 .empty-state { grid-column: 1 / -1; padding: 40px 20px; text-align: center; color: var(--muted-foreground); }
 .view-more-wrapper { text-align: center; margin-top: 24px; }
 
@@ -800,10 +827,10 @@ section[id] { scroll-margin-top: 70px; }
 .friend-links-track.is-scroll { justify-content: flex-start; }
 .friend-links-track.is-scroll .friend-links-grid {
   justify-content: flex-start;
-  padding-right: 12px;
+  padding-inline-end: 12px;
   animation: friendLinksMarquee 30s linear infinite;
 }
-.friend-links-track.is-scroll .friend-links-grid--clone { display: flex; padding-right: 12px; }
+.friend-links-track.is-scroll .friend-links-grid--clone { display: flex; padding-inline-end: 12px; }
 .friend-links-track.is-scroll:hover .friend-links-grid {
   animation-play-state: paused;
 }
@@ -883,9 +910,9 @@ section[id] { scroll-margin-top: 70px; }
    =========================== */
 @media (min-width: 768px) {
   .container { padding: 0 24px; }
-  .hero-content { flex-direction: row; text-align: left; gap: 48px; }
+  .hero-content { flex-direction: row; text-align: start; gap: 48px; }
   .hero-info { width: auto; }
-  .hero-slogan-sub { margin-left: 0; margin-right: auto; }
+  .hero-slogan-sub { margin-inline: 0 auto; }
   .avatar { width: 160px; height: 160px; }
   .hero-name { font-size: 3.5rem; }
   .hero-username { font-size: 1.25rem; margin-bottom: 16px; }
@@ -968,12 +995,13 @@ section[id] { scroll-margin-top: 70px; }
     padding: 0 12px;
   }
 
-  .navbar-links .lang-toggle,
+  .navbar-links .lang-switch,
   .navbar-links .theme-toggle {
     align-self: flex-start;
     min-height: 44px;
-    padding: 0 16px;
   }
+
+  .navbar-links .lang-select { min-height: 44px; padding: 0 30px 0 14px; }
 
   .navbar-links .theme-toggle { width: 44px; padding: 0; }
 
@@ -1027,4 +1055,61 @@ section[id] { scroll-margin-top: 70px; }
 
 @media (max-width: 767px) {
   [data-theme="dark"] .navbar-links { background: rgba(14, 16, 22, 0.94); }
+}
+
+/* ===========================
+   RTL（阿拉伯语）镜像调整
+   =========================== */
+[dir="rtl"] .select {
+  padding: 10px 16px 10px 36px;
+}
+
+[dir="rtl"] .select-arrow {
+  right: auto;
+  left: 12px;
+}
+
+[dir="rtl"] .lang-select {
+  padding: 4px 10px 4px 26px;
+}
+
+[dir="rtl"] .lang-select-arrow {
+  right: auto;
+  left: 8px;
+}
+
+[dir="rtl"] .search-input {
+  padding: 10px 40px 10px 16px;
+}
+
+[dir="rtl"] .search-wrapper > svg {
+  left: auto;
+  right: 14px;
+}
+
+/* 导航下划线从右侧展开 */
+[dir="rtl"] .navbar-links a::after {
+  transform-origin: right;
+}
+
+[dir="rtl"] .repo-name:hover svg {
+  transform: translate(-2px, -2px);
+}
+
+/* 滚动进度条从右侧开始生长 */
+[dir="rtl"] .scroll-progress {
+  transform-origin: right;
+}
+
+@media (max-width: 767px) {
+  [dir="rtl"] .navbar-links .lang-select {
+    padding: 0 14px 0 30px;
+  }
+}
+
+/* 18 种语言后，语言选择器变长；中等宽度下收紧导航间距避免溢出 */
+@media (min-width: 768px) and (max-width: 980px) {
+  .navbar-links { gap: 14px; }
+  .navbar-links a { font-size: 0.85rem; }
+  .lang-select { max-width: 108px; }
 }

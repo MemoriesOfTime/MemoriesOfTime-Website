@@ -1,0 +1,131 @@
+{
+  "meta": {
+    "title": "MemoriesOfTime - Organisasi sumber terbuka untuk ekosistem Minecraft Bedrock",
+    "description": "MemoriesOfTime adalah organisasi sumber terbuka yang berfokus pada ekosistem Minecraft Bedrock Edition, mencakup inti server, alat pengembang, dan plugin.",
+    "ogDescription": "Organisasi sumber terbuka untuk ekosistem Minecraft Bedrock"
+  },
+  "nav": {
+    "home": "Beranda",
+    "features": "Fitur",
+    "projects": "Proyek",
+    "resources": "Sumber Daya",
+    "community": "Komunitas",
+    "menu": "Buka menu navigasi",
+    "language": "Ganti bahasa",
+    "themeToLight": "Beralih ke mode terang",
+    "themeToDark": "Beralih ke mode gelap"
+  },
+  "hero": {
+    "slogan": "Organisasi sumber terbuka untuk ekosistem Minecraft Bedrock",
+    "sloganSub": "Kami membangun proyek sumber terbuka berkualitas tinggi untuk Minecraft Bedrock Edition — dari inti server hingga alat pengembang — membentuk ekosistem yang lengkap.",
+    "ctaStart": "Jelajahi proyek",
+    "ctaGithub": "GitHub",
+    "scrollHint": "Gulir untuk melihat lebih banyak",
+    "website": "Situs web"
+  },
+  "stats": {
+    "stars": "Bintang",
+    "forks": "Fork",
+    "repos": "Repositori publik",
+    "followers": "Pengikut"
+  },
+  "features": {
+    "title": "Keunggulan kami",
+    "open": {
+      "title": "Digerakkan sumber terbuka",
+      "desc": "Semua proyek sepenuhnya terbuka. Kami menyambut kontribusi komunitas untuk memajukan ekosistem Bedrock bersama."
+    },
+    "performance": {
+      "title": "Inti berperforma tinggi",
+      "desc": "Nukkit-MOT, proyek unggulan kami, dibangun dengan Java untuk memberikan performa luar biasa bagi server Bedrock."
+    },
+    "ecosystem": {
+      "title": "Ekosistem yang kaya",
+      "desc": "Inti server, kerangka plugin, dan alat pengembang — tumpukan teknologi lengkap untuk Bedrock Edition."
+    },
+    "community": {
+      "title": "Komunitas aktif",
+      "desc": "Komunitas pengembang yang aktif, pembaruan berkelanjutan, dan respons cepat terhadap masalah."
+    }
+  },
+  "projects": {
+    "title": "Proyek pilihan",
+    "flagshipTag": "Proyek andalan",
+    "flagshipDesc": "Inti server sumber terbuka yang mendukung beberapa versi Minecraft Bedrock, fondasi bagi server yang stabil dan berperforma tinggi.",
+    "docs": "Dokumentasi",
+    "download": "Unduh build",
+    "search": {
+      "label": "Cari proyek",
+      "placeholder": "Cari nama atau deskripsi…"
+    },
+    "languageAll": "Semua bahasa",
+    "sort": {
+      "label": "Urutkan proyek",
+      "stars": "Bintang terbanyak",
+      "updated": "Baru diperbarui",
+      "created": "Terbaru"
+    },
+    "empty": "Tidak ada proyek yang cocok dengan filter ini. Coba kata kunci atau bahasa lain.",
+    "viewMore": "Lihat lebih banyak",
+    "viewLess": "Tampilkan lebih sedikit",
+    "noDescription": "Tanpa deskripsi",
+    "refresh": "Segarkan data",
+    "stars": {
+      "other": "{count} bintang"
+    }
+  },
+  "resources": {
+    "title": "Sumber daya pengembang",
+    "desc": "Dapatkan artefak build dan dependensi proyek untuk mempercepat pengembangan Anda.",
+    "ci": {
+      "title": "Build CI",
+      "desc": "Kunjungi MOTCI untuk mendapatkan build terbaru proyek kami.",
+      "action": "Buka CI"
+    },
+    "maven": {
+      "title": "Repositori Maven",
+      "desc": "Akses repositori Maven untuk dependensi dan sumber daya pengembangan.",
+      "action": "Buka repositori"
+    },
+    "jsonui": {
+      "title": "Json UI Editor",
+      "desc": "Editor JSON UI daring untuk membuat dan menyunting antarmuka secara visual.",
+      "action": "Buka editor"
+    }
+  },
+  "community": {
+    "title": "Bergabunglah dengan komunitas",
+    "desc": "Terhubung dengan pengembang dan admin server lain, dapatkan bantuan, dan bagikan pengalaman.",
+    "discord": {
+      "title": "Discord",
+      "desc": "Bergabunglah dengan server Discord kami untuk mengobrol dengan pengembang dari seluruh dunia secara real time.",
+      "action": "Gabung Discord"
+    },
+    "qq": {
+      "title": "Grup QQ",
+      "desc": "Bergabunglah dengan grup QQ untuk mendapat dukungan komunitas Tionghoa.",
+      "action": "Gabung grup"
+    }
+  },
+  "friends": {
+    "title": "Tautan teman",
+    "desc": "Proyek sumber terbuka dan mitra yang kami rekomendasikan."
+  },
+  "status": {
+    "offline": "Jaringan tidak tersedia — menampilkan data proyek bawaan",
+    "stale": "Kesalahan jaringan — menampilkan data cache",
+    "loadFailed": "Gagal memuat"
+  },
+  "time": {
+    "recent": "Baru-baru ini"
+  },
+  "footer": {
+    "copyright": "© {year} MemoriesOfTime. All rights reserved."
+  },
+  "notFound": {
+    "title": "404 - Halaman tidak ditemukan | MemoriesOfTime",
+    "heading": "Halaman tidak ditemukan",
+    "description": "Halaman yang Anda cari mungkin telah dihapus, diganti nama, atau sementara tidak tersedia.",
+    "backHome": "Kembali ke beranda"
+  }
+}

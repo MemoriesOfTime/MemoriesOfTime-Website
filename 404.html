@@ -11,15 +11,25 @@
       document.documentElement.dataset.theme = theme === 'light' || theme === 'dark'
         ? theme
         : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+      // 样式生效前先定好语言，避免 <html lang> 与首屏文案不一致
+      var query = null, stored = null;
+      try { query = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+      try { stored = localStorage.getItem('mot_lang'); } catch (e) {}
+      var tag = query || stored
+        || (navigator.languages && navigator.languages[0])
+        || navigator.language || '';
+      // 先写入浏览器原始标签，运行时再做归一化；非法值退回默认语言
+      document.documentElement.lang = /^[a-z]{2,3}(-[a-z0-9]{2,8})*$/i.test(tag) ? tag : 'zh-CN';
     })();
   </script>
-  <title>404 - Page Not Found | MemoriesOfTime</title>
-  <meta name="description" content="Page not found - MemoriesOfTime">
-  <meta property="og:title" content="404 - MemoriesOfTime">
-  <meta property="og:description" content="Page not found">
+  <title data-i18n="notFound.title">404 - 页面未找到 | MemoriesOfTime</title>
+  <meta name="description" content="页面未找到 - MemoriesOfTime" data-i18n-attr="content:notFound.description">
+  <meta property="og:title" content="404 - MemoriesOfTime" data-i18n-attr="content:notFound.title">
+  <meta property="og:description" content="页面未找到" data-i18n-attr="content:notFound.heading">
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="https://avatars.githubusercontent.com/u/62042238?v=4&s=64">
-  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/base.css">
   <style>
     body {
       min-height: 100vh;
@@ -135,29 +145,20 @@
     <div class="error-code">404</div>
 
     <div class="error-card glass-panel">
-      <h1 class="error-title" id="errorTitle">页面未找到</h1>
-      <p class="error-desc" id="errorDesc">您访问的页面可能已被移除、更名或暂时不可用。</p>
+      <h1 class="error-title" data-i18n="notFound.heading">页面未找到</h1>
+      <p class="error-desc" data-i18n="notFound.description">您访问的页面可能已被移除、更名或暂时不可用。</p>
 
       <a href="/" class="btn" id="errorBtn">
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="m12 19-7-7 7-7"/>
           <path d="M19 12H5"/>
         </svg>
-        <span id="errorBtnText">返回首页</span>
+        <span data-i18n="notFound.backHome">返回首页</span>
       </a>
     </div>
   </main>
 
-  <script>
-    const isZh = navigator.language.startsWith('zh');
-    if (!isZh) {
-      document.documentElement.lang = 'en';
-      document.title = '404 - Page Not Found | MemoriesOfTime';
-      document.getElementById('errorTitle').textContent = 'Page Not Found';
-      document.getElementById('errorDesc').textContent = 'The page you are looking for might have been removed, renamed, or is temporarily unavailable.';
-      document.getElementById('errorBtnText').textContent = 'Back to Home';
-    }
-  </script>
+  <script src="/assets/js/i18n.js" defer></script>
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>

@@ -1,0 +1,132 @@
+{
+  "meta": {
+    "title": "MemoriesOfTime - Minecraft Bedrock ekosistemi için açık kaynak organizasyonu",
+    "description": "MemoriesOfTime, Minecraft Bedrock Edition ekosistemine odaklanan bir açık kaynak organizasyonudur; sunucu çekirdekleri, geliştirici araçları ve eklentiler geliştirir.",
+    "ogDescription": "Minecraft Bedrock ekosistemi için açık kaynak organizasyonu"
+  },
+  "nav": {
+    "home": "Ana Sayfa",
+    "features": "Özellikler",
+    "projects": "Projeler",
+    "resources": "Kaynaklar",
+    "community": "Topluluk",
+    "menu": "Gezinme menüsünü aç",
+    "language": "Dili değiştir",
+    "themeToLight": "Açık temaya geç",
+    "themeToDark": "Koyu temaya geç"
+  },
+  "hero": {
+    "slogan": "Minecraft Bedrock ekosistemi için açık kaynak organizasyonu",
+    "sloganSub": "Sunucu çekirdeklerinden geliştirici araçlarına kadar Minecraft Bedrock Edition için yüksek kaliteli açık kaynak projeler geliştiriyor, eksiksiz bir teknoloji ekosistemi kuruyoruz.",
+    "ctaStart": "Projeleri keşfet",
+    "ctaGithub": "GitHub",
+    "scrollHint": "Daha fazlası için kaydırın",
+    "website": "Web sitesi"
+  },
+  "stats": {
+    "stars": "Yıldız",
+    "forks": "Fork",
+    "repos": "Genel Depo",
+    "followers": "Takipçi"
+  },
+  "features": {
+    "title": "Güçlü yönlerimiz",
+    "open": {
+      "title": "Açık kaynak odaklı",
+      "desc": "Tüm projeler tamamen açık kaynaklıdır. Topluluk katkılarını memnuniyetle karşılıyor, Bedrock ekosistemini birlikte geliştiriyoruz."
+    },
+    "performance": {
+      "title": "Yüksek performanslı çekirdek",
+      "desc": "Amiral gemimiz Nukkit-MOT, Java ile geliştirilerek Bedrock sunucularına olağanüstü performans sunar."
+    },
+    "ecosystem": {
+      "title": "Zengin ekosistem",
+      "desc": "Sunucu çekirdekleri, eklenti altyapıları ve geliştirici araçlarıyla Bedrock Edition için eksiksiz bir teknoloji yığını."
+    },
+    "community": {
+      "title": "Aktif topluluk",
+      "desc": "Aktif bir geliştirici topluluğu, sürekli güncellemeler ve sorunlara hızlı yanıt."
+    }
+  },
+  "projects": {
+    "title": "Öne çıkan projeler",
+    "flagshipTag": "Amiral gemisi proje",
+    "flagshipDesc": "Birden fazla Minecraft Bedrock sürümünü destekleyen açık kaynaklı bir sunucu çekirdeği; kararlı ve yüksek performanslı sunucular için.",
+    "docs": "Belgeler",
+    "download": "Derlemeleri indir",
+    "search": {
+      "label": "Proje ara",
+      "placeholder": "Ad veya açıklama ara…"
+    },
+    "languageAll": "Tüm diller",
+    "sort": {
+      "label": "Sıralama ölçütü",
+      "stars": "En çok yıldız",
+      "updated": "Son güncellenen",
+      "created": "En yeni"
+    },
+    "empty": "Bu filtrelerle eşleşen proje yok. Başka bir anahtar kelime veya dil deneyin.",
+    "viewMore": "Daha fazla göster",
+    "viewLess": "Daha az göster",
+    "noDescription": "Açıklama yok",
+    "refresh": "Verileri yenile",
+    "stars": {
+      "one": "{count} yıldız",
+      "other": "{count} yıldız"
+    }
+  },
+  "resources": {
+    "title": "Geliştirici kaynakları",
+    "desc": "Derleme çıktılarına ve proje bağımlılıklarına ulaşarak geliştirme sürecinizi hızlandırın.",
+    "ci": {
+      "title": "CI derlemeleri",
+      "desc": "Projelerimizin en son derlemeleri için MOTCI'yi ziyaret edin.",
+      "action": "CI'ye git"
+    },
+    "maven": {
+      "title": "Maven deposu",
+      "desc": "Proje bağımlılıkları ve geliştirici kaynakları için Maven deposuna göz atın.",
+      "action": "Depoya git"
+    },
+    "jsonui": {
+      "title": "Json UI Editor",
+      "desc": "Arayüzleri görsel olarak oluşturmak ve düzenlemek için çevrimiçi JSON UI düzenleyicisi.",
+      "action": "Düzenleyiciye git"
+    }
+  },
+  "community": {
+    "title": "Topluluğa katılın",
+    "desc": "Diğer geliştiriciler ve sunucu yöneticileriyle tanışın, yardım alın ve deneyimlerinizi paylaşın.",
+    "discord": {
+      "title": "Discord",
+      "desc": "Discord sunucumuza katılarak dünyanın dört bir yanındaki geliştiricilerle anında sohbet edin.",
+      "action": "Discord'a katıl"
+    },
+    "qq": {
+      "title": "QQ grubu",
+      "desc": "Çin topluluğundan destek almak için QQ grubuna katılın.",
+      "action": "Gruba katıl"
+    }
+  },
+  "friends": {
+    "title": "Bağlantılar",
+    "desc": "Önerdiğimiz açık kaynak projeler ve iş ortakları."
+  },
+  "status": {
+    "offline": "Ağ hatası — yerleşik proje verileri gösteriliyor",
+    "stale": "Ağ hatası — önbellekteki veriler gösteriliyor",
+    "loadFailed": "Yüklenemedi"
+  },
+  "time": {
+    "recent": "Son zamanlarda"
+  },
+  "footer": {
+    "copyright": "© {year} MemoriesOfTime. All rights reserved."
+  },
+  "notFound": {
+    "title": "404 - Sayfa bulunamadı | MemoriesOfTime",
+    "heading": "Sayfa bulunamadı",
+    "description": "Aradığınız sayfa kaldırılmış, adı değiştirilmiş veya geçici olarak kullanılamıyor olabilir.",
+    "backHome": "Ana sayfaya dön"
+  }
+}
