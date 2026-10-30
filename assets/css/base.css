@@ -1,111 +1,179 @@
 /* ===========================
-   Base — shared across pages
+   Base — Trianon paper system
    =========================== */
+
+@font-face {
+  font-family: "MOT Pinyon";
+  src:
+    url("https://fonts.gstatic.com/s/pinyonscript/v24/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOqTimDc.woff2") format("woff2"),
+    url("../fonts/pinyon.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MOT Cormorant";
+  src:
+    url("https://fonts.gstatic.com/s/cormorantgaramond/v21/co3smX5slCNuHLi8bLeY9MK7whWMhyjYrGFEsdtdc62E6zd5rDD-iNM8A_6pUKz9.woff2") format("woff2"),
+    url("../fonts/cormorant-italic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+}
 
 :root {
   color-scheme: light;
-  --background: #ffffff;
-  --foreground: #0a0a0a;
-  --card: rgba(255, 255, 255, 0.72);
-  --primary: #171717;
-  --primary-foreground: #fafafa;
-  --secondary: #f5f5f5;
-  --muted: #f5f5f5;
-  --muted-foreground: #626262;
-  --border: rgba(229, 229, 229, 0.8);
-  --radius: 16px;
-  --glass-blur: 16px;
-  --glass-bg: rgba(255, 255, 255, 0.68);
-  --glass-border: rgba(255, 255, 255, 0.6);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --background: #dfe4ee;
+  --foreground: #2e3b68;
+  --card: #fbf9f4;
+  --primary: #5b6c93;
+  --primary-foreground: #fbfaf6;
+  --secondary: #e3e9f3;
+  --muted: #edf0f4;
+  --muted-foreground: #65779a;
+  --border: rgba(124, 147, 186, 0.46);
+  --radius: 4px;
+  --paper: #fbf9f4;
+  --paper-warm: #f7f3eb;
+  --paper-cool: #eef2f7;
+  --paper-deep: #e3e9f3;
+  --ink: #2e3b68;
+  --ink-deep: #1e2748;
+  --slate: #5b6c93;
+  --fog: #7c93ba;
+  --mist: #bfc8e0;
+  --dusty: #dce3ee;
+  --inner-ring: #ffffff;
+  --lotus: #e8c9d0;
+  --gold: #b39c68;
+  --glass-bg: rgba(251, 249, 244, 0.9);
+  --glass-border: rgba(124, 147, 186, 0.42);
+  --glass-blur: 0;
+  --glass-shadow: 0 10px 22px -16px rgba(43, 56, 102, 0.55);
+  --page-gradient: linear-gradient(168deg, #b9bdd8 0%, #dfe4ee 52%, #eff1ec 100%);
+  --serif: "Noto Serif CJK SC", "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --background: #090b10;
-  --foreground: #fafafa;
-  --card: rgba(18, 20, 26, 0.82);
-  --primary: #fafafa;
-  --primary-foreground: #171717;
-  --secondary: #262626;
-  --muted: #171717;
-  --muted-foreground: #b8b8b8;
-  --border: rgba(255, 255, 255, 0.1);
-  --glass-bg: rgba(18, 20, 26, 0.78);
-  --glass-border: rgba(255, 255, 255, 0.12);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --background: #171f35;
+  --foreground: #e4e8f1;
+  --card: #232e49;
+  --primary: #bfc8e0;
+  --primary-foreground: #1e2748;
+  --secondary: #2d3956;
+  --muted: #202b45;
+  --muted-foreground: #b1bdd4;
+  --border: rgba(191, 200, 224, 0.28);
+  --paper: #232e49;
+  --paper-warm: #28334d;
+  --paper-cool: #202c47;
+  --paper-deep: #2c3855;
+  --ink: #e4e8f1;
+  --ink-deep: #f2f1eb;
+  --slate: #b1bdd4;
+  --fog: #91a3c3;
+  --mist: #596988;
+  --dusty: #34415f;
+  --inner-ring: #303c59;
+  --lotus: #8c687b;
+  --gold: #c8b27c;
+  --glass-bg: rgba(35, 46, 73, 0.94);
+  --glass-border: rgba(191, 200, 224, 0.26);
+  --glass-shadow: 0 12px 24px -16px rgba(0, 0, 0, 0.75);
+  --page-gradient: linear-gradient(168deg, #11182b 0%, #202b46 55%, #30394a 100%);
 }
 
 /* --- Reset --- */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
 
-/* --- Focus --- */
-/* 键盘导航统一焦点环；鼠标点击不触发 :focus-visible */
-:focus-visible {
-  outline: 2px solid #4facfe;
-  outline-offset: 2px;
-}
+html { min-width: 320px; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: var(--serif);
   background: var(--background);
   color: var(--foreground);
-  line-height: 1.6;
+  line-height: 1.7;
   overflow-x: hidden;
+  isolation: isolate;
   transition: background-color 0.25s, color 0.25s;
 }
 
-/* --- Background Blobs --- */
+img, svg { display: block; }
+img { max-width: 100%; }
+button, input, select, textarea { font: inherit; }
+button, a, select { -webkit-tap-highlight-color: transparent; }
+
+::selection {
+  color: var(--ink-deep);
+  background: var(--lotus);
+}
+
+:focus-visible {
+  outline: 2px solid var(--fog);
+  outline-offset: 4px;
+}
+
+/* --- Mist and paper grain --- */
 .bg-decoration {
   position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  pointer-events: none;
+  inset: 0;
   z-index: -1;
   overflow: hidden;
+  pointer-events: none;
+  background: var(--page-gradient);
 }
 
-.blob {
+.bg-decoration::before {
+  content: "";
   position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.4;
-  animation: float 20s infinite alternate;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(255, 255, 255, 0.34), transparent 46%),
+    radial-gradient(ellipse at 85% 70%, rgba(124, 147, 186, 0.16), transparent 50%);
 }
 
-[data-theme="dark"] .blob { opacity: 0.15; }
-
-@keyframes float {
-  0% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -25px) scale(1.05); }
-  66% { transform: translate(-20px, 30px) scale(0.97); }
-  100% { transform: translate(50px, 50px) scale(1.1); }
+.bg-decoration::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../images/paper-grain.png") repeat;
+  opacity: 0.28;
+  mix-blend-mode: soft-light;
 }
 
-/* --- Animations --- */
+[data-theme="dark"] .bg-decoration::before { opacity: 0.22; }
+[data-theme="dark"] .bg-decoration::after { opacity: 0.16; }
+
+/* --- Paper entrance --- */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(18px) rotate(0.6deg); }
+  to { opacity: 1; transform: translateY(0) rotate(0); }
 }
 
 .anim-item {
   opacity: 0;
-  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeInUp 0.62s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* --- Scroll Animations --- */
 .scroll-anim {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(24px) rotate(0.35deg);
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 入场变体：覆盖初始 transform / filter，.visible 统一归位 */
-.scroll-anim.scale { transform: scale(0.94); }
-.scroll-anim.left  { transform: translateX(-30px); }
-.scroll-anim.right { transform: translateX(30px); }
-.scroll-anim.blur  { transform: none; filter: blur(10px); }
+.scroll-anim.scale { transform: scale(0.97) rotate(-0.5deg); }
+.scroll-anim.left { transform: translateX(-24px) rotate(-0.7deg); }
+.scroll-anim.right { transform: translateX(24px) rotate(0.7deg); }
+.scroll-anim.blur { transform: none; filter: blur(6px); }
 
 .scroll-anim.visible {
   opacity: 1;
@@ -113,29 +181,34 @@ body {
   filter: none;
 }
 
-/* --- Reduced Motion --- */
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .anim-item { opacity: 1; }
-  .scroll-anim { opacity: 1; transform: none; filter: none; }
+  .anim-item, .scroll-anim {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
 }
 
 /* --- Layout --- */
 .container {
-  max-width: 1200px;
+  width: min(1180px, calc(100% - 48px));
   margin: 0 auto;
-  padding: 0 20px;
 }
 
-/* --- Glass Panel --- */
+/* Kept as the shared component hook; visually this is paper, not glass. */
 .glass-panel {
-  background: var(--card);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
+  color: var(--ink);
+  background: var(--paper);
   border: 1px solid var(--border);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="dark"] .glass-panel {
+  box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }

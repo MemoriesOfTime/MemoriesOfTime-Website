@@ -4,6 +4,9 @@
     "description": "MemoriesOfTime は Minecraft 統合版（Bedrock Edition）のエコシステムに特化したオープンソース団体です。サーバーコア、開発ツール、プラグインなど多数のプロジェクトを展開しています。",
     "ogDescription": "Minecraft 統合版のエコシステムに取り組むオープンソース団体"
   },
+  "opening": {
+    "skip": "オープニングアニメーションをスキップ"
+  },
   "nav": {
     "home": "ホーム",
     "features": "特徴",

@@ -4,6 +4,9 @@
     "description": "MemoriesOfTime, Minecraft Bedrock Edition ekosistemine odaklanan bir açık kaynak organizasyonudur; sunucu çekirdekleri, geliştirici araçları ve eklentiler geliştirir.",
     "ogDescription": "Minecraft Bedrock ekosistemi için açık kaynak organizasyonu"
   },
+  "opening": {
+    "skip": "Açılış animasyonunu atla"
+  },
   "nav": {
     "home": "Ana Sayfa",
     "features": "Özellikler",

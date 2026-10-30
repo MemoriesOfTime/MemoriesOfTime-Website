@@ -1,32 +1,88 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="630" viewBox="0 0 1200 630">
   <defs>
-    <radialGradient id="blue" cx="0" cy="0" r="1" gradientTransform="translate(180 120) rotate(35) scale(620 520)">
-      <stop stop-color="#4facfe" stop-opacity=".42"/>
-      <stop offset="1" stop-color="#4facfe" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="green" cx="0" cy="0" r="1" gradientTransform="translate(1080 570) rotate(-145) scale(600 480)">
-      <stop stop-color="#43e97b" stop-opacity=".25"/>
-      <stop offset="1" stop-color="#43e97b" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#8fd3ff"/>
-      <stop offset="1" stop-color="#65d6b4"/>
+    <style>
+      @font-face {
+        font-family: "MOT Pinyon";
+        src: url("../fonts/pinyon.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "MOT Cormorant";
+        src: url("../fonts/cormorant-italic.woff2") format("woff2");
+        font-style: italic;
+      }
+      .serif { font-family: "Noto Serif CJK SC", "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif; }
+      .mono { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
+    </style>
+    <linearGradient id="page" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#b9bdd8"/>
+      <stop offset=".52" stop-color="#dfe4ee"/>
+      <stop offset="1" stop-color="#eff1ec"/>
     </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#fbf9f4"/>
+      <stop offset="1" stop-color="#f7f3eb"/>
+    </linearGradient>
+    <radialGradient id="light" cx="0" cy="0" r="1" gradientTransform="translate(180 90) rotate(30) scale(700 500)">
+      <stop stop-color="#ffffff" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#2b3866" flood-opacity=".22"/>
+    </filter>
+    <filter id="smallShadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#2b3866" flood-opacity=".2"/>
+    </filter>
+    <clipPath id="sheetClip">
+      <rect x="70" y="70" width="1060" height="500" rx="4"/>
+    </clipPath>
+    <clipPath id="photoClip">
+      <rect x="16" y="16" width="238" height="174"/>
+    </clipPath>
   </defs>
-  <rect width="1200" height="630" fill="#090b10"/>
-  <rect width="1200" height="630" fill="url(#blue)"/>
-  <rect width="1200" height="630" fill="url(#green)"/>
-  <rect x="34" y="34" width="1132" height="562" rx="34" fill="none" stroke="#fff" stroke-opacity=".12"/>
-  <g transform="translate(110 222)">
-    <circle cx="92" cy="92" r="90" fill="#fff" fill-opacity=".035" stroke="#fff" stroke-opacity=".65" stroke-width="3"/>
-    <circle cx="92" cy="92" r="75" fill="none" stroke="url(#ring)" stroke-width="3"/>
-    <text x="92" y="105" fill="#f4f7fa" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="42" font-weight="750" text-anchor="middle">MOT</text>
+
+  <rect width="1200" height="630" fill="url(#page)"/>
+  <rect width="1200" height="630" fill="url(#light)"/>
+  <path d="M-60 545L1260 245M-60 557L1260 257" fill="none" stroke="#7c93ba" stroke-opacity=".16"/>
+  <image href="paper-grain.png" width="1200" height="630" preserveAspectRatio="none" opacity=".2" style="mix-blend-mode:soft-light"/>
+
+  <g transform="translate(30 456) rotate(-8 110 68)" filter="url(#smallShadow)">
+    <rect width="220" height="136" fill="#fbf9f4"/>
+    <image href="archive-gallery.webp" x="8" y="8" width="204" height="120" preserveAspectRatio="xMidYMid slice"/>
   </g>
-  <g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Microsoft YaHei,sans-serif">
-    <text x="360" y="270" fill="#fafafa" font-size="68" font-weight="750" letter-spacing="-2">MemoriesOfTime</text>
-    <text x="364" y="340" fill="#d5d9e0" font-size="30" font-weight="600">专注 Minecraft 基岩版生态的开源组织</text>
-    <text x="364" y="397" fill="#aeb5c0" font-size="23">Server cores · Developer tools · Open source</text>
+
+  <g transform="rotate(-.2 600 315)">
+    <rect x="70" y="70" width="1060" height="500" rx="4" fill="url(#paper)" stroke="#7c93ba" stroke-width="1.6" filter="url(#shadow)"/>
+    <g clip-path="url(#sheetClip)">
+      <image href="paper-grain.png" x="70" y="70" width="1060" height="500" preserveAspectRatio="none" opacity=".2" style="mix-blend-mode:soft-light"/>
+    </g>
+    <rect x="75" y="75" width="1050" height="490" rx="2" fill="none" stroke="#ffffff" stroke-width="5"/>
+    <rect x="86" y="86" width="1028" height="468" fill="none" stroke="#7c93ba" stroke-opacity=".46"/>
+    <path d="M86 86H1114" stroke="#e8c9d0" stroke-width="2"/>
+    <text x="1084" y="108" text-anchor="end" class="mono" fill="#5b6c93" font-size="9" letter-spacing="2">MOT · ÉDITION OUVERTE · MMXX</text>
+
+    <g transform="translate(122 158) rotate(-3 135 160)" filter="url(#smallShadow)">
+      <rect width="270" height="320" fill="#fbf9f4" stroke="#7c93ba" stroke-opacity=".46"/>
+      <g clip-path="url(#photoClip)">
+        <image href="archive-gallery.webp" x="16" y="16" width="238" height="174" preserveAspectRatio="xMidYMid slice"/>
+      </g>
+      <rect x="16" y="16" width="238" height="174" fill="none" stroke="#dce3ee"/>
+      <circle cx="135" cy="215" r="68" fill="#fbf9f4" stroke="#7c93ba" stroke-width="1.5"/>
+      <image href="mot-logo.png" x="70" y="150" width="130" height="130"/>
+      <text x="135" y="298" text-anchor="middle" class="mono" fill="#5b6c93" font-size="9" letter-spacing="2.4">MÉMOIRES · MMXX</text>
+    </g>
+
+    <text x="445" y="247" font-family="MOT Pinyon, Snell Roundhand, cursive" font-size="91" fill="#1e2748">MemoriesOfTime</text>
+    <text x="452" y="290" class="mono" fill="#5b6c93" font-size="12" letter-spacing="2">@MemoriesOfTime</text>
+    <text x="450" y="359" class="serif" fill="#1e2748" font-size="27" font-weight="600" letter-spacing="1">专注 Minecraft 基岩版生态的开源组织</text>
+    <text x="452" y="402" class="mono" fill="#5b6c93" font-size="11" letter-spacing="1.2">SERVER CORES · DEVELOPER TOOLS · OPEN SOURCE</text>
+    <path d="M452 439H1058" fill="none" stroke="#7c93ba" stroke-opacity=".5"/>
+    <path d="M452 439H535" fill="none" stroke="#e8c9d0" stroke-width="3"/>
+    <text x="450" y="492" font-family="MOT Cormorant, Georgia, serif" font-style="italic" font-size="30" fill="#2e3b68">mot.dev</text>
+    <text x="1058" y="488" text-anchor="end" class="mono" fill="#5b6c93" font-size="9" letter-spacing="1.8">MINECRAFT BEDROCK ECOSYSTEM</text>
   </g>
-  <rect x="364" y="446" width="106" height="5" rx="2.5" fill="url(#ring)"/>
-  <text x="364" y="500" fill="#8f99a8" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="22">mot.dev</text>
+
+  <g transform="translate(913 48) rotate(3 100 28)" filter="url(#smallShadow)">
+    <rect width="210" height="56" fill="#f7f3eb" stroke="#7c93ba" stroke-opacity=".46"/>
+    <text x="105" y="36" text-anchor="middle" font-family="MOT Cormorant, Georgia, serif" font-style="italic" font-size="24" fill="#2e3b68">Archives ouvertes</text>
+  </g>
 </svg>

@@ -429,7 +429,7 @@ function renderRepoGrid(repos) {
     <article class="repo-card glass-panel scroll-anim" data-delay="${Math.min(i * 80, 400)}">
       <div class="repo-header">
         <div class="repo-icon">${icons.github}</div>
-        <a href="${escapeHtml(repo.html_url)}" target="_blank" rel="noopener noreferrer" class="repo-name">${escapeHtml(repo.name)} ${icons.externalLink}</a>
+        <a href="${escapeHtml(repo.html_url)}" target="_blank" rel="noopener noreferrer" class="repo-name repo-card-link" aria-label="${escapeHtml(repo.name)} · GitHub">${escapeHtml(repo.name)} ${icons.externalLink}</a>
       </div>
       <p class="repo-desc">${escapeHtml(repo.description || t('projects.noDescription'))}</p>
       ${(repo.topics || []).length ? `<div class="repo-topics">${repo.topics.slice(0, 3).map(tp => `<span class="topic">${escapeHtml(tp)}</span>`).join('')}</div>` : ''}
@@ -898,6 +898,8 @@ async function init() {
   initScrollAnimations();
   updateScrollState();
   checkFriendLinksScroll();
+  document.documentElement.classList.add('app-ready');
+  window.dispatchEvent(new CustomEvent('mot:appready'));
   window.addEventListener('resize', () => {
     if (resizeFLTimer) cancelAnimationFrame(resizeFLTimer);
     resizeFLTimer = requestAnimationFrame(() => {

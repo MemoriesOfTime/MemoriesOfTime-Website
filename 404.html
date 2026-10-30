@@ -12,14 +12,12 @@
         ? theme
         : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 
-      // 样式生效前先定好语言，避免 <html lang> 与首屏文案不一致
       var query = null, stored = null;
       try { query = new URLSearchParams(location.search).get('lang'); } catch (e) {}
       try { stored = localStorage.getItem('mot_lang'); } catch (e) {}
       var tag = query || stored
         || (navigator.languages && navigator.languages[0])
         || navigator.language || '';
-      // 先写入浏览器原始标签，运行时再做归一化；非法值退回默认语言
       document.documentElement.lang = /^[a-z]{2,3}(-[a-z0-9]{2,8})*$/i.test(tag) ? tag : 'zh-CN';
     })();
   </script>
@@ -29,133 +27,176 @@
   <meta property="og:description" content="页面未找到" data-i18n-attr="content:notFound.heading">
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="https://avatars.githubusercontent.com/u/62042238?v=4&s=64">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/assets/css/base.css">
   <style>
     body {
       min-height: 100vh;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      min-height: 100svh;
+      padding: 40px 20px;
+      display: grid;
+      place-items: center;
     }
 
-    /* 404 page blob positions & colors */
-    .blob-1 {
-      top: 20%; left: 20%;
-      width: 40vw; height: 40vw;
-      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-      animation-delay: 0s;
+    .error-wrap {
+      position: relative;
+      width: min(720px, 100%);
+      /* 纸面墨色：亮色主题下加深，避免浅蓝灰字压在米白纸上看不清 */
+      --note-ink: #3a4770;
+      --note-ink-soft: #55688f;
     }
 
-    .blob-2 {
-      bottom: 20%; right: 20%;
-      width: 50vw; height: 50vw;
-      background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
-      animation-delay: -5s;
+    /* 暗色主题沿用原有的柔和墨色，不做改动 */
+    [data-theme="dark"] .error-wrap {
+      --note-ink: var(--slate);
+      --note-ink-soft: var(--fog);
     }
 
-    @keyframes float {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(30px, 50px) scale(1.1); }
+    .error-archive {
+      position: absolute;
+      left: -42px;
+      bottom: -40px;
+      width: 220px;
+      height: 142px;
+      border: 8px solid var(--paper);
+      background: url("/assets/images/archive-gallery.webp") center / cover;
+      box-shadow: 0 10px 18px rgba(43, 56, 102, 0.16);
+      transform: rotate(-8deg);
     }
 
-    .container {
+    .error-sheet {
+      position: relative;
+      padding: 64px 52px 54px;
+      color: var(--ink);
+      background: linear-gradient(145deg, var(--paper), var(--paper-warm));
+      border: 1.6px solid var(--fog);
+      border-radius: 4px;
+      box-shadow: inset 0 0 0 5px var(--inner-ring), 0 18px 32px -22px rgba(43, 56, 102, 0.65);
       text-align: center;
-      padding: 20px;
-      z-index: 1;
+      animation: fadeInUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .error-sheet::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid var(--border);
+      border-left-color: var(--lotus);
+      pointer-events: none;
+    }
+
+    .error-sheet::after {
+      content: "MOT · ARCHIVES · 404";
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      color: var(--note-ink);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.16em;
+    }
+
+    .error-script {
+      position: relative;
+      color: var(--note-ink);
+      font-family: "MOT Pinyon", "Snell Roundhand", cursive;
+      font-size: 38px;
+      line-height: 1;
     }
 
     .error-code {
-      font-size: 10rem;
-      font-weight: 800;
-      letter-spacing: -0.05em;
-      line-height: 1;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, var(--foreground) 0%, var(--muted-foreground) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      opacity: 0;
-      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    @media (max-width: 768px) {
-      .error-code { font-size: 6rem; }
-    }
-
-    .error-card {
-      display: inline-block;
-      padding: 2rem 3rem;
-      border-radius: 24px;
-      opacity: 0;
-      animation: fadeInUp 0.8s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      position: relative;
+      margin: 8px 0 2px;
+      color: var(--ink-deep);
+      font-family: "MOT Cormorant", Georgia, serif;
+      font-style: italic;
+      font-size: clamp(110px, 23vw, 174px);
+      font-weight: 300;
+      letter-spacing: -0.06em;
+      line-height: 0.95;
     }
 
     .error-title {
-      font-size: 1.5rem;
+      position: relative;
+      margin-bottom: 10px;
+      color: var(--ink-deep);
+      font-size: 23px;
       font-weight: 600;
-      margin-bottom: 0.5rem;
+      letter-spacing: 0.14em;
     }
 
     .error-desc {
-      color: var(--muted-foreground);
-      margin-bottom: 2rem;
-      font-size: 1rem;
+      position: relative;
+      max-width: 470px;
+      margin: 0 auto 28px;
+      color: var(--note-ink);
+      font-size: 13px;
+      line-height: 1.85;
     }
 
-    .btn {
+    .error-button {
+      position: relative;
+      min-height: 42px;
+      padding: 10px 21px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-      border: none;
-      background: var(--primary);
+      gap: 9px;
       color: var(--primary-foreground);
+      background: linear-gradient(180deg, var(--slate), var(--primary));
+      border: 1px solid var(--primary);
+      border-radius: 3px;
+      box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.2), 0 6px 12px -8px rgba(43, 56, 102, 0.7);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    .error-button:hover { transform: translateY(-2px) rotate(-0.4deg); }
+    .error-button svg { width: 16px; height: 16px; transition: transform 0.2s; }
+    .error-button:hover svg { transform: translateX(-3px); }
+
+    .error-caption {
+      position: relative;
+      margin-top: 28px;
+      color: var(--note-ink-soft);
+      font-family: "MOT Cormorant", Georgia, serif;
+      font-style: italic;
+      font-size: 18px;
     }
 
-    .btn svg {
-      width: 18px;
-      height: 18px;
-      transition: transform 0.2s;
-    }
-
-    .btn:hover svg {
-      transform: translateX(-4px);
+    @media (max-width: 600px) {
+      body { padding: 28px 16px 46px; }
+      .error-sheet { padding: 58px 28px 42px; }
+      .error-archive { left: -4px; bottom: -30px; width: 150px; height: 98px; border-width: 6px; }
+      .error-sheet::after { right: 21px; font-size: 8px; }
+      .error-script { font-size: 32px; }
+      .error-title { font-size: 20px; }
     }
   </style>
 </head>
 <body>
-  <div class="bg-decoration" aria-hidden="true">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-  </div>
+  <div class="bg-decoration" aria-hidden="true"></div>
 
-  <main class="container">
-    <div class="error-code">404</div>
-
-    <div class="error-card glass-panel">
+  <main class="error-wrap">
+    <div class="error-archive" aria-hidden="true"></div>
+    <section class="error-sheet">
+      <p class="error-script" aria-hidden="true">Page introuvable</p>
+      <div class="error-code">404</div>
       <h1 class="error-title" data-i18n="notFound.heading">页面未找到</h1>
       <p class="error-desc" data-i18n="notFound.description">您访问的页面可能已被移除、更名或暂时不可用。</p>
 
-      <a href="/" class="btn" id="errorBtn">
+      <a href="/" class="error-button" id="errorBtn">
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="m12 19-7-7 7-7"/>
           <path d="M19 12H5"/>
         </svg>
         <span data-i18n="notFound.backHome">返回首页</span>
       </a>
-    </div>
+      <p class="error-caption" aria-hidden="true">La lettre s’est égarée dans les archives.</p>
+    </section>
   </main>
 
   <script src="/assets/js/i18n.js" defer></script>

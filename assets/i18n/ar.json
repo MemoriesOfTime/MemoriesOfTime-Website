@@ -4,6 +4,9 @@
     "description": "MemoriesOfTime منظمة مفتوحة المصدر تركز على بيئة Minecraft Bedrock Edition، وتشمل نوى الخوادم وأدوات التطوير والإضافات.",
     "ogDescription": "منظمة مفتوحة المصدر لبيئة Minecraft Bedrock"
   },
+  "opening": {
+    "skip": "تخطي الرسوم المتحركة الافتتاحية"
+  },
   "nav": {
     "home": "الرئيسية",
     "features": "المزايا",

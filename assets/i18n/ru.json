@@ -4,6 +4,9 @@
     "description": "MemoriesOfTime — организация с открытым кодом, посвящённая экосистеме Minecraft Bedrock Edition: серверные ядра, инструменты разработки и плагины.",
     "ogDescription": "Открытая организация для экосистемы Minecraft Bedrock"
   },
+  "opening": {
+    "skip": "Пропустить вступительную анимацию"
+  },
   "nav": {
     "home": "Главная",
     "features": "Возможности",

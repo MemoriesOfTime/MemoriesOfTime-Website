@@ -4,6 +4,9 @@
     "description": "MemoriesOfTime è un'organizzazione open source dedicata all'ecosistema di Minecraft Bedrock Edition: core server, strumenti di sviluppo e plugin.",
     "ogDescription": "Organizzazione open source per l'ecosistema Minecraft Bedrock"
   },
+  "opening": {
+    "skip": "Salta l’animazione di apertura"
+  },
   "nav": {
     "home": "Home",
     "features": "Funzionalità",

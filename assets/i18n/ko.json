@@ -4,6 +4,9 @@
     "description": "MemoriesOfTime은 Minecraft 베드락 에디션 생태계에 집중하는 오픈소스 단체로, 서버 코어, 개발 도구, 플러그인 등 다양한 프로젝트를 운영합니다.",
     "ogDescription": "Minecraft 베드락 에디션 생태계를 위한 오픈소스 단체"
   },
+  "opening": {
+    "skip": "오프닝 애니메이션 생략"
+  },
   "nav": {
     "home": "홈",
     "features": "특징",

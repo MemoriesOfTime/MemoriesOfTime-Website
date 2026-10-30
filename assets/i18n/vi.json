@@ -4,6 +4,9 @@
     "description": "MemoriesOfTime là tổ chức mã nguồn mở tập trung vào hệ sinh thái Minecraft Bedrock Edition, gồm lõi máy chủ, công cụ phát triển và plugin.",
     "ogDescription": "Tổ chức mã nguồn mở cho hệ sinh thái Minecraft Bedrock"
   },
+  "opening": {
+    "skip": "Bỏ qua hoạt ảnh mở đầu"
+  },
   "nav": {
     "home": "Trang chủ",
     "features": "Tính năng",

@@ -1,0 +1,499 @@
+html.opening-active,
+html.opening-active body {
+  overflow: hidden;
+}
+
+html.opening-active .anim-item {
+  animation-play-state: paused;
+}
+
+.site-opening {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483600;
+  overflow: hidden;
+  color: #2e3b68;
+  background: #fbf9f4;
+  font-family: var(--serif);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.opening-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.opening-guide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.opening-guide line {
+  fill: none;
+  stroke: #2e3b68;
+  stroke-width: 1.4;
+  stroke-dasharray: 1900;
+  stroke-dashoffset: 1900;
+}
+
+.opening-guide line + line {
+  stroke: #91a3c3;
+  stroke-width: 1;
+}
+
+.opening-edition {
+  position: absolute;
+  top: 54px;
+  left: 64px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  opacity: 0;
+}
+
+.opening-edition b {
+  color: #7c93ba;
+  font-weight: 400;
+}
+
+.opening-envelope {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(560px, calc(100vw - 64px));
+  aspect-ratio: 560 / 330;
+  opacity: 0;
+  perspective: 1000px;
+  filter: drop-shadow(0 18px 20px rgba(43, 56, 102, 0.16));
+  transform: translate(-50%, -42%);
+  will-change: transform, opacity;
+}
+
+.opening-envelope-back,
+.opening-envelope-pocket {
+  position: absolute;
+  inset: 0;
+}
+
+.opening-envelope-back {
+  border: 1.5px solid #7c93ba;
+  background: #e3e9f3;
+}
+
+.opening-envelope-letter {
+  position: absolute;
+  z-index: 1;
+  top: 7%;
+  right: 5%;
+  left: 5%;
+  height: 86%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bfc8e0;
+  background: #fbf9f4;
+  box-shadow: inset 0 0 0 7px #fff;
+  will-change: transform;
+}
+
+.opening-envelope-letter::before {
+  content: "";
+  position: absolute;
+  inset: 13px;
+  border: 1px solid #dce3ee;
+}
+
+.opening-envelope-letter span,
+.opening-envelope-letter small {
+  position: relative;
+  z-index: 1;
+  color: #65779a;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+}
+
+.opening-envelope-letter strong {
+  position: relative;
+  z-index: 1;
+  margin: 12px 0 16px;
+  font-family: "MOT Pinyon", "Snell Roundhand", cursive;
+  font-size: clamp(44px, 6vw, 72px);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.opening-envelope-pocket {
+  z-index: 2;
+  clip-path: polygon(0 0, 50% 48%, 100% 0, 100% 100%, 0 100%);
+  background:
+    linear-gradient(32deg, transparent 49.7%, #bfc8e0 50%, transparent 50.3%) left bottom / 51% 62% no-repeat,
+    linear-gradient(-32deg, transparent 49.7%, #bfc8e0 50%, transparent 50.3%) right bottom / 51% 62% no-repeat,
+    #eef2f7;
+  border-bottom: 1.5px solid #7c93ba;
+}
+
+.opening-envelope-flap {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 62%;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: #f7f3eb;
+  filter: drop-shadow(0 1px 0 #7c93ba);
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+
+.opening-envelope-seal {
+  position: absolute;
+  z-index: 4;
+  top: 48%;
+  left: 50%;
+  width: 62px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fbf9f4;
+  border: 3px double #fbf9f4;
+  border-radius: 50%;
+  background: #5b6c93;
+  box-shadow: 0 3px 8px rgba(43, 56, 102, 0.25);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  transform: translate(-50%, -50%);
+}
+
+.opening-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(620px, calc(100vw - 48px));
+  aspect-ratio: 620 / 280;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 14px 15px rgba(43, 56, 102, 0.12));
+  will-change: transform, opacity;
+}
+
+.opening-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1.5px solid #2e3b68;
+  border-radius: 50%;
+  background: #fbf9f4;
+  opacity: 0;
+  visibility: hidden;
+  white-space: nowrap;
+  transition: opacity 70ms linear, visibility 70ms linear;
+}
+
+.opening-face.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.opening-face-final {
+  overflow: visible;
+  flex-direction: column;
+  border: 0;
+  background: #fbf9f4;
+}
+
+.opening-face-final::before,
+.opening-face-final::after {
+  content: "";
+  position: absolute;
+  border: 1.5px solid #2e3b68;
+  border-radius: 50%;
+}
+
+.opening-face-final::before {
+  inset: 0;
+}
+
+.opening-face-final::after {
+  inset: 9px 12px;
+  border-color: #91a3c3;
+  border-width: 1px;
+}
+
+.opening-final-kicker,
+.opening-final-edition {
+  position: absolute;
+  z-index: 1;
+  color: #65779a;
+  font-family: var(--mono);
+  font-size: clamp(8px, 1vw, 12px);
+  letter-spacing: 0.36em;
+}
+
+.opening-final-kicker {
+  top: 18%;
+}
+
+.opening-final-edition {
+  bottom: 17%;
+}
+
+.opening-face-final strong {
+  padding-top: 12px;
+  font-family: "MOT Pinyon", "Snell Roundhand", cursive;
+  font-size: clamp(44px, 6.2vw, 82px);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.opening-star {
+  position: absolute;
+  top: 16%;
+  font-size: 16px;
+  font-style: normal;
+}
+
+.opening-star-left { left: 15%; }
+.opening-star-right { right: 15%; }
+
+.opening-registration {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(760px, calc(100vw - 32px));
+  height: min(400px, 52vw);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+
+.opening-registration i {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border-color: #2e3b68;
+  border-style: solid;
+}
+
+.opening-registration i:nth-child(1) { top: 0; left: 0; border-width: 1.5px 0 0 1.5px; }
+.opening-registration i:nth-child(2) { top: 0; right: 0; border-width: 1.5px 1.5px 0 0; }
+.opening-registration i:nth-child(3) { bottom: 0; left: 0; border-width: 0 0 1.5px 1.5px; }
+.opening-registration i:nth-child(4) { right: 0; bottom: 0; border-width: 0 1.5px 1.5px 0; }
+
+.opening-caption {
+  position: absolute;
+  top: calc(50% + min(220px, 28vw));
+  left: 0;
+  width: 100%;
+  color: #65779a;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  opacity: 0;
+}
+
+.opening-skip {
+  position: absolute;
+  right: 32px;
+  bottom: 26px;
+  z-index: 2;
+  padding: 8px 0 8px 12px;
+  color: #65779a;
+  border: 0;
+  background: transparent;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.opening-skip:hover,
+.opening-skip:focus-visible {
+  color: #2e3b68;
+}
+
+.opening-skip span { margin-left: 8px; }
+
+.site-opening.is-playing .opening-guide {
+  animation: openingFade 0.4s 0.03s both;
+}
+
+.site-opening.is-playing .opening-guide line {
+  animation: openingDraw 0.42s 0.03s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.site-opening.is-playing .opening-guide line + line { animation-delay: 0.08s; }
+.site-opening.is-playing .opening-edition { animation: openingTick 0.35s 0.1s both; }
+.site-opening.is-playing .opening-envelope { animation: openingEnvelope 1.72s 0.12s both; }
+.site-opening.is-playing .opening-envelope-flap { animation: openingFlap 0.52s 0.52s ease-in-out both; }
+.site-opening.is-playing .opening-envelope-letter { animation: openingLetter 0.58s 0.98s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.site-opening.is-playing .opening-envelope-seal { animation: openingSeal 0.25s 0.42s both; }
+.site-opening.is-playing.is-waiting:not(.opening--short) .opening-badge { animation: openingBadgeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.site-opening.is-playing.is-waiting:not(.opening--short) .opening-registration { animation: openingFinalDetails 0.25s 0.12s both; }
+.site-opening.is-playing.is-waiting:not(.opening--short) .opening-caption { animation: openingCaptionIn 0.25s 0.16s both; }
+.site-opening.is-playing .opening-skip { animation: openingFade 0.25s 0.2s both; }
+
+.site-opening.opening--short .opening-guide,
+.site-opening.opening--short .opening-edition,
+.site-opening.opening--short .opening-envelope {
+  display: none;
+}
+
+.site-opening.opening--short .opening-badge {
+  animation: openingShortBadge 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.site-opening.opening--short .opening-registration {
+  animation: openingFinalDetails 0.22s 0.06s both;
+}
+
+.site-opening.opening--short .opening-caption {
+  animation: openingCaptionIn 0.22s 0.06s both;
+}
+
+.site-opening.opening--short .opening-skip { display: none; }
+
+.site-opening.is-leaving {
+  pointer-events: none;
+  animation: openingLeave 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.site-opening.is-leaving .opening-stage {
+  animation: openingStageLeave 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+html.opening-entering .hero .container {
+  animation: openingContentReveal 0.82s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes openingContentReveal {
+  0% { opacity: 0; transform: translateY(72px) scale(0.46); }
+  30% { opacity: 1; }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes openingDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes openingFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes openingTick {
+  from { opacity: 0; transform: translateX(-16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes openingEnvelope {
+  0% { opacity: 0; transform: translate(-50%, -42%) scale(0.96); }
+  12%, 82% { opacity: 1; transform: translate(-50%, -42%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -46%) scale(1.02); }
+}
+
+@keyframes openingFlap {
+  0%, 49% { z-index: 3; }
+  50%, 100% { z-index: 0; }
+  0% { transform: rotateX(0); }
+  100% { transform: rotateX(180deg); }
+}
+
+@keyframes openingLetter {
+  to { transform: translateY(-58%); }
+}
+
+@keyframes openingSeal {
+  from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  to { opacity: 0; transform: translate(-50%, -50%) scale(0.65) rotate(-8deg); }
+}
+
+@keyframes openingBadgeIn {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(1.12) rotate(-2deg); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0); }
+}
+
+@keyframes openingShortBadge {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(1.06); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes openingFinalDetails {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(1.15); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes openingLeave {
+  to { opacity: 0; visibility: hidden; }
+}
+
+@keyframes openingStageLeave {
+  to { transform: scale(0.975) translateY(-10px); }
+}
+
+.opening-caption {
+  animation-name: openingCaptionIn;
+}
+
+@keyframes openingCaptionIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 767px) {
+  .opening-edition { top: 28px; left: 24px; font-size: 9px; letter-spacing: 0.2em; }
+  .opening-envelope { width: calc(100vw - 40px); }
+  .opening-envelope-letter span,
+  .opening-envelope-letter small { font-size: 7px; letter-spacing: 0.2em; }
+  .opening-envelope-letter strong { font-size: 9vw; }
+  .opening-envelope-seal { width: 52px; height: 52px; font-size: 14px; }
+  .opening-badge { width: calc(100vw - 38px); }
+  .opening-face-final strong { font-size: 10.5vw; }
+  .opening-final-kicker,
+  .opening-final-edition { font-size: 7px; letter-spacing: 0.25em; }
+  .opening-star { font-size: 11px; }
+  .opening-registration { width: calc(100vw - 24px); height: 66vw; }
+  .opening-registration i { width: 23px; height: 23px; }
+  .opening-caption { top: calc(50% + 42vw); padding: 0 20px; font-size: 8px; letter-spacing: 0.26em; }
+  .opening-skip { right: 20px; bottom: 18px; font-size: 8px; }
+}
+
+@media (max-height: 560px) and (min-width: 768px) {
+  .opening-envelope { width: 420px; }
+  .opening-envelope-letter strong { font-size: 48px; }
+  .opening-badge { width: min(500px, calc(100vw - 48px)); }
+  .opening-caption { top: calc(50% + 150px); }
+  .opening-registration { width: 620px; height: 310px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-opening,
+  .site-opening *,
+  .site-opening *::before,
+  .site-opening *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .site-opening .opening-guide,
+  .site-opening .opening-envelope {
+    display: none;
+  }
+}

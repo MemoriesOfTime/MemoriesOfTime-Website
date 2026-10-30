@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<!-- MemoriesOfTime · 首页「纸张档案」
+   视觉风格参考 qimingjiu 的 Trianon（https://github.com/qimingjiu/Trianon），感谢原作者。
+   base.css 定义纸张、雾蓝与明暗主题；style.css 负责吊牌导航、信笺首屏和各档案卡片。
+   i18n.js 先协商语言，app.js 再渲染导航、项目与社区；<head> 内联脚本仅提前确定主题和语言，避免首屏闪烁。
+   opening.css / opening.js 是首次访问的信封开场：同次会话改用短版，点击或 Esc 跳过。-->
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -42,12 +47,49 @@
   <meta name="twitter:title" content="MemoriesOfTime" data-i18n-attr="content:meta.title">
   <meta name="twitter:description" content="专注 Minecraft 基岩版生态的开源组织" data-i18n-attr="content:meta.ogDescription">
   <meta name="twitter:image" content="https://mot.dev/assets/images/og-image.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://api.github.com">
   <link rel="preconnect" href="https://avatars.githubusercontent.com">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/opening.css">
 </head>
 <body>
+  <div class="site-opening" id="siteOpening" aria-label="MemoriesOfTime 加载动画">
+    <div class="opening-stage" aria-hidden="true">
+      <svg class="opening-guide" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+        <line x1="-80" y1="650" x2="1520" y2="280"></line>
+        <line x1="-80" y1="663" x2="1520" y2="293"></line>
+      </svg>
+      <div class="opening-edition">MEMORIES OF TIME <b>—</b> OUVERTURE <b>N°01</b></div>
+      <div class="opening-envelope">
+        <div class="opening-envelope-back"></div>
+        <div class="opening-envelope-letter">
+          <span>MEMORIES OF TIME</span>
+          <strong>MemoriesOfTime</strong>
+          <small>OPEN SOURCE · MINECRAFT BEDROCK</small>
+        </div>
+        <div class="opening-envelope-pocket"></div>
+        <div class="opening-envelope-flap"></div>
+        <div class="opening-envelope-seal">MOT</div>
+      </div>
+      <div class="opening-registration">
+        <i></i><i></i><i></i><i></i>
+      </div>
+      <div class="opening-badge">
+        <div class="opening-face opening-face-final">
+          <span class="opening-final-kicker">MINECRAFT BEDROCK ECOSYSTEM</span>
+          <strong>MemoriesOfTime</strong>
+          <span class="opening-final-edition">N°01 · MMXX</span>
+          <i class="opening-star opening-star-left">✦</i><i class="opening-star opening-star-right">✦</i>
+        </div>
+      </div>
+      <div class="opening-caption" id="openingCaption">BIENVENUE · MEMORIES OF TIME</div>
+    </div>
+    <button class="opening-skip" type="button" aria-label="跳过开场动画" data-i18n-attr="aria-label:opening.skip">ESC · CLIC — PASSER <span data-i18n="opening.skip">跳过开场动画</span></button>
+  </div>
+  <noscript><style>.site-opening{display:none}</style></noscript>
+
   <div class="bg-decoration" aria-hidden="true">
     <div class="aurora-band ab-1"></div>
     <div class="aurora-band ab-2"></div>
@@ -72,6 +114,7 @@
 
   <script src="assets/js/i18n.js" defer></script>
   <script src="assets/js/app.js" defer></script>
+  <script src="assets/js/opening.js" defer></script>
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>

@@ -4,6 +4,9 @@
     "description": "MemoriesOfTime 是一个专注于 Minecraft 基岩版生态的开源组织，涵盖服务端核心、开发工具与插件等多个项目。",
     "ogDescription": "专注 Minecraft 基岩版生态的开源组织"
   },
+  "opening": {
+    "skip": "跳过开场动画"
+  },
   "nav": {
     "home": "首页",
     "features": "特性",
