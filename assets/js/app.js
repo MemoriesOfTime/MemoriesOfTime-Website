@@ -137,9 +137,9 @@ const FALLBACK_DATA = {
     followers: 0,
   },
   repos: [
-    { name: 'Nukkit-MOT', description: 'Support for multiple versions of Nukkit Minecraft Bedrock Edition Server Software', html_url: 'https://github.com/MemoriesOfTime/Nukkit-MOT', language: 'Java', stargazers_count: 159, forks_count: 72, topics: ['bedrock', 'bedrock-edition', 'minecraft'], pushed_at: '2026-10-01T00:00:00Z', created_at: '2020-01-01T00:00:00Z' },
+    { name: 'Nukkit-MOT', description: 'Support for multiple versions of Nukkit Minecraft Bedrock Edition Server Software', html_url: 'https://github.com/MemoriesOfTime/Nukkit-MOT', homepage: 'https://www.nukkit-mot.com', language: 'Java', stargazers_count: 159, forks_count: 72, topics: ['bedrock', 'bedrock-edition', 'minecraft'], pushed_at: '2026-10-01T00:00:00Z', created_at: '2020-01-01T00:00:00Z' },
     { name: 'NukkitPetteriM1Edition', description: 'Custom version of Nukkit Minecraft Bedrock Edition server software', html_url: 'https://github.com/MemoriesOfTime/NukkitPetteriM1Edition', language: 'Java', stargazers_count: 23, forks_count: 8, topics: [], pushed_at: '2026-08-01T00:00:00Z', created_at: '2021-01-01T00:00:00Z' },
-    { name: 'Nukkit-Retro', description: 'Nukkit-Retro: Nuclear-Powered server software for legacy Minecraft: Pocket Edition (1.1 and below)', html_url: 'https://github.com/MemoriesOfTime/Nukkit-Retro', language: 'Java', stargazers_count: 14, forks_count: 8, topics: [], pushed_at: '2026-07-01T00:00:00Z', created_at: '2021-06-01T00:00:00Z' },
+    { name: 'Nukkit-Retro', description: 'Nukkit-Retro: Nuclear-Powered server software for legacy Minecraft: Pocket Edition (1.1 and below)', html_url: 'https://github.com/MemoriesOfTime/Nukkit-Retro', homepage: 'https://www.nukkit-retro.com', language: 'Java', stargazers_count: 14, forks_count: 8, topics: [], pushed_at: '2026-07-01T00:00:00Z', created_at: '2021-06-01T00:00:00Z' },
     { name: 'RsNPC', description: 'NPC plugin for Nukkit-MOT', html_url: 'https://github.com/MemoriesOfTime/RsNPC', language: 'Java', stargazers_count: 14, forks_count: 18, topics: ['nukkitx-plugin'], pushed_at: '2026-06-01T00:00:00Z', created_at: '2020-06-01T00:00:00Z' },
     { name: 'raknet-rs', description: 'Raknet protocol implementation by rust', html_url: 'https://github.com/MemoriesOfTime/raknet-rs', language: 'Rust', stargazers_count: 13, forks_count: 5, topics: [], pushed_at: '2026-05-01T00:00:00Z', created_at: '2022-01-01T00:00:00Z' },
     { name: 'GunWar', description: 'Simple pvp game', html_url: 'https://github.com/MemoriesOfTime/GunWar', language: 'Java', stargazers_count: 10, forks_count: 15, topics: ['nukkit-plugin', 'nukkitx-plugin'], pushed_at: '2026-04-01T00:00:00Z', created_at: '2020-03-01T00:00:00Z' },
@@ -180,6 +180,20 @@ function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, ch => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
   }[ch]));
+}
+
+function normalizeWebsiteUrl(value) {
+  if (!value) return null;
+  try {
+    const url = new URL(value.trim());
+    return url.protocol === 'http:' || url.protocol === 'https:' ? url.href : null;
+  } catch {
+    try {
+      return new URL(`https://${value.trim()}`).href;
+    } catch {
+      return null;
+    }
+  }
 }
 
 /* 头像按实际显示尺寸请求（GitHub avatar s 参数），避免下载 460px 大图 */
@@ -425,7 +439,13 @@ function renderFlagship(repos) {
 function renderRepoGrid(repos) {
   const sortedRepos = processRepos(repos, currentSort);
   if (!sortedRepos.length) return `<div class="repo-grid"><p class="empty-state" role="status">${t('projects.empty')}</p></div>`;
-  return `<div class="repo-grid">${sortedRepos.map((repo, i) => `
+  return `<div class="repo-grid">${sortedRepos.map((repo, i) => {
+    const website = normalizeWebsiteUrl(repo.homepage);
+    const links = [
+      website ? `<a href="${escapeHtml(website)}" target="_blank" rel="noopener noreferrer">${icons.globe} ${t('hero.website')}</a>` : '',
+      repo.name === CONFIG.flagshipRepo ? `<a href="${CONFIG.docsUrl}" target="_blank" rel="noopener noreferrer">${t('projects.docs')}</a><a href="${CONFIG.flagshipDownloadUrl}" target="_blank" rel="noopener noreferrer">${t('projects.download')}</a>` : '',
+    ].filter(Boolean).join('');
+    return `
     <article class="repo-card glass-panel scroll-anim" data-delay="${Math.min(i * 80, 400)}">
       <div class="repo-header">
         <div class="repo-icon">${icons.github}</div>
@@ -433,15 +453,15 @@ function renderRepoGrid(repos) {
       </div>
       <p class="repo-desc">${escapeHtml(repo.description || t('projects.noDescription'))}</p>
       ${(repo.topics || []).length ? `<div class="repo-topics">${repo.topics.slice(0, 3).map(tp => `<span class="topic">${escapeHtml(tp)}</span>`).join('')}</div>` : ''}
-      ${repo.name === CONFIG.flagshipRepo ? `<div class="repo-links"><a href="${CONFIG.docsUrl}" target="_blank" rel="noopener noreferrer">${t('projects.docs')}</a><a href="${CONFIG.flagshipDownloadUrl}" target="_blank" rel="noopener noreferrer">${t('projects.download')}</a></div>` : ''}
+      ${links ? `<div class="repo-links">${links}</div>` : ''}
       <div class="repo-footer">
         ${repo.language ? `<span class="repo-lang"><span class="repo-lang-dot" style="background:${LANG_COLORS[repo.language] || '#6e7681'}"></span>${escapeHtml(repo.language)}</span>` : '<span></span>'}
         <span class="repo-stat">${icons.star} ${i18n.formatNumber(repo.stargazers_count)}</span>
         <span class="repo-stat">${icons.fork} ${i18n.formatNumber(repo.forks_count)}</span>
         <span class="repo-update">${formatTime(repo.pushed_at)}</span>
       </div>
-    </article>
-  `).join('')}</div>`;
+    </article>`;
+  }).join('')}</div>`;
 }
 
 function renderRepoResults(repos) {
