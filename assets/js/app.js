@@ -13,6 +13,7 @@ const CONFIG = {
   repoUrl: 'https://repo.lanink.cn',
   jsonuiUrl: 'https://jsonui.mot.dev/',
   docsUrl: 'https://www.nukkit-mot.com/',
+  statusUrl: 'https://status.mot.dev/',
   flagshipDownloadUrl: 'https://motci.cn/job/Nukkit-MOT/job/master/',
   flagshipRepo: 'Nukkit-MOT',
   flagshipLogo: 'https://www.nukkit-mot.com/zh/images/logo.png',
@@ -37,12 +38,30 @@ function changeLocale(code) {
 }
 
 /* --- Preferences --- */
+/* 主题与语言存在 Domain=.mot.dev 的 cookie 里（prefs.js），与状态页共用一份；
+   prefs.js 缺席时退回单站 localStorage，页面功能不受影响 */
 function getPreference(key) {
+  if (window.motPrefs) {
+    try { return window.motPrefs.get(key); } catch { /* 忽略，退回 localStorage */ }
+  }
   try { return localStorage.getItem(key); } catch { return null; }
 }
 
 function setPreference(key, value) {
+  if (window.motPrefs) {
+    try { window.motPrefs.set(key, value); return; } catch { /* 忽略，退回 localStorage */ }
+  }
   try { localStorage.setItem(key, value); } catch { /* 隐私模式下仍保留当次设置 */ }
+}
+
+/* 主动改过偏好后把 ?theme= 从地址栏抹掉，否则刷新会被参数重新覆盖 */
+function dropUrlParam(name) {
+  try {
+    const url = new URL(location.href);
+    if (!url.searchParams.has(name)) return;
+    url.searchParams.delete(name);
+    history.replaceState(null, '', url);
+  } catch { /* file:// 等环境忽略 */ }
 }
 
 /* --- Theme --- */
@@ -50,6 +69,7 @@ function toggleTheme() {
   const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
   document.documentElement.dataset.theme = nextTheme;
   setPreference('mot_theme', nextTheme);
+  dropUrlParam('theme');
   renderNavbar(cachedData ? cachedData.user : null);
   updateScrollState();
 }
@@ -277,6 +297,18 @@ function getLanguageStats(repos) {
 }
 
 /* --- Render: Navbar --- */
+
+/* 状态页在独立子域，偏好靠 cookie 共享；链接上再带一份 lang/theme，
+   cookie 被禁用时也能带着当前设置跳过去 */
+function buildStatusUrl() {
+  const params = new URLSearchParams();
+  if (i18n.locale) params.set('lang', i18n.locale);
+  const theme = document.documentElement.dataset.theme;
+  if (theme) params.set('theme', theme);
+  const query = params.toString();
+  return CONFIG.statusUrl + (query ? `?${query}` : '');
+}
+
 function renderNavbar(user) {
   // 导航头像显示 32px，按 2x 尺寸请求兼顾高分屏
   const avatarUrl = avatarSize(user ? user.avatar_url : 'https://avatars.githubusercontent.com/u/62042238?v=4', 64);
@@ -302,6 +334,7 @@ function renderNavbar(user) {
           <a href="#projects" onclick="closeMenu()">${t('nav.projects')}</a>
           <a href="#resources" onclick="closeMenu()">${t('nav.resources')}</a>
           <a href="#community" onclick="closeMenu()">${t('nav.community')}</a>
+          <a href="${escapeHtml(buildStatusUrl())}" onclick="closeMenu()">${t('nav.status')}</a>
           <button class="theme-toggle" onclick="toggleTheme()" aria-label="${themeLabel}" title="${themeLabel}">${isDark ? icons.sun : icons.moon}</button>
           <div class="lang-switch">
             <select class="lang-select" onchange="changeLocale(this.value)" aria-label="${langLabel}" title="${langLabel}">

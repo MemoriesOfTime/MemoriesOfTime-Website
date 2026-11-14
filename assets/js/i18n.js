@@ -2,7 +2,9 @@
    i18n — 轻量国际化运行时（零依赖）
    ---------------------------------------------------------
    · 语言包外置为 JSON，只请求当前 locale；标记 complete 的语言不预载回退包
-   · 语言协商：?lang= → localStorage → navigator.languages → <html lang> → 默认语言
+   · 语言协商：?lang= → cookie/localStorage → navigator.languages → <html lang> → 默认语言
+   · 偏好存在 Domain=.mot.dev 的 cookie 里（prefs.js），与状态页共用一份；
+     没有 prefs.js 时退回单站 localStorage，运行时本身不依赖它
    · 缺失键回退 fallbackLocale（首次缺键时才懒加载回退包），仍缺失时返回 key 并告警一次
    · 复数、数字、相对时间全部走 Intl，随 locale 自动生效
    · DOM 声明式绑定：data-i18n / data-i18n-html / data-i18n-attr
@@ -18,6 +20,19 @@
   var STORAGE_KEY = 'mot_lang';
   var QUERY_KEY = 'lang';
   var DAY_MS = 24 * 60 * 60 * 1000;
+
+  /* 偏好存储：优先走跨站共享的 cookie（prefs.js），没有时退回单站 localStorage */
+  function readStored(key) {
+    var prefs = global.motPrefs;
+    if (prefs) { try { return prefs.get(key); } catch (e) { /* 忽略，退回 localStorage */ } }
+    try { return global.localStorage.getItem(key); } catch (e) { return null; }
+  }
+
+  function writeStored(key, value) {
+    var prefs = global.motPrefs;
+    if (prefs) { try { prefs.set(key, value); return; } catch (e) { /* 忽略，退回 localStorage */ } }
+    try { global.localStorage.setItem(key, value); } catch (e) { /* 隐私模式 */ }
+  }
 
   function fetchJson(url) {
     return fetch(url, { credentials: 'same-origin' }).then(function (res) {
@@ -108,8 +123,7 @@
     } catch (e) { /* 忽略异常 URL */ }
     if (fromQuery) return this.normalize(fromQuery) || this.defaultLocale;
 
-    var stored = null;
-    try { stored = global.localStorage.getItem(STORAGE_KEY); } catch (e) { /* 隐私模式 */ }
+    var stored = readStored(STORAGE_KEY);
     if (stored) return this.normalize(stored) || this.defaultLocale;
 
     var preferred = (global.navigator.languages && global.navigator.languages.length)
@@ -335,7 +349,7 @@
   };
 
   I18n.prototype.persist = function (code) {
-    try { global.localStorage.setItem(STORAGE_KEY, code); } catch (e) { /* 隐私模式 */ }
+    writeStored(STORAGE_KEY, code);
   };
 
   I18n.prototype.setLocale = function (code, options) {

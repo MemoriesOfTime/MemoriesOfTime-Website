@@ -4,17 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
+  <script src="/assets/js/prefs.js"></script>
   <script>
     (function () {
-      var theme = null;
-      try { theme = localStorage.getItem('mot_theme'); } catch (e) {}
+      var prefs = window.motPrefs;
+
+      function read(key) {
+        try { return prefs ? prefs.get(key) : localStorage.getItem(key); } catch (e) { return null; }
+      }
+
+      function write(key, value) {
+        try { prefs ? prefs.set(key, value) : localStorage.setItem(key, value); } catch (e) {}
+      }
+
+      function fromQuery(key) {
+        try { return new URLSearchParams(location.search).get(key); } catch (e) { return null; }
+      }
+
+      var theme = fromQuery('theme');
+      if (theme === 'light' || theme === 'dark') write('mot_theme', theme);
+      else theme = read('mot_theme');
       document.documentElement.dataset.theme = theme === 'light' || theme === 'dark'
         ? theme
         : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 
-      var query = null, stored = null;
-      try { query = new URLSearchParams(location.search).get('lang'); } catch (e) {}
-      try { stored = localStorage.getItem('mot_lang'); } catch (e) {}
+      var query = fromQuery('lang');
+      var stored = query ? null : read('mot_lang');
       var tag = query || stored
         || (navigator.languages && navigator.languages[0])
         || navigator.language || '';
